@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Pre 2 &middot; The 10 Percent Wall</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:14px;
+    color:var(--seal);
+    text-align:center;
+    letter-spacing:.06em;
+    font-style:italic;
+  }
+  .seal{text-align:center;margin:34px 0 6px;opacity:.85}
+  .divider{
+    margin:60px 0 0;
+    border:none;
+    border-top:2px solid rgba(29,26,20,.35);
+  }
+  .divider-label{
+    text-align:center;
+    font-size:13px;
+    letter-spacing:.28em;
+    color:var(--seal);
+    margin:14px 0 30px;
+  }
+  .zh-block{font-family:"Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",serif}
+  .zh-block h2{
+    text-align:center;
+    font-size:30px;
+    margin:10px 0 6px;
+  }
+  .zh-block .archive-note{
+    text-align:center;
+    font-size:13px;
+    color:var(--ink-soft);
+    letter-spacing:.14em;
+    margin-bottom:26px;
+  }
+  .zh-block .old-account-head{font-size:15px;text-transform:none;letter-spacing:.08em}
+  .closing{text-align:center;margin:48px 0 24px;font-size:14px;color:var(--ink-soft);letter-spacing:.3em}
+  .footer{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.7;
+    text-align:center;
+  }
+  .footer p{margin-bottom:.5em}
+  .source{font-size:11px;color:var(--ink-soft);margin-top:14px;opacity:.7;text-align:center}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+
+<div class="frame">
+
+<div class="kicker">A Daily Read of the Chinese Tape</div>
+
+<h1>Pre 2 &middot; The 10 Percent Wall</h1>
+<div class="byline">by Dan Rivers</div>
+<div class="sub-kicker">Friday, October 2, 2026 &middot; 中文题名 &middot; 涨跌停的那道墙</div>
+
+<!-- ========== ONE · THE WALL ========== -->
+<div class="section lead">
+  <div class="section-head">
+    <span class="section-num">ONE</span>
+    <span class="section-title">The Wall</span>
+    <span class="section-sub">Opening</span>
+  </div>
+
+  <aside class="aside">713 stocks closed<br>at their ceiling<br>on 30 Sept 2024 —<br>the most since<br>October 2015.</aside>
+
+  <p>On the afternoon of 30 September 2024, the last session before that year's National Day holiday, 5,336 stocks on the Shanghai and Shenzhen exchanges closed higher and eight closed lower. That is not a rounding error: nearly the entire listed market finished the day up, on turnover of &yen;2.59 trillion, the heaviest single session the exchanges had ever recorded.</p>
+
+  <p>Seven hundred and thirteen of those stocks did not merely rise. They finished the session sealed at their ceiling &mdash; the maximum a Chinese share is permitted to move in one day &mdash; and had been sitting there since lunchtime, with more buyers queued at that price than there were shares offered. No more trades printed. The screen stayed red while the tape, in the old sense of the word, went quiet.</p>
+
+  <p>If you come from a market without daily limits, the first instinct is to read this as a suspension. It is not. A suspension stops trading; a limit stops the price at a particular number and lets everyone keep queueing behind it. A queue is not a cancelation.</p>
+
+  <p>What follows: the wall, where it came from, and what it does to a trading day.</p>
+
+</div>
+
+<!-- ========== TWO · WHERE IT CAME FROM ========== -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-num">TWO</span>
+    <span class="section-title">Where the Wall Came From</span>
+    <span class="section-sub">1996</span>
+  </div>
+
+  <aside class="aside">For four years<br>Shenzhen had<br>no wall at all.<br>Then the index<br>rose 346 percent.</aside>
+
+  <p>The limit is younger than most people assume. After the crash of 1991 the Shenzhen exchange removed its price limits entirely; from August 1991 until the end of 1996, a Shenzhen share could move as far as buyers and sellers took it in a single session. Between April and December 1996 the Shenzhen Component Index rose 346 percent.</p>
+
+  <p>On 13 December 1996 the regulator issued a notice, effective three days later: apart from securities on their first day of listing, no stock or fund might trade more than 10 percent above or below its previous close. That rule, with widening exceptions, is still the shape of the market thirty years later. The exchange's own history of the period is blunt about the motive &mdash; the wall was built to cool a market down.</p>
+
+  <p>What has changed since is not the principle but the number of walls, and which boards sit behind which one.</p>
+
+  <div class="data">
+    <strong>Where the ceilings sit, October 2026</strong><br>
+    Main board (most listings in Shanghai and Shenzhen): &plusmn;10%<br>
+    Shares under special treatment (<em>ST</em>): &plusmn;5%, with exchange proposals to align them with the main board still in consultation<br>
+    STAR Market (Shanghai, <em>k</em>-prefixed): &plusmn;20% since the board opened in July 2019<br>
+    ChiNext (Shenzhen growth board): &plusmn;20% since its reform in August 2020<br>
+    Beijing Stock Exchange: &plusmn;30% since it opened in November 2021<br>
+    New listings: first-day main-board caps of +44% / &minus;36% under the old regime; under registration-based listing, no daily caps for the first five sessions
+  </div>
+
+</div>
+
+<!-- ========== THREE · WHAT IT DOES ========== -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-num">THREE</span>
+    <span class="section-title">What the Wall Actually Does</span>
+    <span class="section-sub">Mechanics</span>
+  </div>
+
+  <aside class="aside">A limit-up<br>is a queue.<br>A limit-down<br>is a locked door.</aside>
+
+  <p>A daily cap does not delete a move from the record. It postpones part of it. When demand for a stock is larger than the shares offered at the ceiling, the excess has nowhere to go; it queues, and it survives the closing bell. The next morning's opening auction is where that stored pressure gets its first chance to express itself. A market that finishes in a thicket of sealed ceilings is not necessarily a calmer market &mdash; it may simply be one whose argument has been postponed.</p>
+
+  <p>The local vocabulary is precise about the states in between. A stock that holds its ceiling into the close is <em>sealed</em> (封板); one that breaks the ceiling in the afternoon is <em>blown</em> (炸板); one that opens at the ceiling and never leaves it is a <em>one-line board</em> (一字板). Rises are counted in <em>consecutive boards</em> (连板), and the height of the longest chain is read as a thermometer of the wider market. This is not decoration. It is the shorthand of a market where the extremes are administered rather than discovered.</p>
+
+  <p>The two directions are not symmetrical, and anyone reading this tape should know why. A ceiling is a queue you may or may not join. A floor is a door that can shut with you on the wrong side. On 26 June 2015 more than 2,000 stocks closed at their floor; the Shanghai Composite fell 7.40 percent and ChiNext fell 8.91 percent. By 8 July, roughly 1,400 companies &mdash; more than half the listed market &mdash; had suspended trading, because suspension was the only exit left. Two sessions later, on 9 July 2015, of the 1,309 stocks still trading, 1,273 closed at their ceiling, about 97 percent of them. Same walls, opposite direction.</p>
+
+  <div class="pull">A limit does not stop the news from travelling. It stops the price from travelling, and hands the difference to the next morning.</div>
+
+  <p>There is a second rule here that most markets do not have: shares bought today cannot be sold today. That is the subject of tomorrow's piece, and it is why a sealed ceiling carries a different weight here.</p>
+
+</div>
+
+<!-- ========== FOUR · THE LONGEST CHAIN ========== -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-num">FOUR</span>
+    <span class="section-title">The Longest Chain on Record</span>
+    <span class="section-sub">Historical Parallels</span>
+  </div>
+
+  <aside class="aside">42 boards.<br>&yen;4.16 to &yen;26.58.<br>The 43rd opened<br>at the ceiling<br>and closed at the floor.</aside>
+
+  <div class="old-account">
+    <div class="old-account-head">The record &mdash; 2007</div>
+    <p>In 2007 a struggling Shanghai-listed shell, *ST Jintai (600385), announced a plan to absorb a large parcel of property assets through a share issue. It resumed trading on 9 July 2007 and closed at its ceiling that day and every session thereafter until 30 August &mdash; 42 consecutive boards, the longest chain in the market's history, taking the shares from &yen;4.16 to &yen;26.58. It was an ST stock, capped at 5 percent rather than 10, which is part of how a chain runs that long.</p>
+    <p>On the morning of 31 August the stock opened at what would have been its 43rd ceiling. It held for nine minutes, broke, and closed at its floor; further floor sessions followed, and the shares were suspended later that month.</p>
+    <div class="diff-note">Difference to keep in mind: that chain was driven by a single asset-injection announcement with no external timetable attached, and the market counted boards by word of mouth. Chains here are shorter and more crowded now, and every one of them is counted and published in real time.</div>
+  </div>
+
+  <div class="old-account">
+    <div class="old-account-head">The other extreme &mdash; 2024</div>
+    <p>The session described at the top of this piece produced 713 sealed ceilings &mdash; the most in a single session since October 2015 &mdash; on record turnover. Five sessions earlier, the Shanghai Composite had been below 2,800.</p>
+    <div class="diff-note">Difference to keep in mind: that session sat at the end of a one-week policy sequence and immediately before a seven-day market closure, so the queue at every ceiling was held across a holiday rather than overnight. Eighteen hours and nine days are not the same thing.</div>
+  </div>
+
+  <p>The wall was built to slow a market down. What it mostly does is move the argument to the next opening auction.</p>
+
+  <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+</div>
+
+<div class="seal">
+  <svg width="150" height="34" viewBox="0 0 150 34" role="img" aria-label="seal">
+    <g fill="none" stroke="#a8312a" stroke-width="1.4" opacity="0.75">
+      <path d="M6 6h16v16H6z M10 10h8v8h-8z"/>
+      <path d="M22 14h60"/>
+      <path d="M128 6h16v16h-16z M132 10h8v8h-8z M136 14h0.1"/>
+    </g>
+    <g fill="#a8312a" opacity="0.75">
+      <rect x="140" y="15" width="3" height="3"/>
+      <rect x="5" y="15" width="3" height="3"/>
+    </g>
+  </svg>
+</div>
+
+<div class="closing">&middot; 涨 跌 停 的 那 道 墙 &middot;</div>
+
+<div class="footer">
+  <p style="text-align:center;margin-bottom:16px"><a href="index.html" style="color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(61,107,91,.45)">&larr; The Jianghu Tape</a></p>
+  <p>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</p>
+  <div class="source">Data: price-limit history per the regulator's notice of 1996-12-13 (effective 1996-12-16, &plusmn;10% for stocks and funds other than first-day listings) and the Shenzhen Stock Exchange's published history of its price-limit regime (no limits from August 1991 to 1996; Shenzhen Component Index +346% between April and December 1996); board-level caps per exchange rules as of 2026-10 (STAR Market &plusmn;20% from 2019-07-22; ChiNext &plusmn;20% from 2020-08-24; Beijing Stock Exchange &plusmn;30% from 2021-11-15), with ST shares at &plusmn;5% and alignment with the main board still under exchange consultation. Session counts: 2024-09-30 &mdash; 5,336 stocks up, 8 down, 713 closing limit-up, combined turnover &yen;2.59 trillion, per Shanghai Securities News reporting of that session; 2015-06-26 &mdash; more than 2,000 stocks closing limit-down, Shanghai Composite &minus;7.40%, ChiNext &minus;8.91%; 2015-07-08 &mdash; approximately 1,400 companies suspended, per contemporaneous People's Daily and other Chinese media reports; 2015-07-09 &mdash; 1,273 of 1,309 tradable stocks limit-up (Wind data, per The Paper, 2015-07-09). Chain record: *ST Jintai (600385), 42 consecutive limit-ups between 2007-07-09 and 2007-08-30, &yen;4.16 to &yen;26.58, reversal on 2007-08-31, per year-end 2007 market round-ups published by China Economic Net and China News Service. Figures are stated in yuan; no exchange rates are applied.</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var prog=document.getElementById('prog');
+  function upd(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    prog.style.width=(max>0?(h.scrollTop/max*100):0)+'%';
+  }
+  window.addEventListener('scroll',upd,{passive:true});
+  upd();
+})();
+</script>
+</body>
+</html>
