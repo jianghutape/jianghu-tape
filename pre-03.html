@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Pre 3 &middot; Tomorrow Is Another Country</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:14px;
+    color:var(--seal);
+    text-align:center;
+    letter-spacing:.06em;
+    font-style:italic;
+  }
+  .seal{text-align:center;margin:34px 0 6px;opacity:.85}
+  .divider{
+    margin:60px 0 0;
+    border:none;
+    border-top:2px solid rgba(29,26,20,.35);
+  }
+  .divider-label{
+    text-align:center;
+    font-size:13px;
+    letter-spacing:.28em;
+    color:var(--seal);
+    margin:14px 0 30px;
+  }
+  .zh-block{font-family:"Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",serif}
+  .zh-block h2{
+    text-align:center;
+    font-size:30px;
+    margin:10px 0 6px;
+  }
+  .zh-block .archive-note{
+    text-align:center;
+    font-size:13px;
+    color:var(--ink-soft);
+    letter-spacing:.14em;
+    margin-bottom:26px;
+  }
+  .zh-block .old-account-head{font-size:15px;text-transform:none;letter-spacing:.08em}
+  .closing{text-align:center;margin:48px 0 24px;font-size:14px;color:var(--ink-soft);letter-spacing:.3em}
+  .footer{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.7;
+    text-align:center;
+  }
+  .footer p{margin-bottom:.5em}
+  .source{font-size:11px;color:var(--ink-soft);margin-top:14px;opacity:.7;text-align:center}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+
+<div class="frame">
+
+<div class="kicker">A Daily Read of the Chinese Tape</div>
+
+<h1>Pre 3 &middot; Tomorrow Is Another Country</h1>
+<div class="byline">by Dan Rivers</div>
+<div class="sub-kicker">Saturday, October 3, 2026 &middot; 中文题名 &middot; 明日异邦</div>
+
+<!-- ========== ONE · THE MORNING YOU CANNOT LEAVE ========== -->
+<div class="section lead">
+  <div class="section-head">
+    <span class="section-num">ONE</span>
+    <span class="section-title">The Morning You Cannot Leave</span>
+    <span class="section-sub">Opening</span>
+  </div>
+
+  <aside class="aside">On 28 Sept 2026,<br>the opening print<br>was the high<br>of the entire day.</aside>
+
+  <p>Monday, 28 September 2026, was the first session after the Mid-Autumn holiday, and the Shanghai Composite opened as if it had brought good news back from the long weekend: 3,878.41. That number turned out to be the high of the entire day. By the close the index sat at 3,823.62, down 1.67 percent, and every sector tied to artificial-intelligence hardware had given back several days of gains in a single afternoon.</p>
+
+  <p>Consider the person who bought during that optimistic first hour. In most markets, the trade has gone badly and the trade can be undone; a click, a fee, done. Here the click does nothing. The shares bought that morning could not be sold until the next trading day. What was meant to be a position of minutes became a position of nights, and the night had a bill attached.</p>
+
+  <p>This is the rule locals call <strong>T+1</strong> &mdash; shares purchased today may not be sold until tomorrow, next trading day. Cash from a sale can be reused the same afternoon, but the stock itself is locked in until the next opening bell. It sounds like an administrative footnote. It is closer to the load-bearing wall of the entire market's temperament, and this chapter is about why.</p>
+
+</div>
+
+<!-- ========== TWO · WHERE THE RULE CAME FROM ========== -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-num">TWO</span>
+    <span class="section-title">Where the Rule Came From</span>
+    <span class="section-sub">1992&ndash;1995</span>
+  </div>
+
+  <aside class="aside">Under T+0 in<br>1992&ndash;93, the index<br>doubled in about<br>seven weeks.</aside>
+
+  <p>Like the price wall described in the last chapter, T+1 was not the founding design. It was a patch, bolted on after something went wrong. In the young market of the early 1990s, Shanghai allowed same-day round trips &mdash; the regime the world calls <strong>T+0</strong> &mdash; from May 1992, and Shenzhen followed in November 1993. For a while a stock could be bought and sold the same morning, repeatedly, by the same hands.</p>
+
+  <p>What followed is the part every veteran of this market can recite. Between late December 1992 and mid-February 1993, the Shanghai index ran from around 760 to above 1,558 &mdash; a doubling in roughly seven weeks, driven by a market in which hot money could turn over without pause. The regulators read that episode the way a physician reads a fever chart. On 1 January 1995, both exchanges reverted to T+1, and the rule has held for more than thirty years.</p>
+
+  <p>It has been challenged often. The 1998 Securities Law wrote the prohibition into statute; the 2005 revision deleted the clause, which touched off a decade of speculation about a return to T+0; in 2013 the Shanghai exchange itself published a call to study reintroducing it, and in 2020 it proposed a carefully limited version for the new STAR board. None of it happened. The STAR Market arrived in 2019 with its daily limits widened to 20 percent &mdash; and kept T+1. Even the market's youngest, most professional board still keeps the old lock.</p>
+
+  <div class="old-account">
+    <div class="old-account-head">Old Account &middot; No. 1 &mdash; The First Days of the Lock</div>
+    <p>The first session under T+1, 3 January 1995, was mild on its face: the Shanghai Composite fell 1.23 percent, Shenzhen's component index 0.11 percent. What followed was quieter and worse. Turnover contracted sharply as the same-day crowd left, and the index drifted lower for five weeks, touching 524 in early February 1995 &mdash; from a 1994 close of 647, a slide of roughly 19 percent.</p>
+    <p class="diff-note">One difference worth recording: the 1995 market was tiny, thinly capitalized, and had just lived through a same-day-trading boom, so its dependency on the T+0 crowd was far greater than today's institutionalized market's would be. The lesson is about the mechanism, not the magnitude.</p>
+  </div>
+
+  <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+</div>
+
+<!-- ========== THREE · THE LONG NIGHT ========== -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-num">THREE</span>
+    <span class="section-title">The Long Night</span>
+    <span class="section-sub">Mechanism</span>
+  </div>
+
+  <aside class="aside">In other markets<br>you can change<br>your mind. Here,<br>your mind changes<br>tomorrow.</aside>
+
+  <p>To a reader from a market without the rule, the deepest consequence is not liquidity. It is that a morning purchase in Shanghai is a wager that includes the night. American markets tolerate overnight risk too &mdash; gaps between close and open are universal &mdash; but the American trader who regrets a position by lunchtime can end it by lunchtime. The Shanghai trader cannot. Every trade here is, structurally, an overnight trade, even one executed at 9:31 in the morning.</p>
+
+  <p>This is why the overnight gap, the space between one close and the next open, carries such weight in the local vocabulary. And it is why the market's memory keeps returning to certain mornings.</p>
+
+  <div class="old-account">
+    <div class="old-account-head">Old Account &middot; No. 2 &mdash; The Gate That Opened Too Wide</div>
+    <p>On 8 October 2024, the first session after that year's Golden Week, the Shanghai Composite gapped up by more than ten percent at the open &mdash; after the pre-holiday session had already closed up 8.06 percent on record turnover of &yen;2.59 trillion. The euphoria faded within the day and the index finished 4.59 percent higher. The next session, 9 October, the index fell 6.62 percent. Buyers who had chased the opening print of the eighth were locked in by T+1 through the close of the ninth; the earliest they could act on what they were watching was the tenth.</p>
+    <p class="diff-note">One difference worth recording: that week was the fastest policy-driven re-rating in a decade, with turnover at unprecedented scale &mdash; gaps of that width are the exception that justifies the rule, not the rule's daily work. Most sessions open within a fraction of a percent of the prior close.</p>
+  </div>
+
+  <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+  <p>Once you see it, T+1 explains a great deal of the market's observed behavior. It is one reason sentiment that cannot be spent today gets banked until tomorrow, so strength and weakness both run a day longer than a free-exit market would allow. It is one reason the tape goes quiet before long holidays: a position taken before a multi-day closure carries not one night but several, and this chronicle has watched turnover fall to a fraction of its recent norm in the final sessions before National Day week, year after year.</p>
+
+  <p>It also shapes the language. When local commentators describe a failed rally, they say the buyers got <em>trapped on the mountain</em> &mdash; a phrase that only makes sense in a market where getting off the mountain is scheduled, not chosen.</p>
+
+  <div class="pull">Every market has a speed limit somewhere. Here, the limit is not on the price. It is on the change of mind.</div>
+
+  <p>The poet Cavafy wrote that you will not find a new country, because you carry the old one with you. This market has made that sentence operational. Tomorrow is not simply another day here; it is another country, with its own opening price, and you cannot cross the border before it opens. Next chapter: the strange grammar of the Chinese ticker, where red means up &mdash; and how to read a screen that keeps its own counsel about color.</p>
+
+</div>
+
+<div class="seal">
+  <svg width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg">
+    <rect x="4" y="4" width="46" height="46" fill="none" stroke="#a8312a" stroke-width="2.5" rx="4"/>
+    <rect x="12" y="12" width="30" height="30" fill="none" stroke="#a8312a" stroke-width="1.5" rx="2"/>
+    <path d="M18 36 L27 16 L36 36 M22 29 L32 29" fill="none" stroke="#a8312a" stroke-width="2"/>
+  </svg>
+</div>
+<div class="closing">THE JIANGHU TAPE &middot; PRE 3</div>
+
+<div class="footer">
+  <p style="text-align:center;margin-bottom:16px"><a href="index.html" style="color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(61,107,91,.45)">&larr; The Jianghu Tape</a></p>
+  <p>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</p>
+  <p>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</p>
+  <p class="source">Sources: CSRC Investor Protection Bureau, public reply on T+0/T+1 (T+1 in force since 1 Jan 1995); China Securities Journal timeline (SSE T+0 from May 1992, SZSE from Nov 1993, T+1 from 1 Jan 1995, 1998 Securities Law Art. 106, 2005 revision, 2013 SSE proposal); China Economy Net (SSE ~760&rarr;1,558, Dec 1992&ndash;Feb 1993; 3 Jan 1995 SSE &minus;1.23% / SZSE &minus;0.11%; Feb 1995 low 524 vs 1994 close 647). Session data for 28 Sept 2026 and 8&ndash;9 Oct 2024 from this chronicle's archived chapters.</p>
+</div>
+
+</div>
+
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=p+'%';
+  });
+</script>
+</body>
+</html>
