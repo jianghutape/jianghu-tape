@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Pre 5 &middot; The Loudest Number</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:14px;
+    color:var(--seal);
+    text-align:center;
+    letter-spacing:.06em;
+    font-style:italic;
+  }
+  .seal{text-align:center;margin:34px 0 6px;opacity:.85}
+  .divider{
+    margin:60px 0 0;
+    border:none;
+    border-top:2px solid rgba(29,26,20,.35);
+  }
+  .divider-label{
+    text-align:center;
+    font-size:13px;
+    letter-spacing:.28em;
+    color:var(--seal);
+    margin:14px 0 30px;
+  }
+  .zh-block{font-family:"Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",serif}
+  .zh-block h2{
+    text-align:center;
+    font-size:30px;
+    margin:10px 0 6px;
+  }
+  .zh-block .archive-note{
+    text-align:center;
+    font-size:13px;
+    color:var(--ink-soft);
+    letter-spacing:.14em;
+    margin-bottom:26px;
+  }
+  .zh-block .old-account-head{font-size:15px;text-transform:none;letter-spacing:.08em}
+  .closing{text-align:center;margin:48px 0 24px;font-size:14px;color:var(--ink-soft);letter-spacing:.3em}
+  .footer{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.7;
+    text-align:center;
+  }
+  .footer p{margin-bottom:.5em}
+  .source{font-size:11px;color:var(--ink-soft);margin-top:14px;opacity:.7;text-align:center}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+
+<div class="frame">
+
+<div class="kicker">A Daily Read of the Chinese Tape</div>
+
+<h1>Pre 5 &middot; The Loudest Number</h1>
+<div class="byline">by Dan Rivers</div>
+<div class="sub-kicker">Monday, October 5, 2026 &middot; 中文题名 &middot; 最响的数字</div>
+
+<!-- ========== ONE · TWO AND A HALF TIMES ========== -->
+<div class="section lead">
+  <div class="section-head">
+    <span class="section-num">ONE</span>
+    <span class="section-title">Two and a Half Times</span>
+    <span class="section-sub">Opening</span>
+  </div>
+
+  <aside class="aside">8 Oct 2024:<br>&yen;3.46 trillion.<br>A session last month:<br>&yen;1.42 trillion.</aside>
+
+  <p>On 8 October 2024, the first session after that year's Golden Week, &yen;3.463 trillion changed hands across China's two exchanges. It was the largest single-day turnover the market had ever recorded. On an ordinary session at the end of September 2026, the same measure came to &yen;1.422 trillion.</p>
+
+  <p>The loudest day in the market's history was roughly two and a half times a quiet one. That is the dynamic range a reader has to hold in mind, and it is why turnover &mdash; not the index &mdash; is usually the first thing a local trader looks at in the morning.</p>
+
+  <p>Turnover is the only figure on the screen that counts participation rather than opinion. An index level is a weighted argument about what things are worth; a quote is what someone asks. Turnover is money that actually moved. It cannot be posted, only paid. That makes it the most honest number on the board, and also the easiest one to misread.</p>
+
+</div>
+
+<!-- ========== TWO · WHAT THE NUMBER COUNTS ========== -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-num">TWO</span>
+    <span class="section-title">What the Number Counts</span>
+    <span class="section-sub">Mechanism</span>
+  </div>
+
+  <aside class="aside">Turnover counts<br>money that moved.<br>Prices only count<br>what people asked.</aside>
+
+  <p>What locals call <strong>成交额</strong> is the sum of value traded across the session. The related measure, <strong>换手率</strong>, divides that by the size of the float &mdash; how much of the thing changed hands, rather than how many yuan. Both are useful, and they disagree whenever the market itself grows: the same turnover spread over a larger market is a quieter day than it used to be. A record set in 2015 and a record set in 2024 are not the same size of event, even before inflation is discussed.</p>
+
+  <p>This is why the comparison is almost never against a fixed number. It is against the market's own recent selves &mdash; yesterday, the same hour of last week, the average of the last month. Terminals package that comparison as a ratio; the habit behind it is simple: loudness is relative to the room you are standing in.</p>
+
+  <p>One more caution of scope. The headline figure usually covers Shanghai and Shenzhen combined; a third exchange exists, is small, and is included or omitted depending on who is quoting. Differences of a few percent between two sources are usually scope, not error. Compare a number against the same source that produced it, and treat cross-year records with the suspicion they deserve.</p>
+
+  <p>There is a local saying, <em>量在价先</em> &mdash; volume precedes price. It is worth recording as vocabulary because you will hear it constantly, and worth recording as nothing more. It describes a sequence that sometimes happened. It is not a mechanism, and this chronicle does not use it to stand anywhere.</p>
+
+</div>
+
+<!-- ========== THREE · THREE WAYS TO MISREAD IT ========== -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-num">THREE</span>
+    <span class="section-title">Three Ways to Misread It</span>
+    <span class="section-sub">Reading</span>
+  </div>
+
+  <aside class="aside">The same price<br>on rising and<br>falling turnover<br>is not the same day.</aside>
+
+  <p>The first misreading is to treat turnover as direction. It has none. A rising index on thickening trade and a rising index on thinning trade are different animals, and so are a falling index on heavy trade &mdash; money leaving in a hurry &mdash; and a falling index on thin trade, which is often just a room with nobody in it.</p>
+
+  <p>The second is to read the headline figure without asking what is sealed. On a day with hundreds of names pinned limit-up, the turnover in those names collapses: a stock locked at its ceiling barely trades, however much demand is queued behind it. The loudest board can contain the quietest stocks. The mechanism was described in Pre 02.</p>
+
+  <p>A fourth, and the subtlest: turnover can be concentrated. A loud total may be carried by a handful of names passing the same money back and forth while the other five thousand sit untouched. The number is honest about how much moved and silent about how widely. Locals watch which names sit at the top of the turnover table for exactly this reason &mdash; not because the list predicts anything, but because it tells you whose room you are actually standing in.</p>
+
+  <p>The third is to forget the calendar. Turnover thins before long holidays, year after year, because a position taken before a multi-day closure carries more nights than a position taken on an ordinary Tuesday. Pre 03 recorded this as one of the consequences of T+1: what cannot be closed tonight is not wanted tonight. A thin tape before National Day week is routine, not news.</p>
+
+</div>
+
+<!-- ========== FOUR · TWO RECORD ROOMS ========== -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-num">FOUR</span>
+    <span class="section-title">Two Record Rooms</span>
+    <span class="section-sub">Old accounts</span>
+  </div>
+
+  <aside class="aside">28 May 2015:<br>&yen;2.17 trillion.<br>8 Oct 2024:<br>&yen;3.46 trillion.</aside>
+
+  <p><strong>Old account one.</strong> On 28 May 2015 the two exchanges traded &yen;2.165 trillion &mdash; extraordinary for its day. Two weeks later the tape was quieter even as the index climbed: &yen;2.085 trillion on 8 June, then &yen;1.85 trillion on 15 June, the session after the index's high-water close of 5,166.35 on 12 June and the day it closed at 5,062.99, down 2.00 percent. One difference worth recording: that year's turnover was carried by borrowed money, which was later withdrawn by force. The same number of yuan does not mean the same thing under a different funding regime.</p>
+
+  <p><strong>Old account two.</strong> 8 October 2024, the record: &yen;3.463 trillion, on a session that opened more than ten percent higher and closed up 4.59 percent, followed the next day by a fall of 6.62 percent. That week was described in Pre 03. One difference worth recording: it was the fastest policy-driven re-rating in a decade; turnover of that width is the exception that proves the scale, not the scale itself.</p>
+
+  <p>What the two share is only this, and it is worth no more than it says: in both accounts, the loudest turnover of the era arrived near an extreme of feeling, not in the middle of one. That is a fact about those days. It is not a rule about the next one, and this chronicle will not use it as such.</p>
+
+  <p>Next: the corridor through which foreign money enters this market, and what a daily flow figure does and does not reveal.</p>
+
+</div>
+
+<div class="seal">
+  <svg width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg">
+    <rect x="4" y="4" width="46" height="46" fill="none" stroke="#a8312a" stroke-width="2.5" rx="4"/>
+    <rect x="12" y="12" width="30" height="30" fill="none" stroke="#a8312a" stroke-width="1.5" rx="2"/>
+    <path d="M18 36 L27 16 L36 36 M22 29 L32 29" fill="none" stroke="#a8312a" stroke-width="2"/>
+  </svg>
+</div>
+<div class="closing">THE JIANGHU TAPE &middot; PRE 5</div>
+
+<div class="footer">
+  <p style="text-align:center;margin-bottom:16px"><a href="index.html" style="color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(61,107,91,.45)">&larr; The Jianghu Tape</a></p>
+  <p>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</p>
+  <p>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</p>
+  <p class="source">Sources: East Money data (all-A-share turnover: 8 Oct 2024 &yen;3.463tn; 30 Sept 2024 &yen;2.595tn; 29 Sept 2026 &yen;1.422tn; 28 May 2015 &yen;2.165tn; 8 June 2015 &yen;2.085tn; 15 June 2015 &yen;1.85tn; SSE Composite close 5,166.35 on 12 June 2015 and 5,062.99, &minus;2.00%, on 15 June 2015). Limit mechanism in Pre 02; T+1 and pre-holiday thinning in Pre 03.</p>
+</div>
+
+</div>
+
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=p+'%';
+  });
+</script>
+</body>
+</html>
