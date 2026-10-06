@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Pre 7 &middot; Tomorrow We Start</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:14px;
+    color:var(--seal);
+    text-align:center;
+    letter-spacing:.06em;
+    font-style:italic;
+  }
+  .seal{text-align:center;margin:34px 0 6px;opacity:.85}
+  .divider{
+    margin:60px 0 0;
+    border:none;
+    border-top:2px solid rgba(29,26,20,.35);
+  }
+  .divider-label{
+    text-align:center;
+    font-size:13px;
+    letter-spacing:.28em;
+    color:var(--seal);
+    margin:14px 0 30px;
+  }
+  .zh-block{font-family:"Noto Serif SC","Source Han Serif SC","Songti SC","SimSun",serif}
+  .zh-block h2{
+    text-align:center;
+    font-size:30px;
+    margin:10px 0 6px;
+  }
+  .zh-block .archive-note{
+    text-align:center;
+    font-size:13px;
+    color:var(--ink-soft);
+    letter-spacing:.14em;
+    margin-bottom:26px;
+  }
+  .zh-block .old-account-head{font-size:15px;text-transform:none;letter-spacing:.08em}
+  .closing{text-align:center;margin:48px 0 24px;font-size:14px;color:var(--ink-soft);letter-spacing:.3em}
+  .footer{
+    margin-top:60px;
+    padding-top:20px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:12px;
+    color:var(--ink-soft);
+    line-height:1.7;
+    text-align:center;
+  }
+  .footer p{margin-bottom:.5em}
+  .source{font-size:11px;color:var(--ink-soft);margin-top:14px;opacity:.7;text-align:center}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+
+<div class="frame">
+
+<div class="kicker">A Daily Read of the Chinese Tape</div>
+
+<h1>Pre 7 &middot; Tomorrow We Start</h1>
+<div class="byline">by Dan Rivers</div>
+<div class="sub-kicker">Wednesday, October 7, 2026 &middot; 中文题名 &middot; 明日开卷</div>
+
+<!-- ========== ONE ========== -->
+<div class="section lead">
+  <div class="section-head">
+    <span class="section-num">ONE</span>
+    <span class="section-title">What Starts Tomorrow</span>
+    <span class="section-sub">Opening</span>
+  </div>
+
+  <aside class="aside">Tomorrow:<br>8 Oct 2026.<br>Chapter One.</aside>
+
+  <p>Tomorrow this column stops introducing itself and starts keeping a record: one chapter for each trading session, written after the close, dated, and left alone afterwards.</p>
+
+  <p>A chapter will carry four things and nothing else. What the overseas markets did while Shanghai was shut. The session on the ground &mdash; the closes, the turnover, how many stocks rose and how many fell. One or two passages of history that rhyme with the day. And the date it was written down.</p>
+
+  <p>Why after the bell, and not before the open? Because a reading taken after the close can be checked against the day that actually happened, and a reading taken before it cannot be checked against anything. This is a preference for evidence over nerve. It is not a claim that either produces better results.</p>
+
+  <p>The last session before the holiday closed at 3,842.19, up 0.31 percent. Chapter One opens from there.</p>
+
+</div>
+
+<!-- ========== TWO ========== -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-num">TWO</span>
+    <span class="section-title">What It Will Not Do</span>
+    <span class="section-sub">Three promises</span>
+  </div>
+
+  <aside class="aside">No forecast.<br>No advice.<br>No rewriting.</aside>
+
+  <p>Three promises, written down once here so that they can be held to later.</p>
+
+  <p>It will not predict tomorrow. No levels, no probabilities, no &ldquo;likely,&rdquo; no scenarios dressed up as caution. A tape can be described; the next session cannot be.</p>
+
+  <p>It will not advise. No recommendation, no instruction to buy or to sell, no target price. The author holds no licence for any of that, and the column has nothing for sale &mdash; which is the cleaner reason.</p>
+
+  <p>It will not edit itself. If a day's reading turns out to have missed something, the correction goes in beneath it under its own date, and the original stays exactly as it was published. The third promise is the one that costs something: it is easy to promise accuracy and harder to promise not to improve.</p>
+
+</div>
+
+<!-- ========== THREE ========== -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-num">THREE</span>
+    <span class="section-title">What Has Been Laid Down</span>
+    <span class="section-sub">Pre 01 to Pre 06</span>
+  </div>
+
+  <aside class="aside">Six pieces<br>of ground.<br>None of them<br>an opinion.</aside>
+
+  <p>Six pieces of ground, in the order they were set down this week.</p>
+
+  <div class="data">
+    <strong>The scaffolding:</strong> Pre 01, what <em>jianghu</em> means and what this column is. Pre 02, the ten-percent wall, and why a stock at its ceiling is a queue rather than a price. Pre 03, T+1, and why a trade made at 9:31 in the morning is an overnight trade. Pre 04, red means up, and how to read the two lines on an intraday chart. Pre 05, the loudest number, and three ways to misread turnover. Pre 06, nine days in the autumn of 2024, and what a market looks like when the toolbox opens.
+  </div>
+
+  <p>None of these are opinions. Each is either a mechanism or a dated record, and each will be reused rather than restated: when tomorrow's chapter mentions a stock sealed at its limit, it will point back to Pre 02 instead of explaining the wall again.</p>
+
+  <p>A reader arriving tomorrow can begin at Chapter One. The six pieces above are scaffolding; not one of them has to be read first.</p>
+
+</div>
+
+<!-- ========== FOUR ========== -->
+<div class="section">
+  <div class="section-head">
+    <span class="section-num">FOUR</span>
+    <span class="section-title">Coda</span>
+    <span class="section-sub">Why bother</span>
+  </div>
+
+  <aside class="aside">One session,<br>read once,<br>written once.</aside>
+
+  <p>What starts tomorrow is smaller than it sounds: one session, read once, written down once. Some days it will be interesting. Most days it will not be. The value, if there is any, is cumulative &mdash; a shelf of dated readings that nobody went back to improve.</p>
+
+  <p>One date is worth noting. Chapter One falls two years to the day after the morning Shanghai opened ten percent higher, in the week described in Pre 06. The anniversary is a coincidence. That it is worth noting at all is not.</p>
+
+  <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+</div>
+
+<div class="seal">
+  <svg width="54" height="54" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg">
+    <rect x="4" y="4" width="46" height="46" fill="none" stroke="#a8312a" stroke-width="2.5" rx="4"/>
+    <rect x="12" y="12" width="30" height="30" fill="none" stroke="#a8312a" stroke-width="1.5" rx="2"/>
+    <path d="M18 36 L27 16 L36 36 M22 29 L32 29" fill="none" stroke="#a8312a" stroke-width="2"/>
+  </svg>
+</div>
+<div class="closing">THE JIANGHU TAPE &middot; PRE 7</div>
+
+<div class="footer">
+  <p style="text-align:center;margin-bottom:16px"><a href="index.html" style="color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(61,107,91,.45)">&larr; The Jianghu Tape</a></p>
+  <p>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</p>
+  <p>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</p>
+  <p class="source">Sources: Shanghai Composite close of 3,842.19, up 0.31 percent, on 30 Sept 2026 (exchange data; the last session before the National Day closure). The six pieces of ground summarised here are set out in this column's Pre 01 to Pre 06, published 1-6 Oct 2026.</p>
+</div>
+
+</div>
+
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=p+'%';
+  });
+</script>
+</body>
+</html>
