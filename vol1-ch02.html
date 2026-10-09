@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Two &middot; The Round Trip</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .zh-block{
+    background:rgba(255,255,255,.32);
+    border:1px solid rgba(29,26,20,.14);
+    padding:26px 24px;
+    font-size:16px;
+    line-height:1.9;
+  }
+  .zh-block h2{
+    font-size:15px;
+    letter-spacing:.2em;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:16px;
+    text-align:center;
+  }
+  .zh-block p{margin-bottom:1em}
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<div class="frame">
+
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Two &middot; The Round Trip</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-09</div>
+  <div class="sub-kicker">第二章 · 往返</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>For four hours on Friday the ChiNext traded below 3,000. The Shenzhen growth board, where this market keeps its most expensive companies, had closed Thursday at 3,036.66; by late morning it was at 2,932.80, down 3.42 percent, and the index built to summarise it had printed a thirteen-month low. The Shanghai Composite gave up 58 points from Thursday's close to touch 3,754.14. On the science board the technology composite fell 4.97 percent at its worst.</p>
+
+    <p>Then the afternoon happened.</p>
+
+    <p>The brokers moved first. By the close Huaxin Securities sat at its 10 percent ceiling and East Money was up nearly 4 percent. Broad index funds traded in unusual size. Media stocks, left alone since the summer, went up all at once: Chinese Online and Mango Excellent Media at their 20 percent ceilings. The gold names joined — Western Region Gold finished at its ceiling.</p>
+
+    <p>On this tape red is the colour of gain, and by three o'clock every index was red.</p>
+
+    <div class="aside">A 58-point morning and a 1.89-point day: one session, two headlines, and the index chose the second one.</div>
+
+    <p>The round trip changed nothing except the price of having sat through it. The Shanghai Composite closed at 3,813.79, 1.89 points above Thursday — a gain of 0.05 percent. The Shenzhen Component added 0.17 percent and the ChiNext 0.22. The Composite finished 1.89 points above where it began, having travelled 50 points below its own opening print to get there.</p>
+
+    <p>Turnover is where the day left a mark. The two mainland exchanges cleared &yen;1.90 trillion against Thursday's &yen;1.68 trillion — about &yen;218 billion more money, on a day when the index moved 1.89 points.</p>
+
+    <p>The ledger underneath was not flat at all. Of the stocks trading on the two exchanges, 3,297 closed higher, 2,145 lower and 131 unchanged. Seventy-two reached the ceiling and eleven hit the floor. Ninety-two gained more than 7 percent.</p>
+
+    <div class="pull">The index and the ledger disagreed again — but this time the ledger was the better day.</div>
+
+    <p>The buyers came from the places that had not been winning. Media, publishing and film distribution led the board; agriculture, precious metals, brokerages, retail, software, batteries and industrial metals were all bought. The sellers held the names that had carried the market since spring — multilayer ceramic capacitors, copper-clad laminate, electronic chemicals, semiconductors, memory, optical modules. Guoci Materials and Fenghua Advanced fell 6.91 and 6.41 percent. Dajin Heavy Industry closed at its limit-down; so did Jin'an Guoji. Zhongji Innolight was the most-traded stock in the market at &yen;21.09 billion of turnover and finished 0.98 percent lower.</p>
+
+    <div class="aside">The heaviest selling was in the most-owned names. The buying was in the least-owned. That is why the index looks calm.</div>
+
+    <p>The banks, the only heavy sector that rose on Thursday, fell in the afternoon — Chongqing Bank, Postal Savings Bank, Bank of Qingdao and Bank of Shanghai each more than 1 percent lower.</p>
+
+    <p>Hong Kong opened on the same clock and voted the other way. The Hang Seng closed at 24,211.35, up 1.79 percent, Hang Seng Tech up 3.06 percent — a strong session assembled out of property developers (Shimao Group up 41.18 percent, Sino-Ocean Group 22.86 percent), Xiaomi up 9.72 percent on 70,000 locked orders in the first month of its new car line, and the gold miners. And the same AI-hardware chain sold in Shanghai was sold there: Guanghe Technology fell 10.09 percent, Victory Giant 6.71 percent. Southbound money bought a net HK$291 million, which is close to nothing.</p>
+
+    <p>The backdrop Shanghai woke up to was a message about one industry, delivered by one number. In the New York session that finished before the mainland opened, the semiconductor index fell 3.39 percent and 29 of its 30 members closed lower: the Nasdaq Composite at 27,193.34, down 1.25 percent; the S&amp;P 500 at 7,765.36, down 0.47 percent; the Dow at 51,231.64, up 0.10 percent. The number was OpenAI's — it told investors its annualised revenue was close to $50 billion, against the $70 billion then circulating. Energy rose, technology fell, oil jumped.</p>
+
+    <div class="data">
+      <strong>The tape, October 9, 2026</strong>
+      <ul>
+        <li>Shanghai Composite 3,813.79 <span class="chg">(↑ 0.05%)</span> · open 3,804.09 · low 3,754.14</li>
+        <li>Shenzhen Component 12,641.86 <span class="chg">(↑ 0.17%)</span> · ChiNext 3,043.33 <span class="chg">(↑ 0.22%)</span></li>
+        <li>Combined turnover &yen;1.90 trillion, vs &yen;1.68 trillion on Oct 8</li>
+        <li>Advancers 3,297 · decliners 2,145 · unchanged 131</li>
+        <li>Limit-up 72 · limit-down 11</li>
+        <li>Hang Seng 24,211.35 <span class="chg">(↑ 1.79%)</span> · Hang Seng Tech 4,197.84 <span class="chg">(↑ 3.06%)</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>Start with what the overnight news was. A semiconductor index falling 3.39 percent in New York is a statement about one industry's price, not a market's direction. Hong Kong read it that way — it sold the same hardware chain and finished the day 1.79 percent higher on property, cars and gold. Shanghai spent the morning reading it the other way, and the afternoon correcting itself.</p>
+
+    <p>The correction happened at both ends of one theme. The infrastructure end was cut: memory, optical modules, copper-clad laminate, capacitors — the parts of the AI trade that had run since spring. The application end was bought. That afternoon the industry ministry published its action plan for AI in software, targeting fully intelligent critical software by 2030, and software, data security and application stocks rose together. Expensive infrastructure sold and cheap application bought inside one session is not a verdict on AI. It is a verdict on price.</p>
+
+    <div class="aside">Same theme, two ends: the hardware was sold, the application was bought.</div>
+
+    <p>Follow the large-order flow and the shape gets clearer. The three sectors that took in the most main-force money were batteries, industrial metals and precious metals — the ones the market had spent the autumn ignoring. Rotation aimed at what is cheap is the opposite of retreat. Retreat looked like Thursday, when the Composite fell 0.79 percent and banks were the only heavy sector to rise. On Friday banks fell and everything else rose.</p>
+
+    <p>The brokerages deserve their own line, because they are the market's own stock. The industry association published its half-year numbers — 150 firms, &yen;329.81 billion of revenue, &yen;138.66 billion of profit — and the sector went up. The figure was not new. What changed was that somebody was willing to pay for it.</p>
+
+    <p>Then the leverage question, because borrowed money is what produced most of this market's memorable reversals. The margin balance stood at &yen;2.536 trillion, up 0.16 percent on the day and below its own twenty-day average. Whatever bought Friday's low, it was not financed by fresh borrowing.</p>
+
+    <p>Prices also travelled a long way to end up nowhere. The ChiNext ranged 3.97 percent between its high and its low, the Shanghai technology 50 ranged 5.28 percent, and the market closed 1.89 points up. When that happens, the honest reading is that the market repriced itself rather than its own level. Index funds traded heavily, and the mid-cap and small-cap indices had a scheduled sample change after the close, which gave passive money its own reason to be busy. None of that explains the morning. All of it explains why the afternoon had a bid.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p>A session that falls hard in the morning and closes higher in the afternoon is not rare here. Three of them are close enough to set beside this one.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">March 16, 2022</div>
+      <p>After two heavy down days the market opened weak and turned violently in the afternoon, when the State Council's financial stability committee met on the economy and the capital market. The Shanghai Composite closed 3.48 percent higher at 3,170.71, the ChiNext gained 5.20 percent, more than 4,300 stocks rose — 137 of them to their ceilings — on turnover of nearly &yen;1.2 trillion. Hong Kong ran harder: the Hang Seng rose 9.08 percent, and its technology index had its largest intraday gain since launch.</p>
+      <div class="diff-note">Difference: that reversal had a named cause, a top-level meeting announced while the market was open. Friday's had none. Nothing was announced in Shanghai, only brokerages being bought and index funds trading in size.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">February 5&ndash;6, 2024</div>
+      <p>On February 5 the Composite touched 2,635, with close to 3,000 stocks at their floors at one point and liquidity visibly failing. The next morning Central Huijin said it had widened its purchases of exchange-traded funds, and the regulator suspended new securities-lending business the same day. The Composite closed up 3.23 percent, the Shenzhen Component up 6.22 percent, the ChiNext up 6.71 percent, with more than 3,800 stocks higher on &yen;926.3 billion of turnover. The market rose for two more sessions, and by the last day before the New Year holiday the Composite had climbed roughly 230 points off that 2,635 low.</p>
+      <div class="diff-note">Difference: that was a failing-liquidity low in a market years below its highs, and the buying arrived with an official statement attached. Friday, the ChiNext spent one morning under 3,000 in a market still near 3,800, and nobody announced anything.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">August 27&ndash;28, 2015</div>
+      <p>After a week that took the Composite down 8.49 percent on the Monday, 7.63 percent on the Tuesday and 1.27 percent on the Wednesday, the index reversed on the Thursday, closing 5.34 percent higher at 3,083.59. The next day it opened higher, sold off to nearly 2,900 in the afternoon, and closed at 3,232.35, up 4.82 percent, with 537 stocks at their ceilings against six at their floors. The week as a whole was still down 7.85 percent.</p>
+      <div class="diff-note">Difference: that reversal sat inside a broken leveraged bull market, when one week cost the index 7.85 percent and the bounce was short-covering plus visible state buying. Friday's fall was a fraction of that scale, and its rebound came through ordinary sector rotation.</div>
+    </div>
+
+    <div class="aside">Three reversals, three different roads afterwards: one ran for months, one held, one handed the low back five weeks later.</div>
+
+    <p>Put the three together and the interesting part is not the shape of the day — all three opened badly and closed well, exactly like Friday. It is what came afterwards. The 2015 reversal started a two-day bounce inside a decline that had further to run. The 2024 low held, and the market climbed roughly 230 points off it in three sessions on the strength of a policy that had actually been announced. The 2022 reversal was never the low at all: that year's bottom came five weeks later, on April 27, when the Composite fell to 2,863.65 intraday before closing at 2,958.28.</p>
+
+    <p>A long lower shadow records that somebody bought. It does not record who, or why, or with what staying power. The record stands for comparison.</p>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>The chart will draw October 9 as a small rise with a long line hanging beneath it — the receipt for a trip down and back that cost the index almost nothing. In the middle of the morning, at a price nobody had chosen in advance, somebody bought what a bad night in New York was selling. By the afternoon that price had been undone. That is all the line says. Read it as a floor and it will hold you harmless; read it as a coincidence and it will not argue. The light on the river went out at six. The tape has one more page than it had this morning.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ============ CHINESE ARCHIVE (not for publication) ============ -->
+  <div class="zh-block" lang="zh-CN">
+    <h2>中文存档 · Chinese archive · 供作者校对，不对外发布</h2>
+
+    <p>周五上午，创业板指有四个小时在 3000 点下方交易。这个深圳的成长板——市场把最贵的公司放在这里——周四收在 3036.66；临近午盘它到了 2932.80，跌 3.42%，为它做总结的那个综合指数创下十三个月新低。上证从周四收盘位往下让出 58 点，摸到 3754.14。科创板上午更差：科创综指最深跌 4.97%。</p>
+
+    <p>然后，午后发生了。</p>
+
+    <p>先动的是券商。收盘时华鑫股份封在 10% 的涨停板上，东方财富涨近 4%。宽基 ETF 成交异常放大。整个夏天无人问津的传媒股一齐往上走：中文在线和芒果超媒封 20% 涨停。黄金股加入——西部黄金收在涨停板上。</p>
+
+    <p>在这块盘面上，红色是涨的颜色。到三点，所有指数都是红的。</p>
+
+    <p>这一趟往返除了"坐在里面的人所付的代价"，什么都没改变。上证收 3813.79，比周四高 1.89 点，涨 0.05%。深成指涨 0.17%，创业板指涨 0.22%。上证最终比开盘位高 1.89 点，而它为此走到了开盘价下方 50 点的地方。</p>
+
+    <p>这一天留下印子的地方是成交额。沪深两市成交 1.90 万亿，周四为 1.68 万亿——多了约 2180 亿的钱，而指数动了 1.89 点。</p>
+
+    <p>底下的账本一点也不平。两市 3297 只收红、2145 只收绿、131 只平盘。72 只摸到涨停板，11 只跌停。92 只涨超 7%。</p>
+
+    <p><strong>收束</strong>：指数与账本又一次互相不同意，但这一次账本是更好的那一天。</p>
+
+    <p>买方来自那些一直没赢过的角落。传媒、出版、影视院线领涨；农业、贵金属、券商、零售、软件、电池、工业金属都有人买。卖方手里握着的是春天以来一直扛旗的名字——多层陶瓷电容、覆铜板、电子化学品、半导体、存储、光模块。国瓷材料与风华高科分别跌 6.91% 和 6.41%。风电的大金重工封在跌停板上，覆铜板的金安国纪也一样。中际旭创以 210.92 亿成交额居两市之首，收跌 0.98%。</p>
+
+    <p>银行——周四唯一收红的重量级板块——午后往下走：重庆银行、邮储银行、青岛银行、上海银行各跌超 1%。</p>
+
+    <p>香港与上海同时开盘，投了相反的票。恒指收 24211.35，涨 1.79%；恒生科技涨 3.06%——这一场强势由内房股（世茂集团涨 41.18%、远洋集团 22.86%）、小米（涨 9.72%，其汽车业务公布新车型上市首月锁单突破 7 万台）与黄金矿商拼装而成。而上海在卖的那条 AI 硬件链，在香港同样被卖：广合科技跌 10.09%，胜宏科技跌 6.71%。整个秋天一直稳定的南向资金，当日净买入 2.91 亿港元，约等于零。</p>
+
+    <p>上海醒来时所面对的背景，是一条关于某个行业、由某一个数字发出的消息。在内地开盘之前结束的那一场纽约交易里，半导体指数跌 3.39%，30 只成分股有 29 只收跌：纳斯达克综合 27193.34，跌 1.25%；标普 500 收 7765.36，跌 0.47%；道指收 51231.64，涨 0.10%。那个数字来自 OpenAI——它告诉投资者自己的年化营收接近 500 亿美元，而此前流传的是 700 亿。能源涨，科技跌，油价跳涨。</p>
+
+    <p>先说清楚隔夜那条消息到底是什么。纽约一个半导体指数跌 3.39%，说的是某个行业的价格，不是一个市场的方向。香港正是这样读的——它卖掉同一条硬件链，收盘却涨 1.79%，靠的是地产、汽车和黄金。上海上午用另一种读法过了一遍，午后再把它修正回来。</p>
+
+    <p>修正发生在同一个主题的两端。基础设施那一端被砍：存储、光模块、覆铜板、电容，这些自春天以来一路领跑的 AI 交易零件。应用那一端被买。当天下午工信部发布"人工智能+软件"专项行动实施方案，提出到 2030 年关键软件全面实现智能化，软件、数据安全与应用类个股一齐上涨。贵的基础设施被卖、便宜的应用被买，发生在同一个交易日内——这不是对 AI 的判决，是对价格的判决。</p>
+
+    <p>顺着大单资金去看，这一天的形状更清楚。主力净流入最多的三个板块是电池、工业金属、贵金属——正是这个秋天市场一直忽略的那几个。朝便宜处去的轮动是撤退的反面。撤退长成周四的样子：上证跌 0.79%，银行是唯一收红的重量级板块。而周五，银行在跌，别的都在涨。</p>
+
+    <p>券商值得单说一句，因为它们本身就是市场自己这只股票。行业协会公布了半年报数据——150 家机构、营收 3298.10 亿元、净利润 1386.64 亿元——板块随即上行。这个数字不是新的。变的是有人愿意为它付钱了。</p>
+
+    <p>然后是杠杆这个问题，因为拿股票抵押借来的钱，历来是这块盘面上最难忘的几次反转的燃料。融资余额 2.536 万亿，当日增 0.16%，低于其二十日均值。周五买在那个低点的钱，不是新借来的。</p>
+
+    <p>价格也走了很远，最后停在原地。创业板指高低之间摆了 3.97%，科创 50 摆了 5.28%，而市场收高 1.89 点。出现这种情形时，诚实的读法是市场给自己内部重新定了价，而不是给自身的点位重新定了价。指数基金成交沉重，中盘与小盘指数当天收盘后有既定的样本调整生效，给了被动资金一个自己忙碌的理由。这些都不能解释上午，但全都解释了午后为什么有承接。</p>
+
+    <p><strong>历史平行</strong>：上午大跌、午后收高，在这里不算罕见，有三场够近，值得并排放在这一天旁边。</p>
+
+    <p>其一，2022 年 3 月 16 日。经历两个大跌日后，市场开得疲弱，午后在国务院金融稳定发展委员会召开专题会议、研究经济形势与资本市场问题之际剧烈转向。上证收涨 3.48% 报 3170.71，创业板指涨 5.20%，逾 4300 只个股上涨、137 只涨停，成交近 1.2 万亿。香港走得更猛：恒指涨 9.08%，恒生科技指数创下该指数推出以来最大单日盘中涨幅。差异提醒：那一次的反转有一个点名道姓的成因，一场在盘中宣布的顶层会议。周五没有。上海没有任何公告，只有券商被买、指数基金成交放大。</p>
+
+    <p>其二，2024 年 2 月 5—6 日。2 月 5 日上证下探 2635，盘中一度接近 3000 只个股跌停，流动性肉眼可见地枯竭。次日上午，中央汇金表示已扩大交易型开放式指数基金增持范围，证监会在同一天暂停新增证券公司转融券规模。上证收涨 3.23%，深成指涨 6.22%，创业板指涨 6.71%，逾 3800 只个股上涨，成交 9263 亿元。此后市场又涨了两个交易日；到春节前最后一个交易日，上证自那 2635 的低点拉了约 230 点。差异提醒：那是一次长久低于高位的市场里的流动性衰竭底，且买盘带着一纸官方公告到来。周五，创业板指只在一整个上午待在 3000 下方，而市场仍在 3800 附近，并且没有人宣布任何事。</p>
+
+    <p>其三，2015 年 8 月 27—28 日。此前一周，上证周一跌 8.49%、周二跌 7.63%、周三跌 1.27%；周四指数反转，收涨 5.34% 报 3083.59。次日高开后午后一度跌近 2900，最终收 3232.35，涨 4.82%，537 只涨停对 6 只跌停。但那一周整体仍跌 7.85%。差异提醒：那次反转落在一头已经破裂的杠杆牛的内部，一周就吃掉指数 7.85%，反弹来自空头回补与肉眼可见的国家队买盘。周五的跌幅只是那个量级的一小截，且它的回升是靠普通的板块轮动完成的。</p>
+
+    <p>三则放在一起，有意思的不是这一天的形状——三场都是开盘很差、收盘很好，和周五一样。有意思的是后面发生了什么。2015 年那次反转，是一段还要继续走的下跌里的两日反弹的起点。2024 年那个低点守住了，市场靠着一条真的被宣布出来的政策，在三个交易日里拉回约 230 点。2022 年那次反转根本不是底：那一年的最低点在五周之后，4 月 27 日，上证盘中跌到 2863.65，收 2958.28。</p>
+
+    <p>一根长下影线，记录的是有人买了。它不记录是谁、为什么、能撑多久。旧账在此，供君对照。</p>
+
+    <p><strong>收尾</strong>：图会把 10 月 9 日画成一根小阳线，下面挂着一条长长的线——那是一趟下去又回来、几乎没让指数付出代价的行程的回执。上午中间某个时刻，在一个没有人事先选定的价格上，有人把纽约那个糟夜晚所抛售的东西买了下来。到午后，那个价格已经被抹平。这条线要说的就是这些。把它读成底，它不会害你；把它读成巧合，它也不跟你争。江边的灯六点灭了。账本比今早多了一页。</p>
+
+    <p>本文为市场观察与历史复盘，不构成任何投资建议；本号无证券投资咨询资质，不推荐任何证券，不指导任何操作。市场有风险，投资需谨慎。</p>
+  </div>
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share closes for 2026-10-09 (Shanghai Composite, Shenzhen Component, ChiNext, STAR 50; turnover, advance/decline counts, limit-up/limit-down counts, sector moves, individual stock closes, margin balance, and index sample changes taking effect after the close) and Hong Kong closes for 2026-10-09 (Hang Seng, Hang Seng Tech, sector and single-stock moves, and southbound net buying of HK$291 million) via East Money and Westock market data, retrieved 2026-10-09. US index and sector closes are for the 2026-10-08 session (EDT) — the last session to finish before the 2026-10-09 Shanghai open, and therefore the overnight backdrop for this chapter; the 2026-10-09 US session had not opened at the time of writing and is deliberately not covered. The OpenAI revenue figure is as reported in press coverage of that session, not as an audited statement. Historical figures — the State Council financial stability committee meeting and the 2022-03-16 close; the Central Huijin ETF announcement, the regulator's securities-lending suspension and the 2024-02-05/06 closes; the 2015-08-27/28 closes and turnover; and the 2022-04-27 intraday low of 2,863.65 — are each taken from contemporaneous public reports.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
