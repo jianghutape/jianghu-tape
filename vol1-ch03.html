@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Three &middot; The Weight</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .zh-block{
+    background:rgba(255,255,255,.32);
+    border:1px solid rgba(29,26,20,.14);
+    padding:26px 24px;
+    font-size:16px;
+    line-height:1.9;
+  }
+  .zh-block h2{
+    font-size:15px;
+    letter-spacing:.2em;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:16px;
+    text-align:center;
+  }
+  .zh-block p{margin-bottom:1em}
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<div class="frame">
+
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Three &middot; The Weight</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-12</div>
+  <div class="sub-kicker">第三章 · 权重</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>At three o'clock on Monday the Shanghai Composite closed 16.55 points lower, at 3,797.24. In the same minute three of China's four largest banks printed prices they had never printed before. All forty-two listed banks finished higher.</p>
+
+    <p>Both things were true at once. The Composite fell 0.43 percent. On the same exchange 4,325 stocks closed lower against 1,167 that rose, with 81 unchanged, and the median stock fell 1.68 percent — nearly four times what the index lost.</p>
+
+    <p>The session opened with a small gap lower, then lifted. By mid-morning every index stood above Friday's close. Then it stopped, and the afternoon went one way. The Composite lost 3,800 and stayed under it. The ChiNext, the Shenzhen board where this market keeps its most expensive companies, slipped back below 3,000 and closed at 2,963.82, down 2.61 percent. The Shenzhen Component fell 2.03 percent, the science board's fifty 2.10.</p>
+
+    <div class="aside">Three record highs and four thousand decliners in the same minute. That is not a contradiction; it is what a weighted average does.</div>
+
+    <p>What the day is missing is money. The two exchanges cleared &yen;1.538 trillion against &yen;1.901 trillion on Friday — &yen;363 billion less, nineteen percent thinner, and the lightest session since the market reopened on 8 October.</p>
+
+    <div class="pull">An index is a summary written by its heaviest members. On Monday the heaviest members wrote a good day, and everyone else wrote a different one.</div>
+
+    <p>The buyers went to two places. The first was the banks, up 2.32 percent as a sector and led by the regional lenders: Chongqing Rural Commercial Bank gained more than four percent. The second was everything this market had left alone all year — publishing up 4.02 percent, film exhibition 3.89, and digital media, wind equipment and home appliances higher with them.</p>
+
+    <div class="aside">Friday added money and moved the index a point and a half. Monday took money out and moved it far further.</div>
+
+    <p>Xinhua Media spent a tenth consecutive session at its ceiling, with more than &yen;1.5 billion of buy orders queued behind it. Xinhua Winshare made its eighth limit in eleven sessions.</p>
+
+    <p>The sellers held what had carried the market all year. Copper-clad laminate — the substrate every server is built on — fell 6.91 percent, and two of its names closed at their floors. Broadcasting equipment lost 5.24 percent; components, optical chips and coherent optics each fell three to four and a half. Star Net Ruijie closed at its floor, and Zhongji Innolight fell 6.41 percent to &yen;724.47 while losing more large-order money than any other stock on the exchange.</p>
+
+    <p>Kweichow Moutai rose 1.98 percent to &yen;1,288 and took back the title of most expensive share on the exchange. It had surrendered the title this autumn to a testing-equipment maker that fell 8.13 percent and gave it up. Seres spent most of the session lower and finished at its ceiling at &yen;51.24.</p>
+
+    <p>The night before, in New York, the Dow closed 0.83 percent higher, the S&amp;P 500 0.59 and the Nasdaq 0.64 — a repair of Thursday's artificial-intelligence selloff. The Philadelphia semiconductor index still finished lower and Nvidia slipped 0.52 percent, while the Golden Dragon index of US-listed Chinese shares rose 2.69 percent, its best session in months.</p>
+
+    <p>Hong Kong kept the same hours as Shanghai and finished almost where it started. The Hang Seng closed at 24,271.20, up 0.25 percent, having given back most of an opening gain of nearly one percent, and its technology index fell 0.67. The same hardware chain was sold there — Zhongji Innolight's Hong Kong line lost 7.29 percent — while the inner banks rose. Southbound money bought a little over HK$3 billion net.</p>
+
+    <div class="data">
+      <strong>The tape, October 12, 2026</strong>
+      <ul>
+        <li>Shanghai Composite 3,797.24 <span class="chg">(&darr; 0.43%)</span> &middot; open 3,806.98 &middot; low 3,791.00</li>
+        <li>Shenzhen Component 12,384.87 <span class="chg">(&darr; 2.03%)</span> &middot; ChiNext 2,963.82 <span class="chg">(&darr; 2.61%)</span></li>
+        <li>Combined turnover &yen;1.538 trillion, vs &yen;1.901 trillion on Oct 9</li>
+        <li>Advancers 1,167 &middot; decliners 4,325 &middot; limit-up 48 &middot; limit-down 22</li>
+        <li>Hang Seng 24,271.20 <span class="chg">(&uarr; 0.25%)</span> &middot; Hang Seng Tech 4,169.57 <span class="chg">(&darr; 0.67%)</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>Start with what the Composite is. It is a capitalisation-weighted average whose weight sits heavily in banks, insurers, energy and telecommunications — businesses that pay dividends and move slowly. When forty-two banks step the same way on the same day, the index needs almost nothing else to stay upright. It lost less than half a percent on Monday while the median stock lost nearly four times as much.</p>
+
+    <p>Follow the large orders and the shape is simple. Main-force money left the market by &yen;35.4 billion. Electronics accounted for about &yen;9.8 billion of that, and telecommunications &yen;6.4 billion. Money went in only to small sectors: media, a little over &yen;2 billion, and the banks.</p>
+
+    <div class="aside">The hardware chain was sold on a question about access, a shortfall in a customer's revenue, and a bad morning in Seoul.</div>
+
+    <p>Three things explain the selling on the infrastructure side. The first is access: a Citibank note circulated after the bank met more than sixty institutional investors in the United States and Europe, reporting that they now prefer American optics suppliers to Chinese ones because of the possibility that the Federal Communications Commission restricts imports. The second is a number: OpenAI's annualised revenue is proving smaller than the figure that circulated during the holiday, and this market's hardware complex is priced off it. The third came out of Seoul, where the KOSPI fell 3.65 percent to its lowest since August.</p>
+
+    <p>The case for banks is arithmetic, and this month it was restated. Twenty-one listed banks have published interim dividend plans totalling more than &yen;260 billion. The six largest lifted their payout ratio from 30 percent to 31 percent. They still trade below book, the sector averaging 0.6 times, while the US Treasury yields 5.24 percent. A dividend near five percent on a state balance sheet is not a hiding place. It is a competing asset, and the money is treating it like one.</p>
+
+    <div class="aside">Banks trade below book and pay about five percent. Against a 5.24 percent Treasury, that is not defence; that is competition.</div>
+
+    <p>The case for media is cheaper and older. ByteDance's short-drama app PineDrama passed 100 million downloads and is still adding more than seventeen million users a month, and Xinhua Media is buying a financial-news publisher with its own shares. And the Party and the State Council published a document on new productive forces that is overwhelmingly about applications — intelligent vehicles, AI phones and computers, humanoid robots.</p>
+
+    <p>The narrowing shows elsewhere. Thirty-year government bond futures rose 0.54 percent to their highest since August 2025, and lithium carbonate futures fell 8.37 percent to a new low for the year — one price saying growth is being repriced, the other saying money still wants duration. The margin-financed cohort gave back &yen;8.5 billion.</p>
+
+    <p>None of that is a verdict on artificial intelligence. It is a verdict on the price of the most crowded end of the artificial-intelligence trade, delivered in the week before the third-quarter numbers arrive. The market did not decide the hardware story is over. It decided it had already paid for it.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p>Three episodes in this market's recent record sit close enough to Monday to be set beside it. In each, the heavy names and the many disagreed, and the disagreement was settled later, on nobody's terms.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">December 2017 &ndash; February 2018</div>
+      <p>From late December into January the Shanghai 50 rose for nineteen consecutive sessions, a record, and the banks ran ten straight up days. Over January the Composite gained 5.25 percent while fewer than a third of the exchange's stocks rose at all. Turnover in the Shanghai 50 tripled to a peak above &yen;120 billion a day. Then it broke: four consecutive sessions of more than one percent. Over the next three the Shanghai 50 lost a tenth of its value and surrendered every gain it had made that year. The Composite closed at 3,129.85 on the Friday, down 4.05 percent and an eight-month low. Fewer than 250 stocks rose, against more than 2,800 falling. Coal, insurance, brokerages and banks — the sectors that had led — all lost between four and seven and a half percent. The leap had been made on a promise, and the promise carried no dividend.</p>
+      <div class="diff-note">Difference: in 2018 the heavyweights were bought at any price. Monday's are bought on a yield, below book, by money that has to be somewhere — and the stampede behind that rally was absent this time.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">January &ndash; February 2024</div>
+      <p>Two years ago the same shape lasted a month. In January 2024 the ChiNext fell 16.81 percent and the science board's fifty 19.62. The Shanghai 50 lost only 3.09. More than half the exchange fell by more than twenty percent over those weeks; of thirty-one first-level industries, exactly two rose for the month. The low was still ahead: in early February the Composite traded down to 2,635 with close to three thousand stocks at their floors at once. The next morning Central Huijin said it had widened its purchases of exchange-traded funds, and by the last session before the New Year holiday the Composite had recovered roughly 230 points.</p>
+      <div class="diff-note">Difference: by January 2024 this market had fallen for months, small caps were being deleveraged by force, and the state had to buy. On Monday the selling is voluntary, and nobody has announced anything.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">February &ndash; March 2021</div>
+      <p>The third went the other way, and it says the most about averages. Through the winter of 2020 and 2021 the market's leaders did what this market's leaders have done all year: they rose, and everything else did not. That ended on 18 February 2021, the first session after the Spring Festival. Between then and early March the Composite fell more than eight percent and the ChiNext lost 22.86 percent from its high. Kweichow Moutai fell 25.52 percent and Wuliangye 29.23. And the median stock rose: roughly eighty percent of the smaller, unindexed names gained over the same stretch, because the money leaving the leaders did not leave the market. It moved. The index broke. The account did not.</p>
+      <div class="diff-note">Difference: 2021's selling was forced, redemptions begetting redemptions, and the index fell with the leaders. On Monday the heaviest weights rose while the crowded end fell; that is how the index absorbed this day.</div>
+    </div>
+
+    <div class="aside">2018, 2024, 2021: in each case the heavy names and the many disagreed, and in each case the answer arrived later.</div>
+
+    <p>Set the three side by side and the interesting part is not the shape of the day; all three had this shape. It is that in each the same question was answered afterwards, never on the day: who is left in the index when the many leave. In 2018 the leaders themselves broke. In 2024 the answer came with an announcement. In 2021 it came as a change of address.</p>
+
+    <p>An average only falls when its heaviest members do. The record stands for comparison.</p>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>Kweichow Moutai took back the title of the most expensive share here on Monday, at &yen;1,288, on a day when the median stock lost 1.68 percent. A market with a heavy head and a light body produces exactly this pair. At three o'clock the screens went dark in four columns out of five; the one that stayed bright belonged to the oldest business in the country. The river lights came on at six. The account has one more page than it had this morning.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ============ CHINESE ARCHIVE (not for publication) ============ -->
+  <div class="zh-block" lang="zh-CN">
+    <h2>中文存档 · Chinese archive · 供作者校对，不对外发布</h2>
+
+    <p>周一下午三点，上证收在 3797.24，比上一交易日低 16.55 点。而在同一分钟里，中国四大行中的三家打出了从未打出过的价格。全部四十二家上市银行当日收涨。</p>
+
+    <p>这两件事同时为真。上证跌 0.43%。而在同一个交易所里，4325 只收跌对 1167 只收涨，81 只平盘；个股涨跌中位数是 −1.68%——约为指数跌幅的四倍。</p>
+
+    <p>这一天低开小缺口，然后抬起。上午十点前后每个指数都站在周五收盘之上。然后它停住了，午后只剩一个方向。上证丢掉 3800 点并留在其下。创业板指——这个市场把最贵的公司放在其中的深圳成长板——重新跌破 3000，收 2963.82，跌 2.61%。深成指跌 2.03%，科创 50 跌 2.10%。</p>
+
+    <p>这一天缺的是钱。两市成交 1.538 万亿，周五为 1.901 万亿：少了 3630 亿，薄了百分之十九，是市场 10 月 8 日复市以来最轻的一场。</p>
+
+    <p><strong>收束</strong>：指数是它最重的成员写的一篇摘要。周一是最重的成员写了一个好日子，其余的人写了另一个。</p>
+
+    <p>买方去了两个地方。第一处是银行，板块涨 2.32%，由区域性银行领头，渝农商行涨逾 4%。第二处是这个市场整年都没碰过的一切——出版涨 4.02%，影视院线涨 3.89%，数字媒体、风电设备、白色家电一同上行。</p>
+
+    <p>新华传媒连续第十个交易日封在涨停板上，封单逾 15 亿元。新华文轩十一个交易日里八次涨停，龙版传媒四天三板。</p>
+
+    <p>卖方手里握着的是整年扛旗的东西。覆铜板——每一台服务器的底板——跌 6.91%，其中两只封死跌停。通信设备跌 5.24%，元件、光芯片与相干光模块各跌 3.5% 至 4.5%。星网锐捷封在跌停板上；中际旭创跌 6.41%，收 724.47 元，并成为全市场大单资金流出最多的个股。</p>
+
+    <p>贵州茅台涨 1.98% 收 1288 元，重新夺回两市第一高价股的位置；这个位置今秋让给了一家测试设备厂商，该股当日跌 8.13%，把它交还回来。赛力斯全天多数时间在跌，最后封上涨停板，收 51.24 元。</p>
+
+    <p>前一夜的纽约，道指收涨 0.83%，标普 500 涨 0.59%，纳指涨 0.64%——对周四那场人工智能抛售的修复。费城半导体指数仍收跌，英伟达跌 0.52%；纳斯达克中国金龙指数涨 2.69%，为数月来最好的一场。</p>
+
+    <p>香港与上海同处一个时段，最终几乎收在开盘的位置。恒指收 24271.20，涨 0.25%，把开盘近百分之一的涨幅大部分交还回去；其科技指数跌 0.67%。同一条硬件链在香港同样被卖——中际旭创港股跌 7.29%——而内银股上行。南向资金净买入略超 30 亿港元。</p>
+
+    <p>先说清上证是什么。它是一只市值加权平均数，权重厚重地压在银行、保险、能源与电信上——这些生意付股息、走得慢。当四十二家银行在同一天朝同一个方向迈步，指数几乎不需要别的东西就能站住。周一它丢了不到半个百分点，而个股中位数丢了近四倍于此。</p>
+
+    <p>顺着大单去看，形状很简单。当日主力资金净流出 354.4 亿元。电子占其中约 98 亿，通信约 64 亿。净流入的只有小板块：传媒略超 20 亿，以及银行。</p>
+
+    <p>基础设施这一端的卖盘有三条解释。第一条是准入：花旗在会见了六十余家欧美机构投资者后流传出一份纪要，称这些投资者如今更偏好美国光学厂商而非中国企业，原因是美国联邦通信委员会可能限制进口。第二条是一个数字：OpenAI 的年化营收低于假期中流传的数值，而这个市场的硬件链条是按照那条需求曲线定价的。第三条来自首尔，韩国 KOSPI 跌 3.65%，创八月以来新低。</p>
+
+    <p>银行的道理是算术，而这个月它被重新陈述了一遍。二十一家上市银行披露了中期分红方案，合计拟派息逾 2600 亿元；六大行的分红比例由 30% 提到 31%。这些银行仍然全部低于净资产交易，板块平均市净率约 0.6，而美国国债收益率 5.24%。国家资产负债表上接近五个百分点的股息不是藏身处。它是一项竞争性资产，而钱正把它当作竞争性资产来对待。</p>
+
+    <p>传媒的道理更便宜也更老。字节跳动旗下短剧应用 PineDrama 下载量突破 1 亿，且每月仍涌入逾 1700 万新用户；新华传媒正以自有股份收购一家财经新闻机构。接着，中共中央、国务院印发了关于发展新质生产力的意见，通篇讲的都是应用——智能网联汽车、人工智能手机和电脑、人形机器人。每一页说的都是跑在硬件上的东西。</p>
+
+    <p>收窄还在另一处显形。三十年期国债期货涨 0.54%，创 2025 年 8 月以来最高；碳酸锂期货跌 8.37%，创年内新低——一个价格在说增长正在被重新定价，另一个在说钱仍然想要久期。融资盘回吐 85 亿元。</p>
+
+    <p>以上没有一条是对人工智能的判决。它是对人工智能交易中最拥挤那一端价格的判决，送达的时间正好在三季报数字到来之前的那一周。市场没有判定硬件故事结束。它判定自己已经为它付过了钱。</p>
+
+    <p><strong>历史平行</strong>：本市场近年纪录里有三段够近，可以与周一并排放置。每一段里，重名头与多数人意见不一；每一段里，分歧都是后来才了结的，而且不按任何人的意思了结。</p>
+
+    <p>其一，2017 年 12 月至 2018 年 2 月。从去年 12 月下旬进入 1 月，上证 50 指数连涨十九个交易日，创下纪录，银行板块十连阳。整个 1 月上证涨 5.25%，而全交易所上涨的个股不足三分之一；上证 50 的成交额放大约三倍，峰值逾每日 1200 亿元。然后它断了：连续四个交易日单日跌幅超过 1%。此后三个交易日，上证 50 丢掉十分之一的市值，把全年涨幅全部交还。周五上证收 3129.85，跌 4.05%，创八个月新低，上涨个股不足 250 只、下跌超过 2800 只。领涨的板块领跌：煤炭、保险、券商、银行跌在百分之四到七点五之间。那一跃是押在一句承诺上的，而那句承诺不带股息。</p>
+
+    <p>差异提醒：2018 年 1 月的重仓股是不问价格买的；周一的银行是按股息、按低于净资产买的，是"必须待在什么地方"的钱买的。而且当年让那波上涨成为踏踏声的钱流，这次并不在场。</p>
+
+    <p>其二，2024 年 1 月至 2 月。两年前同样的形状持续了一整个月。2024 年 1 月，创业板指跌 16.81%，科创 50 跌 19.62，而上证 50 只跌 3.09。那几周里，全交易所超过一半的个股跌逾两成；三十一个申万一级行业中，当月收涨的恰好两个。低点还在前面：2 月初上证下探 2635，同时接近三千只个股封在跌停板上。次日上午中央汇金表示已扩大 ETF 增持范围，而到春节前最后一个交易日，上证已拉回约 230 点。</p>
+
+    <p>差异提醒：到 2024 年 1 月，这个市场已经跌了几个月，小微盘正被强制去杠杆，所以国家必须出手。周一的上证仍在 3800 附近，卖盘出于自愿，而且没有人宣布任何事。</p>
+
+    <p>其三，2021 年 2 月至 3 月。第三段朝另一个方向去了，而它关于"平均数"说的话最多。2020 至 2021 年那个冬天，市场的领头者们做的是这个市场领头者整年做的事：它们涨，别的都不涨。这一切在 2021 年 2 月 18 日终结，那是春节后第一个交易日。从那天到 3 月初，上证跌逾 8%，创业板指自高点回落 22.86%。贵州茅台跌 25.52%，五粮液跌 29.23。而中位数的股票在上涨：同期未入指数的小市值个股里，约八成上涨，因为离开领头者的钱并没有离开市场。它搬了家。指数断了。账本没有。</p>
+
+    <p>差异提醒：2021 年的卖盘是被迫的——赎回引来更多赎回——指数与领头者一起下跌。而周一，最重的权重在涨、拥挤的那一端在跌；这正是指数能够消化这样一天、却仍然只收跌零点几个百分点的原因。</p>
+
+    <p>三者并排，有意思的不是这一天的形状——三段都是这个形状。有意思的是三段里同一个问题都是事后才被回答的，从不在当天：当多数人离场时，指数里剩下谁。2018 年，答案在领头者自己断裂时到达。2024 年，答案随一纸公告到达。2021 年，答案是一次搬家。</p>
+
+    <p>平均数只在它最重的成员下跌时下跌。旧账在此，供君对照。</p>
+
+    <p><strong>收尾</strong>：周一，贵州茅台以 1288 元重新夺回两市第一高价股的头衔，而当日个股中位数跌 1.68%。两件事都不奇怪：一个头重脚轻的市场，产出的正是这样一对事实。三点钟，五列屏幕里有四列转暗，唯一还亮着的那一列属于这个国家最古老的生意。江边的灯六点亮了。账本比今早多了一页。</p>
+
+    <p>本文为市场观察与历史复盘，不构成任何投资建议；本号无证券投资咨询资质，不推荐任何证券，不指导任何操作。市场有风险，投资需谨慎。</p>
+  </div>
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share closes for 2026-10-12 (Shanghai Composite, Shenzhen Component, ChiNext, STAR 50, BSE 50; combined turnover, advance/decline counts, limit-up/limit-down counts, median stock move, sector and single-stock moves, main-force flow by sector and by stock, and exchange disclosures on interim bank dividend plans) via East Money, Westock, NeoData and the Shanghai and Shenzhen exchange feeds, retrieved 2026-10-12. Hong Kong closes are for the 2026-10-12 session (Hang Seng, Hang Seng Tech, sector and single-stock moves, and southbound net buying) via the Hong Kong exchange feed, retrieved 2026-10-12. US index, sector and single-stock closes are for the 2026-10-09 session (EDT) &mdash; the last session to finish before the 2026-10-12 Shanghai open, and therefore the overnight backdrop for this chapter. Only one US timepoint is used in this issue: the 2026-10-09 overnight session. The 2026-10-12 US session had not yet opened at the time of writing and is deliberately not covered; nothing in this piece is drawn from it. The Citibank note, the OpenAI revenue comparison, the PineDrama figures and the dividend ratios are as reported in contemporaneous press coverage of those sessions, not as audited statements. Historical figures &mdash; the 2017-12 to 2018-02 Shanghai 50 streak, January 2018 turnover and breadth, the 2018-02-09 closes and sector moves, the January 2024 index moves and breadth, the 2024-02-05 intraday low and the Central Huijin announcement, and the 2021-02-18 to 2021-03-09 drawdowns &mdash; are each taken from contemporaneous public reports and exchange data.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
