@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Four &middot; Cut and Fill</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .zh-block{
+    background:rgba(255,255,255,.32);
+    border:1px solid rgba(29,26,20,.14);
+    padding:26px 24px;
+    font-size:16px;
+    line-height:1.9;
+  }
+  .zh-block h2{
+    font-size:15px;
+    letter-spacing:.2em;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:16px;
+    text-align:center;
+  }
+  .zh-block p{margin-bottom:1em}
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+<div class="frame">
+
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Four &middot; Cut and Fill</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-13</div>
+  <div class="sub-kicker">第四章 · 回填</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>The hole was dug before lunch. At half past nine the Shanghai Composite opened at 3,760.80, thirty-six points below Monday's close, and slipped from there to 3,741.53. The ChiNext, the Shenzhen board where this market keeps its most expensive companies, opened two and a fifth percent lower and kept going; its worst print of the day, 2,860.80, sat three and a half percent beneath Monday. The Shenzhen Component went two and a half below. Nobody had to explain it; the explanation had crossed the Pacific overnight.</p>
+
+    <p>Then it was filled in. The afternoon belonged to the parts of the market that had been beaten hardest. The components industry rose 2.97 percent with all but five of its sixty-one names higher. Copper-clad laminate — the substrate every server is built on — gained 4.44 percent, led by Ultrasonic Electronic at its ceiling. Two smaller board makers closed twenty percent higher. Optical modules turned with them. By the last hour the Composite had climbed back over 3,800 and closed at 3,800.86, three and a half points above Monday — a gain of one tenth of one percent.</p>
+
+    <div class="aside">The same four hours, run backwards: on Monday the market dug all afternoon; on Tuesday it filled all afternoon.</div>
+
+    <p>Underneath, four-fifths of the market changed sides. Monday closed with 4,325 stocks lower against 1,167 higher; Tuesday closed with 2,909 higher against 2,486 lower, and 179 unchanged. Limit-ups went from 48 to 70. Limit-downs fell from 22 to 10.</p>
+
+    <div class="pull">Cut and fill balances volume, not intention. Dig a pit in one place, raise the ground in another, and the surface ends level — the same earth, moved. The level of the surface is the one thing the index does measure.</div>
+
+    <p>More money came through the doors: &yen;1.676 trillion across the two exchanges, about nine percent more than Monday. And the largest identifiable cohort still left. Main-force money — the exchanges' own tally of large orders — went out by &yen;17.86 billion net. Together they describe a day of swapping rather than of adding.</p>
+
+    <p>The pit the earth came out of was the battery chain. Lithium carbonate futures fell more than eleven percent to a low for the year, and the makers followed the price down. XTC New Energy lost a tenth of its value; Wuxi Lead, which makes the machines that build the cells, lost the same. One smaller battery name closed at its floor. CATL, the largest company in the chain, fell 3.55 percent and booked the day's heaviest single-stock large-order sale.</p>
+
+    <p>Two other groups did the lifting. Defence — where the strongest board of the day is filed under the India-Pakistan conflict, but where the buying ran through ordnance, aero-engines and shipyards, with AECC Aero-Engine at its ceiling and Guoke Ordnance up more than twelve percent. And the winter basket: ski resorts, refrigeration, cold-store insulation, taken down off the shelf two weeks before the end of October and 2.68 percent higher by the close.</p>
+
+    <p>Hong Kong kept the same hours and reached a similar split verdict. The Hang Seng closed 0.30 percent higher while its technology index fell 0.79 — the same trade, both sides of it. Optical components rebounded there while memory and foundry names were sold. In Seoul the KOSPI fell 5.46 percent, a second consecutive day of heavy losses, and Tokyo lost 1.82.</p>
+
+    <div class="data">
+      <strong>The tape, October 13, 2026</strong>
+      <ul>
+        <li>Shanghai Composite 3,800.86 <span class="chg">(&uarr; 0.10%)</span> &middot; open 3,760.80 &middot; low 3,741.53</li>
+        <li>Shenzhen Component 12,353.70 <span class="chg">(&darr; 0.25%)</span> &middot; ChiNext 2,958.34 <span class="chg">(&darr; 0.18%)</span></li>
+        <li>Combined turnover &yen;1.676 trillion, vs &yen;1.538 trillion on Oct 12</li>
+        <li>Advancers 2,909 &middot; decliners 2,486 &middot; limit-up 70 &middot; limit-down 10</li>
+        <li>Hang Seng 24,345.22 <span class="chg">(&uarr; 0.30%)</span> &middot; Hang Seng Tech 4,136.63 <span class="chg">(&darr; 0.79%)</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>Start with what crossed the Pacific. In New York on Monday the Philadelphia semiconductor index fell 2.67 percent, a fourth consecutive decline, with all but two of its thirty components lower. Lumentum, which makes optical components, lost 9.78 percent — the worst performance on the Nasdaq. Coherent lost 7.87, Corning six, and Micron enough to take it below a thousand dollars a share. The Dow closed 0.38 percent higher at 51,850.55, the S&amp;P 500 four points lower, and the Nasdaq down 0.44 percent.</p>
+
+    <p>The cause was a sentence rather than a number. Broadcom's chief executive told a conference in Singapore that access to capital — the ability to finance the build-out — could become a larger obstacle to artificial intelligence than shortages of chips, memory or electricity. Intel's chief said the same. When the people selling the shovels start talking about who can pay for them, shovels get cheaper.</p>
+
+    <div class="aside">Nothing in that warning was about China. It was applied to China anyway, at the opening bell.</div>
+
+    <p>None of it was about this market's companies, and all of it was applied to them. The Shanghai morning sold memory, optical modules and circuit boards because New York had. That is what an overnight gap usually is: somebody else's opinion, transferred and cleared at whatever price the first hour will bear.</p>
+
+    <p>What stopped it was also not macroeconomics. It was published by the companies themselves. Ultrasonic Electronic told the exchange that third-quarter profit would come in 181 to 206 percent above the second quarter's, with laminate orders full and selling prices rising. Electronic cloth — the glass fabric inside every board — had already gone up again this month. Those are numbers with customers behind them, and the afternoon bought them.</p>
+
+    <div class="aside">&yen;56.86 billion left electrical equipment alone. The largest inflow anywhere in the market was &yen;1.48 billion.</div>
+
+    <p>Follow the money that did the filling and the day stops looking like a recovery. Electrical equipment — the machinery, grid and battery complex — gave up &yen;56.86 billion of large orders, the heaviest withdrawal of any industry. Electronics gave up nearly as much again, and medicine, telecom equipment and non-ferrous metals followed it out. On the receiving side, the components industry took in &yen;1.48 billion, the largest inflow of the day, and the shipping and marine-equipment boards a little less. The fill was narrow, and it was paid for by selling something else.</p>
+
+    <p>One contradiction is worth reading twice. The telecom-equipment sector index finished Tuesday <em>higher</em> — up about half a percentage point — while &yen;25.40 billion of large orders left it. Electronics closed a fraction lower while roughly twice that amount left. Sector indices are averages too, and when a handful of names carry them, the sector's reading and the sector's account go their separate ways.</p>
+
+    <div class="aside">Lithium carbonate set a low for the year. The market did not argue with the price; it moved away from it.</div>
+
+    <p>Two further figures frame the week. Margin debt stood at &yen;2.517 trillion on Monday, a second day of decline. A week earlier it had printed &yen;2.56 trillion, a low for the year. That is nearly &yen;470 billion below the year's peak. And margin turnover has fallen to 7.9 percent of everything traded here — the second-smallest share this year. The borrowed money this market leaned on all spring is not leaning back.</p>
+
+    <p>Put the halves together and the day has one clean description. Money parked in the battery chain moved into the board and components chain in one afternoon. The buying was triggered by something real — a profit forecast and a price list. And none of it was new money, because the exit door never closed. The Composite moved three and a half points. On the evidence underneath it, that number is not a description of anything.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p>Three sessions in this market's recent record sit close enough to Tuesday to be laid beside it. Each dug a deep hole in the morning and filled most of it before the close. What differed was what arrived afterwards.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">October 2018</div>
+      <p>On 19 October 2018 the Composite opened lower for the second day running and touched 2,449.20 before ten o'clock — a level it had not seen since November 2014. Then it turned. It closed 2.58 percent higher, back above 2,550. The ChiNext gained 3.72 percent. More than three thousand stocks finished higher against three hundred and forty that fell. The fuel was public: the central bank, the banking regulator and the securities regulator all spoke that morning, and the vice-premier gave an interview at midday. The hole was filled by an announcement. What followed was not a bottom: two and a half months later the Composite traded at 2,440.91, below October's low.</p>
+      <div class="diff-note">Difference: on 19 October 2018 the fill came with an announcement — three regulators and a vice-premier, all before the lunch break. On Tuesday nobody announced anything. The buying was financed out of the market's own balance sheet, which is why it had to close one door to open another.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">January 2019</div>
+      <p>On 4 January 2019 the same thing happened one level lower. The previous session in New York had been a bad one, after Apple cut its revenue forecast; the Composite opened straight through October's low to 2,440.91. Then the brokerages turned it: that sector closed more than six percent higher with about twenty of its names at their ceilings, and the Composite finished up 2.05 percent. Three thousand three hundred and seventy-one stocks rose against a hundred and fifty-eight that fell. There was no announcement during the session; the turn was the market's own. The announcement came afterwards — that evening the central bank cut reserve requirements by a full percentage point. And the record on that instrument is worth keeping: of the ten times it had done so since 2014, the market was lower thirty sessions later in four of them.</p>
+      <div class="diff-note">Difference: 2019's turn was ignited by a message — the premier's visit to three state banks, relayed within the hour. Tuesday's turn had no message at all. The closest thing to news was a profit forecast and a price list for glass cloth.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">November 2010</div>
+      <p>The third episode is the mirror, and it says the most about index readings. On 11 November 2010 the two state oil giants were bought from flat to their ceilings inside forty-four minutes, lifting the Composite about two percent — and everything else sold into that lift, so the index surrendered a third of the gain before the bell. The next morning PetroChina rose more than four percent and the rest of the market broke. The Composite closed 5.16 percent lower, its worst day in fifteen months; the Shenzhen Component lost seven percent; better than a hundred and fifty stocks lay at their floors. Across the whole exchange, a hundred and two stocks finished higher. The index had been carried. The account had not.</p>
+      <div class="diff-note">Difference: in 2010 the heavyweights lifted the index while the many sold, and the index was the last true thing on the screen. On Tuesday the direction was reversed — the many did the lifting and the heavyweights barely moved — but the same rule applied: an index carried by a few names tells you about the few names.</div>
+    </div>
+
+    <div class="aside">2018, 2019, 2010: in each the hole was filled, and in each the filling was not the story.</div>
+
+    <p>Set the three beside Tuesday and the common part is the shape of the session, which all four share. The part that differs is what arrived afterwards: an announcement in 2018, an announcement that evening in 2019, and in 2010 a break. On Tuesday, by the close, nothing arrived at all.</p>
+
+    <p>Whether a hole is a pit or a puddle is a question the record does not answer, and this page will not pretend otherwise.</p>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>Among the things bought on Tuesday were ski resorts. Changbai Mountain closed at its ceiling, and so did a refrigeration maker and a cold-store insulation firm, in the ninth lunar month, with the plane trees still green along the streets. Somebody sold a lift ticket before the first snow. The tape did the same with the hole: it sold it at half past nine and bought it back before the bell, and both prices were real. The river lights came on at six.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ============ CHINESE ARCHIVE (not for publication) ============ -->
+  <div class="zh-block" lang="zh-CN">
+    <h2>中文存档 · Chinese archive · 供作者校对，不对外发布</h2>
+
+    <p>坑是午饭前挖好的。九点半，上证以 3760.80 开出，比周一的收盘低三十六点，并从那里滑到 3741.53。创业板指——这个市场把最贵的公司放在其中的深圳成长板——低开两成半中的一个百分点之后继续走低；当日最差的一笔 2860.80，比周一低了三个半百分点。深成指跌到两个半百分点之下。没有人需要解释它：解释一夜之间跨过了太平洋，它属于下一节。</p>
+
+    <p>然后它被填回去了。午后属于这个市场里被打得最狠的那些部分，也属于少数根本没被打的部分。元件行业涨 2.97%，六十一家成分股中除五家之外全数上行。覆铜板——每一台服务器的底板——涨 4.44%，由封上涨停板的超声电子领头。两只较小的电路板厂商收高两成。光模块跟着一起转向。到最后一个小时，上证重新爬到 3800 之上，收 3800.86，比周一高三个半点——涨幅千分之一。</p>
+
+    <p><strong>收束</strong>：挖方与填方配平的是体积，不是意图。在这里挖一个坑、在那里垫高地面，最终表层是平的——同一堆土，换了个位置。表层的高度，恰好是指数唯一真正度量的东西。</p>
+
+    <p>表层之下，这个市场有五分之四换了边。周一收在 4325 只下跌、1167 只上涨；周二收在 2909 只上涨、2486 只下跌，179 只平盘。涨停从 48 家增至 70 家，跌停从 22 家降至 10 家。</p>
+
+    <p>进门的钱更多了：两市成交 1.676 万亿，比周一多约百分之九。而可辨认的最大一群仍在离场。主力资金——交易所自己对大单的清点——净流出 178.6 亿元。两件事同时为真，合起来描述的是一天的换手，而不是一天的加仓。</p>
+
+    <p>取土的那口坑是电池链。碳酸锂期货跌逾百分之十一，创年内新低，厂商跟着价格往下走。厦钨新能丢掉十分之一市值；先导智能——造电池产线的那家——丢掉同样多。另有一只较小的电池股封在跌停板上。链上最大的公司宁德时代跌 3.55%，录得当日全市场最重的单只个股大单净卖出。</p>
+
+    <p>另有两拨在抬轿子。一是国防——当日最强的板块被归档在「印巴冲突」名下，但买盘穿过的是地面兵装、航空发动机与船厂，航发科技封板，国科军工涨逾百分之十二。二是冬季篮子：滑雪场、制冷、冷库保温材料，在十月底到来之前两周被从货架上取下来，当日收涨 2.68%。</p>
+
+    <p>香港与上海同处一个时段，得出的分裂结论几乎一样。恒指收涨 0.30%，而其科技指数跌 0.79——同一笔交易，同样的两面。光器件在那里反弹，存储与晶圆代工则被卖。首尔综指跌 5.46%，连续第二天重挫；东京跌 1.82%。</p>
+
+    <p>先看跨过太平洋的那部分。周一纽约，费城半导体指数跌 2.67%，连续第四个交易日下跌，三十只成分股除两只外全数收低。做光器件的 Lumentum 跌 9.78%，为纳斯达克当日最差。Coherent 跌 7.87%，康宁跌六个百分点，美光跌到每股一千美元之下。道指收涨 0.38% 报 51850.55，标普 500 低四点，纳指跌 0.44%。</p>
+
+    <p>起因是一句话，不是一个数字。博通的首席执行官在新加坡一场会议上说，资金的可得性——融资能力——可能成为人工智能建设比芯片、存储或电力短缺更大的障碍。英特尔的首席执行官用不同的话说了同一件事。卖铁锹的人开始谈论谁付得起钱的时候，铁锹就便宜了。</p>
+
+    <p>那段警告里没有一条与中国有关。但开盘钟一响，它还是被套用到了中国身上。上海上午卖存储、卖光模块、卖电路板，因为纽约卖了存储、光模块和电路板。隔夜缺口通常就是这个东西：别人的观点，被平移过来，在第一个小时能承受的价位上成交。它不是对卖出方生意的判断。</p>
+
+    <p>止住它的也不是宏观经济学。是公司自己披露的东西。超声电子告知交易所，三季度净利润将比二季度高出 181% 至 206%，覆铜板订单充足、售价上行。电子布——每一块电路板里的玻璃纤维织物——本月已经再度涨价。这些数字背后有客户，而午后买的就是它们。</p>
+
+    <p>顺着填坑的钱去看，这一天就不再像一场修复。电力设备——机械、电网与电池的复合体——净流出 568.6 亿元大单，是所有行业中撤得最重的。电子几乎又撤掉同样多，医药生物、通信设备与有色金属依次离场。收钱的一侧，元件行业净流入 14.8 亿元，为当日最大，航运与航海装备略少。填方很窄，而且是用卖掉别的东西换来的。</p>
+
+    <p>有一处矛盾值得读两遍。通信设备板块指数周二收<b>涨</b>——约半个百分点——而 254.0 亿元大单离它而去。电子收跌不到零点几个百分点，走掉的却是它的近两倍。板块指数也是平均数；当少数几只股票扛着它时，板块的读数与板块的账本会分道而行。</p>
+
+    <p>另有两个数字框住了这一周。周一融资余额 2.517 万亿元，连续第二日下降。一周前它打出 2.56 万亿元，为年内新低。那比年内高点低近 4700 亿元。而融资交易额在这个市场全部成交中的占比已跌到 7.9%，为今年第二小的份额。这个市场整个春天倚靠的借钱，并没有靠回来。</p>
+
+    <p>把两半合起来，这一天有一个干净的说法。停在电池链里的钱，在一个下午之内被搬进了电路板与元件链。买入由一个真实的东西触发——一份业绩预告和一张报价单。而其中没有一分是新钱，因为出口的门从未关上。上证挪了三个半点。就它底下的证据而言，这个数字不描述任何东西。</p>
+
+    <p><strong>历史平行</strong>：本市场近年纪录里有三段够近，可以与周二并排放置。每一段都在上午挖出深坑、在收盘前填回大半。不同的是之后到来的东西——每一次都来自没人看着的方向。</p>
+
+    <p>其一，2018 年 10 月。10 月 19 日，上证连续第二日低开，并在十点前触及 2449.20——一个自 2014 年 11 月以来未曾见过的水平。然后它转身向上，收涨 2.58%，站上 2550，创业板指涨 3.72%。全市场三千余只上涨对三百四十只下跌。燃料是公开的：当天上午央行、银保监会与证监会负责人相继发声，中午国务院副总理接受联合采访。这个坑是被一纸表态填上的。而其后并不是底。两个半月后，上证在更低的 2440.91 成交，低于十月低点。</p>
+
+    <p>差异提醒：2018 年 10 月 19 日的填方伴随着表态——三个监管口加一位副总理，全部在午休之前。周二没有任何人宣布任何事。买盘是拿这个市场自己的资产负债表付的，所以它必须关上一扇门才能打开另一扇。</p>
+
+    <p>其二，2019 年 1 月。1 月 4 日，同样的事发生在低了整整一档的位置。前一夜的纽约很糟——苹果下调营收指引之后——而上证开盘径直穿过十月的低点，打出 2440.91。然后券商把它翻了过来：该板块收涨逾百分之六，约二十只封在涨停板上，上证最终涨 2.05%，创业板指涨 2.52。全交易所 3371 只上涨、158 只下跌。盘中没有任何公告；这次转向是市场自己的。公告在事后到来——当晚央行全面降准一个百分点。而这项工具的旧账值得记住：自 2014 年以来它这样做了十次，三十个交易日后市场有四次更低、六次更高。</p>
+
+    <p>差异提醒：2019 年的转向是被一条消息点着的——总理考察三家国有大行，一小时内传遍盘面。周二的转向没有任何消息。最接近新闻的东西，是一份业绩预告和一张电子布的报价单。</p>
+
+    <p>其三，2010 年 11 月。第三段是一面镜子，而它关于「指数读数」说的话最多。2010 年 11 月 11 日，两大国有石油公司被从平盘买到涨停，用时四十四分钟，把上证抬涨约百分之二——而其他所有东西开始朝这波拉升里卖，指数在收盘前交还了三分之一的涨幅。第二天上午中石油涨逾百分之四，市场的其余部分崩了。上证收跌 5.16%，为十五个月里最差的一天；深成指跌七个点；一百五十余只封死跌停。全交易所只有一百零二只收涨。指数是被抬着走的。账本不是。</p>
+
+    <p>差异提醒：2010 年那一次，是权重抬着指数、多数人在卖，指数是屏幕上最后一件真实的东西。周二方向是反的——多数人在抬、权重几乎没动——但适用的是同一条规矩：被少数名字扛着的指数，只告诉你那少数名字的事。</p>
+
+    <p>三段并排，相同的是这一天的形状，四天共有。不同的是之后到来的东西，而没有一次是按当天自己的条件来的：2018 年是一纸表态，2019 年是当晚的一纸公告，2010 年是一场断裂。而周二，到收盘为止，什么也没有到来。</p>
+
+    <p>一个坑到底是坑还是水洼，旧账答不了这个问题，这一页也不假装能答。</p>
+
+    <p><strong>收尾</strong>：周二被买入的东西里包括滑雪场。长白山封上涨停，一家制冷设备商和一家做冷库保温的公司也一样，在农历九月，街上法国梧桐还是绿的。有人在第一场雪之前就卖掉了一张缆车票。今天这个盘对那个坑做了差不多的事：九点半把它卖掉，收盘前把它买回来，而这两个价格都是真价格。江边的灯六点亮了。</p>
+
+    <p>本文为市场观察与历史复盘，不构成任何投资建议；本号无证券投资咨询资质，不推荐任何证券，不指导任何操作。市场有风险，投资需谨慎。</p>
+  </div>
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share closes for 2026-10-13 (Shanghai Composite, Shenzhen Component, ChiNext, STAR 50; combined turnover, advance/decline counts, limit-up/limit-down counts, sector and single-stock moves, main-force flow by sector and by stock, company pre-announcements, and the lithium carbonate futures settlement) via East Money, Westock, NeoData and the Shanghai and Shenzhen exchange feeds, retrieved 2026-10-13. Hong Kong closes are for the 2026-10-13 session (Hang Seng, Hang Seng Tech, sector and single-stock moves) via the Hong Kong exchange feed, retrieved 2026-10-13. Regional index closes for the same session via the Tokyo and Seoul exchange feeds. US index, sector and single-stock closes are for the 2026-10-12 session (EDT) &mdash; the last session to finish before the 2026-10-13 Shanghai open, and therefore the overnight backdrop for this chapter. Only one US timepoint is used in this issue: the 2026-10-12 session. The 2026-10-13 US session had not yet opened at the time of writing and is deliberately not covered; nothing in this piece is drawn from it. The Broadcom and Intel remarks, the Apple revenue warning, the electronic-cloth price increases and the margin-balance figures are as reported in contemporaneous press coverage of those sessions, not as audited statements. Historical figures &mdash; the 2018-10-19 intraday low, close, breadth and official remarks; the 2019-01-04 intraday low, close, sector moves, breadth and the reserve-requirement cut that evening; the 2010-11-11 and 2010-11-12 sessions, index moves and advance/decline counts &mdash; are each taken from contemporaneous public reports and exchange data.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
