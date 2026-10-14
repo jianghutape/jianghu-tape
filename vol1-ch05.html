@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Five &middot; Six Points</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .zh-block{
+    background:rgba(255,255,255,.32);
+    border:1px solid rgba(29,26,20,.14);
+    padding:26px 24px;
+    font-size:16px;
+    line-height:1.9;
+  }
+  .zh-block h2{
+    font-size:15px;
+    letter-spacing:.2em;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:16px;
+    text-align:center;
+  }
+  .zh-block p{margin-bottom:1em}
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Five &middot; Six Points</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-14</div>
+  <div class="sub-kicker">第五章 · 六点</div>
+
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>The gap was still open at nine in the morning and never closed again. The Shanghai Composite opened at 3,790.63, ten points under Tuesday's close, and by eleven it had traded eleven points <i>above</i> it, at 3,811.81. That was the best the day would offer. From there it went down in a straightening line to 3,767.23, a loss of 33.63 points or 0.88 percent, and it closed within six points of the day's floor.</p>
+
+    <p>The number that matters is not the Composite's. It is the ChiNext's. The Shenzhen board where this market files its most expensive companies closed at 2,866.76, down 3.10 percent, after touching 2,863.71. Its lowest print of the last fifty-two weeks is 2,860.80. <b>Six points.</b> Two tenths of one percent of room between a board of a hundred of this country's most richly valued companies and a twelve-month floor. The STAR 50 fell 3.29 percent to 1,380.26. The CSI 300 fell 1.36 percent, and its intraday low, 4,214.01, was a fifty-two-week low — not near one, one.</p>
+
+    <p>The selling was not narrow in the way a bad day usually is narrow. It was narrow in the other direction: almost everything that had led this market up over the spring was sold, and almost nothing in that group was spared. Semiconductors fell 3.20 percent with fifteen of a hundred and eighty-two names higher. Telecom equipment fell 4.50 percent with four of eighty-five higher. Batteries fell 3.09 percent with six of ninety-seven higher. Wind-power equipment fell 5.32 percent with one of thirty-one higher. Glass fibre fell 5.46 percent with none of its sixteen higher — nor did chemical fibre, with none of twenty-six, nor farming, with none of nineteen, nor precious metals, with none of eleven.</p>
+
+    <p>What rose was a different country. Oilfield services gained 3.05 percent, with China Oilfield Services up 6.56. Publishing gained 2.83 percent; digital media 2.75, with Zhangyue Technology at its ceiling; film and cinema 1.67, with Ciwen Media limit-up. Behind them came rail and road, coal mining, gas, shipping and ports, and electric power — a list you can read without knowing anything about this market, because it is a list of things that already exist and already earn.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,767.23, <span class="chg">&minus;33.63 (&minus;0.88%)</span> · ChiNext 2,866.76, <span class="chg">&minus;3.10%</span> · STAR 50 1,380.26, <span class="chg">&minus;3.29%</span></li>
+        <li>Combined turnover ¥1.414 trillion, against ¥1.676 trillion on Tuesday</li>
+        <li>ChiNext close sits 5.96 points above its fifty-two-week low of 2,860.80</li>
+        <li>Largest large-order withdrawals: semiconductors ¥7.04bn, telecom equipment ¥5.99bn, batteries ¥3.39bn</li>
+      </ul>
+    </div>
+
+    <p>Hong Kong kept the same clock and did not agree. The Hang Seng closed 0.13 percent lower at 24,314.17, essentially where it started. Its technology index, holding many of the same companies as the boards that were being sold in Shanghai and Shenzhen, closed 0.91 percent <i>higher</i> at 4,174.47. Hong Kong is not another country's market; it is another market inside the same one, trading the same assets on the same hours. On Wednesday it priced them differently. That is worth holding rather than explaining away.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>Start with what did not happen. Overnight in New York the Dow fell 0.35 percent to 51,670.10 and the Nasdaq 0.15 percent to 27,204.38. Those are small moves — the sort of session that gets one sentence in a closing summary. The ChiNext lost roughly twenty times the Nasdaq's percentage on the same calendar day. A gap that wide is not transferred from anywhere. It was struck here, by this market's own order book, at this market's own prices.</p>
+
+    <p>That makes Tuesday's buyers into Wednesday's sellers, and the ledger says so plainly. On Tuesday the components industry was the day's hero: up 2.97 percent, all but five of its sixty-one names higher, on a profit pre-announcement from Ultrasonic Electronic and a rise in the price of electronic cloth. On Wednesday it fell 1.53 percent. The copper-clad laminate chain — the same substrate, the same customers, the same forecast, one day older — was handed back. Nothing about the story changed in twenty-four hours. The price of holding it did.</p>
+
+    <p>Follow the large orders and the day resolves into a single transfer. The electrification complex was sold for a second consecutive session: ¥3.39 billion of large orders out of batteries, ¥0.91 billion out of grid equipment, ¥0.57 billion out of photovoltaic equipment. Consumer electronics gave up ¥1.81 billion, optical and electronic components ¥1.39 billion, and glass fibre ¥1.70 billion on a day when none of its names closed higher. On the receiving end were coal, at ¥0.62 billion in; power, ¥0.66 billion; refining, ¥0.72 billion; and games, ¥0.81 billion. The money did not leave. It moved down the valuation ladder.</p>
+
+    <p>One line in that ledger deserves a second look, because it is the mirror image of Tuesday's. The components sector index closed 1.53 percent lower and took in ¥1.38 billion of large orders — the only technology sub-sector on the board to finish on the inflow side. Twenty of its sixty-one names closed higher, and Mankun Technology rose 18.32 percent. An index is an average, and averages can fall while money arrives underneath them. On Tuesday telecom equipment closed higher while ¥25.40 billion left it; on Wednesday components closed lower while money came in. Sector readings and sector accounts keep going their separate ways, and the account is the one with the receipts.</p>
+
+    <p>The breadth tells the rest of it. Fifteen of a hundred and eighty-two semiconductor names higher is roughly one in twelve; four of eighty-five in telecom equipment is one in twenty. Those are not the ratios of a sector being repriced at the margin. They are the ratios of a sector being exited. And it was done on shrinking volume: ¥1.414 trillion against Tuesday's ¥1.676 trillion, a fall of about fifteen percent. Fewer shares changed hands at lower prices, which is what it looks like when buyers step back rather than when sellers panic.</p>
+
+    <p>One last thing about the shape of it. The Composite's best price came before eleven in the morning and its close sat six points above the floor it printed in the last hour. A session that opens, rallies and then hands the whole of it back is a retreat rather than a rout — and retreats are made by buyers who stop bidding, not by sellers who run for the door.</p>
+
+    <p>Two distances are worth carrying out of the session. The STAR 50, at 1,380.26, sits 38.8 percent below the fifty-two-week high it printed at 2,255.25, and is down 17.10 percent in ten sessions and 31.32 percent in sixty. The Composite, down 5.08 percent for the year, is the calmest number on the page. The boards where this market keeps its most expensive companies are the boards doing the falling, and the index everybody quotes is the one being shielded by banks, coal and oil.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p class="pull">A board finishing six points above a twelve-month floor is a position, not a verdict. The record has seen the position before, and what followed was never decided by the distance.</p>
+
+    <p>Two entries in this market's record sit close enough to Wednesday to be laid beside it. Each is a day that finished near a level everyone was watching. Neither was settled by that proximity.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">One · 2015 to 2016</div>
+      <p>On 12 June 2015 the Shanghai Composite printed 5,178.19, the top of that cycle. It reached 2,638.30 on 27 January 2016 — a fall of just under half, spread over more than seven months. In between, the index passed repeatedly through days that looked like this one: close to a level that had held before, with the most expensive names leading the decline and the heavyweights muting it. Each of those days read as a test of the same floor. The floor was tested more than once and broke more than once. What eventually ended it was not the distance to any particular number.</p>
+      <div class="diff-note">Difference to note: that cycle began at a valuation extreme — the Composite had roughly doubled in a year before 5,178.19. Wednesday's boards are falling from a far smaller base; the STAR 50 is still up 2.68 percent for the year even after a 3.29 percent session. The shape rhymes. The starting point does not.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two · October 2018 to January 2019</div>
+      <p>On 19 October 2018 the Composite touched 2,449.20 before ten in the morning, a level not seen since November 2014, and then closed 2.58 percent higher with the ChiNext up 3.72 — a session this chapter's predecessor examined in detail. Two and a half months later, on 4 January 2019, it traded at 2,440.91, below the October low. The day that looked like the test was not the test. The test came eleven weeks afterwards, and it was passed on a session whose turn was the market's own, followed that evening by a reserve-requirement cut — an instrument whose own record is mixed: of the ten times it had been used in that size since 2014, the market was lower thirty sessions later in four of them.</p>
+      <div class="diff-note">Difference to note: October 2018 arrived after months of decline and was answered within the session by three regulators speaking before lunch. Nothing was said by anyone on Wednesday. The buying that did appear — components, games, coal, power — was the market's own, and it was small.</div>
+    </div>
+
+    <p>The record stands for comparison, not for instruction. It says that a board can sit six points above a twelve-month floor and stay there for a session, a week, or two and a half months; that the distance to a level has no fixed meaning; and that on the two occasions above, what came next arrived from somewhere nobody was watching. It does not say what comes next here.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>The day's buyers purchased two kinds of thing. They bought the ones that do not need a story to be valued — coal, gas, power, ports, road and rail, where the price of the output is published and the customers are already there. And they bought the cheapest stories in the building: a publisher up 14.49 percent, a reading platform and a film studio at their ceilings, a games sector taking in more large orders than any industry except power. What they sold were the most expensive stories in the building, which is to say the ones that needed the most future to justify their price.</p>
+
+    <p>In Hong Kong, on the same hours, with many of the same tickers, the technology index went up. Two markets inside one country, reading one set of companies, arriving at different prices on one afternoon. That is not a contradiction to be resolved by this page. It is the day's last fact, and it is the one that does not fit any of the sentences above.</p>
+
+    <p>Six points. The river does not care how close the board is to the number it printed a year ago, and neither does the number.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ============ CHINESE ARCHIVE (not for publication) ============ -->
+  <div class="zh-block" lang="zh-CN">
+    <h2>中文存档 · Chinese archive · 供作者校对，不对外发布</h2>
+
+    <p><strong>开场</strong>：上午的那个缺口开着，此后再没合上。上证九点半开在 3790.63，比周二收盘低十个点，到十一点它曾高出周二十一个点，报 3811.81。那是这一天能给的最好的东西。此后它沿着一条越来越直的线下行到 3767.23，跌 33.63 点，跌幅 0.88%，最终收在距全天地板六个点之内。</p>
+
+    <p>要紧的数字不在上证，在创业板。这个市场把它最贵的公司归档在深圳这块板上，它今天收在 2866.76，跌 3.10%，盘中最低 2863.71。它过去五十二周的最低点是 2860.80。<b>六点。</b>一百家这个国家估值最高的公司，与一个十二个月的地板之间，只剩千分之二的余地。科创 50 跌 3.29%，报 1380.26。沪深 300 跌 1.36%，它今天盘中的最低点 4214.01 就是一个五十二周新低——不是接近，是就是。</p>
+
+    <p>今天的下跌不是一个坏日子通常那种"窄"。它是朝另一个方向窄：今年春天领着这个市场往上走的那些东西几乎全被卖掉，那一组里几乎无一幸免。半导体跌 3.20%，一百八十二只里十五只上涨。通信设备跌 4.50%，八十五只里四只上涨。电池跌 3.09%，九十七只里六只。风电设备跌 5.32%，三十一只里一只。玻璃玻纤跌 5.46%，十六只里没有一只上涨——化学纤维二十六只里没有一只，种植业十九只里没有一只，贵金属十一只里没有一只。</p>
+
+    <p>涨起来的是另一个国家。油服工程涨 3.05%，中海油服涨 6.56。出版涨 2.83%；数字媒体涨 2.75%，掌阅科技封在涨停；影视院线涨 1.67%，慈文传媒涨停。它们后面是铁路公路、煤炭开采、燃气、航运港口与电力——一张你对这个市场一无所知也能读懂的清单，因为那上面写着的都是已经存在、已经在赚钱的东西。</p>
+
+    <p>香港守着同一个时钟，却不同意。恒生指数收跌 0.13%，报 24314.17，几乎就在它出发的地方。它的科技指数，装着许多与沪深两地被卖掉的同一批公司，收涨 0.91%，报 4174.47。香港不是另一个国家的市场，是同一个国家里的另一个市场，在同一段时间里交易同一批资产。周三它给这批资产定的价不一样。这件事值得拿着，而不是解释掉。</p>
+
+    <p><strong>拆招</strong>：先说没有发生的那件事。隔夜纽约，道指跌 0.35% 至 51670.10，纳指跌 0.15% 至 27204.38。这都是很小的动作——收盘小结里只配得上一句话的那种。而创业板在同一个日历日里跌掉的幅度，大约是纳指的二十倍。这么宽的缺口不是从别处转过来的。它是这里打出来的，用这个市场自己的订单簿，按这个市场自己的价格。</p>
+
+    <p>于是周二的买方成了周三的卖方，账本上写得清清楚楚。周二元件行业是当天的英雄：涨 2.97%，六十一只里除五只外全涨，凭的是超声电子的一份业绩预告和电子布的一轮涨价。周三它跌 1.53%。覆铜板那一链——同样的基材、同样的客户、同样的预告，只老了一天——被交了回去。二十四小时里，故事没有变。持有它的价格变了。</p>
+
+    <p>顺着大单走，这一天就归成了一笔搬移。电动化这一串是连续第二个交易日被卖：电池流出 33.9 亿元大单，电网设备 9.1 亿元，光伏设备 5.7 亿元。消费电子让出 18.1 亿元，光学光电子 13.9 亿元，玻璃玻纤 17.0 亿元——在它十六只全数收跌的一天。收的那一头是煤炭，进来 6.2 亿元；电力 6.6 亿元；炼化 7.2 亿元；游戏 8.1 亿元。钱没走，它只是顺着估值阶梯往下挪了一层。</p>
+
+    <p>账本里有一行值得读两遍，因为它是周二的镜像。元件板块指数收跌 1.53%，却收进 13.8 亿元大单——是当天全板唯一站在流入一侧的科技子行业。它六十一只里有二十只收涨，满坤科技涨 18.32%。指数是平均数，平均数可以在钱从底下进来的时候往下走。周二是通信设备收涨、254.0 亿元离它而去；周三是元件收跌、钱进来。板块的读数与板块的账本继续各走各的，而有收据的那一个是账本。</p>
+
+    <p>广度说明了剩下的部分。一百八十二只半导体里十五只上涨，约十二分之一；八十五只通信设备里四只，二十分之一。这不是一个板块在边际上被重新定价的比例，是一个板块正在被离场的比例。而这一切是在缩量里完成的：14144 亿元对周二的 16759 亿元，减少约一成五。更少的股票、在更低的价格上换手——那看起来是买方后退，不是卖方恐慌。</p>
+
+    <p>还有一件事关于它的形状。上证最好的价格出现在上午十一点之前，而它收盘时距最后一小时打出的地板只有六个点。一个先拉升、再把全部涨幅还回去的交易日，是一次撤退而不是一次溃败——而撤退是买方停止出价造成的，不是卖方夺门而逃造成的。</p>
+
+    <p>有两个距离值得带出这一天。科创 50 报 1380.26，比它在 2255.25 打出的五十二周高点低 38.8%，十个交易日跌 17.10%，六十个交易日跌 31.32%。上证年内跌 5.08%，是这一页上最平静的数字。这个市场存放最贵公司的那几块板，正在跌的正是它们；而所有人引用的那个指数，正被银行、煤炭与石油护着。</p>
+
+    <p><strong>历史平行</strong>：一块板收在十二个月地板之上六点，这是一个位置，不是一个判决。旧账见过这个位置，而之后发生的事，从来不由那个距离决定。</p>
+
+    <p>其一，2015 至 2016。2015 年 6 月 12 日，上证打出 5178.19，那一轮周期的顶。2016 年 1 月 27 日它到 2638.30——跌去近一半，铺在七个多月里。其间它反复穿过像今天这样的日子：贴着一个此前守住过的水平，最贵的名字领跌，权重把它压住声音。那些日子里的每一个，读起来都像是对同一个地板的测试。那个地板被测试了不止一次，也破了不止一次。最终结束它的，不是到某个具体数字的距离。</p>
+
+    <p>差异提醒：那一轮始于一个估值极端——在 5178.19 之前，上证一年内大约翻了一倍。周三这些板是从低得多的基数上跌下来的；科创 50 在跌掉 3.29% 之后，年内仍然涨 2.68%。形状押韵，起点不押韵。</p>
+
+    <p>其二，2018 年 10 月至 2019 年 1 月。2018 年 10 月 19 日，上证在上午十点前触及 2449.20，一个自 2014 年 11 月以来未见过的水平，然后收涨 2.58%，创业板指涨 3.72——这一章的前一篇细看过那一天。两个半月后，2019 年 1 月 4 日，它在 2440.91 成交，低于十月的低点。那个看起来是测试的日子并不是测试。测试在十一个礼拜之后到来，而它是在一个转向由市场自己完成的交易日里通过的，当晚央行下调存款准备金率——这项工具自己的旧账是混合的：自 2014 年以来以那个幅度用过十次，三十个交易日后市场有四次更低。</p>
+
+    <p>差异提醒：2018 年 10 月是在数月下跌之后到来的，并在盘中就得到了回应——三个监管口在午休之前发声。周三没有任何人说话。出现的买盘——元件、游戏、煤炭、电力——是市场自己的，而且很小。</p>
+
+    <p>旧账是用来对照的，不是用来指示的。它说：一块板可以在十二个月地板之上六点停一天、一周、或者两个半月；到一个水平的距离没有固定的含义；而上面两次，接下来到来的东西都来自没有人在看的方向。它没有说这里接下来是什么。</p>
+
+    <p><strong>收尾</strong>：今天的买方买了两类东西。一类是不需要故事就能估值的——煤、气、电、港口、公路与铁路，这些东西的产出有公开报价，客户已经在那里。另一类是这栋楼里最便宜的故事：一家出版社涨 14.49%，一家阅读平台与一家影视公司封在涨停，游戏板块收进的大单仅次于电力。而被卖掉的，是这栋楼里最贵的故事——也就是那些需要最多未来才能证明其价格的故事。</p>
+
+    <p>在香港，同一段时间里，拿着许多同样的代码，科技指数涨了。同一个国家里的两个市场，读着同一批公司，在一个下午给出了不同的价格。这不是这一页该去解决的矛盾。它是这一天最后的事实，也是唯一一个装不进上面任何一句话的事实。</p>
+
+    <p>六点。江不在意那块板离它一年前打出的那个数字有多近，那个数字也不在意。</p>
+
+    <p>本文为市场观察与历史复盘，不构成任何投资建议；本号无证券投资咨询资质，不推荐任何证券，不指导任何操作。市场有风险，投资需谨慎。</p>
+  </div>
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share closes for 2026-10-14 (Shanghai Composite, Shenzhen Component, ChiNext, STAR 50 and CSI 300; open, high, low and close levels; combined turnover; sector and single-stock moves; sector breadth; and main-force large-order flow by sector) via East Money, Westock and the Shanghai and Shenzhen exchange feeds, retrieved 2026-10-14. Fifty-two-week highs and lows are as carried in the same quote feed. Hong Kong closes are for the 2026-10-14 session (Hang Seng and Hang Seng Tech) via the Hong Kong exchange feed, retrieved 2026-10-14 — Hong Kong is another market inside the same country, not another country's market. US index closes are for the 2026-10-13 session (EDT) — the last session to finish before the 2026-10-14 Shanghai open, and therefore the overnight backdrop for this chapter; only that one US timepoint is used here. The 2026-10-14 US session had not yet opened at the time of writing and is deliberately not covered; nothing in this piece is drawn from it. Historical figures — the 2015-06-12 and 2016-01-27 Composite levels; the 2018-10-19 intraday low, close, ChiNext move and officials' remarks; the 2019-01-04 level, the reserve-requirement cut that evening and its ten-episode record — are each taken from contemporaneous public reports and exchange data, not from audited statements. Advance/decline counts by sector are Wednesday's own; the market-wide advance/decline and limit-up/limit-down tallies in the exchange feed had not settled for 2026-10-14 at the time of writing and are therefore not quoted in this chapter.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
