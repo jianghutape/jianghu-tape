@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Six &middot; Four Hundred and Thirty</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .zh-block{
+    background:rgba(255,255,255,.32);
+    border:1px solid rgba(29,26,20,.14);
+    padding:26px 24px;
+    font-size:16px;
+    line-height:1.9;
+  }
+  .zh-block h2{
+    font-size:15px;
+    letter-spacing:.2em;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:16px;
+    text-align:center;
+  }
+  .zh-block p{margin-bottom:1em}
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Six &middot; Four Hundred and Thirty</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-15</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>The Shanghai Composite opened at 3,710.70, and for the first ten minutes the session looked like every other morning this week. Then it went through 3,700 and did not stop. At 3,674.82 the selling met something, and for the rest of the day the index worked its way back. It closed at 3,707.48, down 59.75 points, or 1.59 percent — six points below where it began.</p>
+
+    <p>That round trip is the most misleading thing about Thursday, because underneath it only 430 stocks in the entire market closed higher.</p>
+
+    <p>Not 430 out of a sample. Four hundred and thirty of the 5,587 names trading in Shanghai and Shenzhen. Five thousand one hundred and eight closed lower. Thirty-eight were unchanged. The median stock fell 2.99 percent. Of the losers, 3,232 shed between two and five percent, 630 lost between five and seven, and 180 fell further than seven. Eight hundred and ten names — roughly one in seven of the whole market — gave up more than five percent in one session.</p>
+
+    <p>The boards told the same story, though not in the same order. The Shenzhen Component lost 2.43 percent, the ChiNext 2.92, the Beijing 50 3.44. The STAR 50, which opened at its low of the day and climbed from there, lost the least of them — 1.50 percent.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,707.48, <span class="chg">&minus;59.75 (&minus;1.59%)</span> &middot; Shenzhen Component &minus;2.43% &middot; ChiNext 2,783.17, <span class="chg">&minus;2.92%</span></li>
+        <li>Advancing 430 &middot; declining 5,108 &middot; unchanged 38 &middot; median stock &minus;2.99%</li>
+        <li>Combined turnover &yen;1.633 trillion, against &yen;1.414 trillion on Wednesday</li>
+        <li>Thirty-six stocks at their ceiling, twenty-eight at their floor</li>
+      </ul>
+    </div>
+
+    <p>What closed higher was a short list, and it read like a list of things people retire into rather than buy. Liquor distillers rose 1.72 percent, with one small baijiu name at its ceiling. The big state banks rose 0.81 percent, and the Industrial and Commercial Bank of China took back the title of the market's largest company by value. Insurance added 0.71, home appliances 0.53, brokerages 0.51. Everything else fell.</p>
+
+    <p>It fell in a particular order. Commodities went first: coal, oil and gas, industrial metals, each of them heavy on the day. Then shipping and ports, violently — the two largest state shipping lines both hit their floor, on a single report that the United States may loosen sanctions on the so-called shadow tanker fleet to bring freight rates down. Then the AI hardware chain: memory chips, optical modules, copper-clad laminate, all pulled back for a second and third session. In their place, two themes with nothing to do with any of it drew the only buying in the market — printed circuit boards, the week's strongest thread, and innovative-drug makers, several of which went to their ceiling.</p>
+  </div>
+
+  <div class="aside">China released no policy, no data and no statement on Thursday. The day had no domestic author.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>Start with where the day came from, because on Thursday the answer was unusually external. The United States published its September consumer price index on Wednesday. Headline inflation came in at 3.7 percent year on year against an expected 3.6, and core inflation rose to 2.6. Both were above forecast, and the second is the number the Federal Reserve watches. Within hours, the market's implied odds of a rate increase at the October meeting had gone from roughly one in five to 43.7 percent, and the odds of at least two increases by the end of January were being priced at 73.7.</p>
+
+    <p>New York sold the assets that a higher discount rate hurts most. The Philadelphia Semiconductor Index fell 4.3 percent, its sixth consecutive decline and its longest run since May 2025. The S&amp;P 500 lost 1.11 percent. The Dow, which holds few of those companies, lost 0.09 — it barely moved. Wherever the market's value sits in long-duration earnings, Wednesday in New York was expensive.</p>
+
+    <div class="aside">The Dow lost 0.09 percent. The Philadelphia Semiconductor Index lost 4.3 percent. Not a market falling — a market turning.</div>
+
+    <p>Asia then did what Asia does with a New York signal in the same asset class. Korea's benchmark opened more than six percent lower, its seventh straight decline, and the exchange twice halted program selling to stop the slide; memory makers there fell harder than anything in Shanghai. Japan's Nikkei 225 lost more than three percent, its chip equipment names down eight, nine and ten. Wednesday's American repricing of AI hardware arrived in this time zone on Thursday morning, at the opening bell, in the assets most exposed to it.</p>
+
+    <p>That is the mechanism, and it is worth being precise about what it explains. It explains the semiconductor complex, the memory names, the optical modules, the copper-clad laminate. It explains why Thursday's worst sector, telecom equipment, lost 5.26 percent on more than ¥98 billion of turnover. What it does not explain is 5,108 decliners. A market doing nothing but repricing AI hardware would have fallen in that group and stood still everywhere else. Thursday stood still nowhere.</p>
+
+    <p>Look at where the selling came from and the shape resolves. Coal, oil and gas, and industrial metals all fell hard, and so did shipping — including the two large state lines, which closed at their floor. Nothing about American inflation tells a Chinese coal mine what it is worth. What connects them is that they had all been, for two weeks, the place money went when it left technology. Week after week as the AI names bled, the resource complex and the shipping lines absorbed the outflow and rose. On Thursday they were sold too, and the reason is arithmetic rather than opinion: if the falling part of a portfolio is being sold by others, the cheapest way to fund the rest of the day is to sell the part that is still up.</p>
+
+    <p>That is how a rotation becomes a rout — and why the descents were so orderly. The selling was concentrated, one sector after another, in an order you could predict, and it never became panicked. Twenty-eight stocks out of 5,587 closed at their limit-down, which for this market on a day like this is a small number. What happened was not liquidation. It was an orderly transfer of 5,108 positions from one column to another, executed by people who all knew the same thing at the same time.</p>
+
+    <p>The buyers, such as they were, revealed themselves late. Just before the close, the broad-based exchange-traded funds took on an unusual amount of volume — the ChiNext, STAR 50 and CSI 300 trackers all traded more than they had in months. That is either the largest institutions arriving at a price they like or a direction of travel becoming a mandate, and the tape does not distinguish between the two. It records only that someone was buying the index at the close of a day when 5,108 stocks were for sale.</p>
+
+    <p>One more thing belongs in the accounting. Margin debt fell for a fourth consecutive day, and margin turnover as a share of the total sits at 8.1 percent, below its twenty-day average. Leverage had been leaving this market for a week before Thursday. The people who sold were not the ones who had borrowed the most.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p class="pull">A market where almost nothing rises is not a market that has decided anything. It is a market in which nothing is currently being defended.</p>
+
+    <p>Two entries in this market's record sit close enough to Thursday to set beside it. Both were days when the number of stocks moving up approached the number of hours in a shift.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 9 October 2024</div>
+      <p>The market had just come off the largest and fastest rally in its modern history: the Composite had risen 23 percent in eight sessions at the end of September. The morning after, it opened more than ten percent higher and closed 4.59 percent higher; the following day it lost 6.62 percent and the ChiNext lost 10.59. Two hundred and ninety-five stocks closed higher that day and 5,043 closed lower — of 5,338, roughly one in eighteen. Eight hundred and fifty-four sat at their floor. Turnover was huge and every sector fell.</p>
+      <div class="diff-note">Difference to note: 2024's collapse was the unwinding of a bubble that had taken a week to build, and it came with more than four hundred stocks at their floor. Thursday was a slow leak out of a market that has been falling, on falling volume, for three weeks. The one-day breadth is alike. What preceded it is not.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 2015 to 2016</div>
+      <p>The spring of 2015 carried the Composite to 5,178.19. Over the following seven months and a half it went to 2,638.30. Inside that descent there were repeated days on which the advance-decline count reached a similar extreme — a few hundred up against thousands down — and each time the index itself held some level everyone had been watching. Those were not the days that marked the bottom. The bottom, when it arrived, was marked by a session whose breadth was extreme in the other direction.</p>
+      <div class="diff-note">Difference to note: 2015 and 2016 were driven by the unwinding of leveraged positions, and forced selling produced the widest breadth on the worst days. Thursday did not do that: twenty-eight limit-down stocks is not a queue, and margin debt has been shrinking for a week. Whether that makes it milder or slower the record does not say.</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <p>The record stands for comparison, not for instruction. It says that a market in which 430 of 5,587 names rise can be the unwinding of a bubble or a slow leak, and that the number itself tells you which only long after the fact. It does not say what comes next here.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>There is a version of Thursday in which the only interesting number is 3,707.48 — the six-point difference between where the index started and where it finished, the story of a market that opened, fell, and came back. It is an appealing story, and the index writes it for free.</p>
+
+    <p>Then there is the count. Four hundred and thirty names rose. The index reported the day as roughly flat because the index is weighted, and the heaviest things in it — a bank, an insurer, a distiller — happened to be what people bought. Everything else, all 5,108 of it, was not in the story at all.</p>
+
+    <p>Which is the oldest lesson in this market and the one most easily forgotten: an index measures a few things, and the tape records all of them. Today the two disagreed by a factor of twelve. Both are true. Only one is a fact about Thursday.</p>
+
+    <p>Hong Kong spent the same hours in the same weather. The Hang Seng closed 1.03 percent lower at 24,062.72, its technology index down 2.72 percent at 4,060.99, the same AI-hardware complex sold in the same session for the same reason. Hong Kong is not another country's market; it is another exchange inside this one, holding many of the same companies on many of the same hours. On Thursday it agreed with Shanghai — which it had not done all week.</p>
+  </div>
+
+  <hr class="divider">
+
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share closes for 2026-10-15 (Shanghai Composite, Shenzhen Component, ChiNext, STAR 50 and Beijing 50; open, high, low and close levels; combined turnover; market-wide advance/decline, limit-up and limit-down counts; median stock move; and sector moves) via East Money, Westlake and the Shanghai and Shenzhen exchange feeds, retrieved 2026-10-15. The listed Chinese cash market closed for the day before this chapter was written; sector-level quotes and market breadth were read at 16:33 Beijing time. Margin-financing figures are for the 2026-10-14 settlement, the most recent published, via the exchange margin-financing feed. Hong Kong closes are for the 2026-10-15 session (Hang Seng and Hang Seng Tech) via the Hong Kong exchange feed, retrieved 2026-10-15 — Hong Kong is another market inside the same country, not another country's market. US index closes are for the 2026-10-14 session (EDT) — the last session to finish before the 2026-10-15 Shanghai open, and therefore the overnight backdrop for this chapter; only that one US timepoint is used here. The 2026-10-15 US session had not yet opened at the time of writing and is deliberately not covered; nothing in this piece is drawn from it. US September CPI, the implied rate-increase odds quoted from it, the Philadelphia Semiconductor Index's sixth consecutive decline, and the Korean and Japanese moves are taken from contemporaneous public reports. Historical figures — the 2024-10-09 advance/decline, limit-down, index and ChiNext moves; and the 2015-06-12 to 2016-01-27 Composite range — are taken from contemporaneous public reports and exchange data, not from audited statements.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
