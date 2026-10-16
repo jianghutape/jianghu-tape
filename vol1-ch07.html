@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Seven &middot; Three Thousand Three Hundred and One</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Seven &middot; Three Thousand Three Hundred and One</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-16</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>Four hundred and thirty. That was Thursday's count of stocks closing higher across the Shanghai and Shenzhen exchanges, out of the 5,587 names trading there. Friday's count was 3,301. The Shanghai Composite, which had lost 1.59 percent the day before, added 0.24 percent &mdash; 8.80 points.</p>
+
+    <p>The session itself was dull to watch. The Composite opened at 3,723.80, above Thursday's close, gave most of that back by late morning, touched 3,681.28, then climbed all afternoon to close at 3,716.28. Four of the five main boards finished lower; the Composite finished higher. A reader who saw only the top line would have concluded that nothing happened &mdash; and would have been right about the index and wrong about the market.</p>
+
+    <p>The count is where the day lives. Sixty-three names closed at their ceiling against twelve at their floor; the previous session had produced thirty-six and twenty-eight. More telling is where inside the advancing group the weight sat: the largest single block finished between flat and two percent up. Friday did not look like a rally. It looked like a market that had stopped falling.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,716.28, <span class="chg">+8.80 (+0.24%)</span> &middot; Shenzhen Component 11,802.46, <span class="chg">&minus;0.12%</span> &middot; ChiNext 2,772.38, <span class="chg">&minus;0.39%</span></li>
+        <li>STAR 50 <span class="chg">&minus;0.06%</span> &middot; Beijing 50 950.00, <span class="chg">&minus;1.81%</span></li>
+        <li>Advancing 3,301 &middot; declining 2,128 &middot; unchanged 148 &middot; suspended 10</li>
+        <li>Sixty-three stocks at their ceiling, twelve at their floor</li>
+        <li>Combined turnover &yen;1.5554 trillion, against &yen;1.633 trillion on Thursday</li>
+      </ul>
+    </div>
+
+    <p>What the money bought was, almost point for point, the reverse of what it had bought on Thursday. Thursday's winners were the things people retire into: liquor distillers, the large state banks, insurers, white goods. On Friday those gave ground, and the buying went to the other end of the market &mdash; to stories with a date printed on them.</p>
+
+    <p>Begin with defence, which ran hardest. Ground-forces equipment rose 5.96 percent and aero-engine manufacturing 3.71, with more than a dozen constituents at their ceilings. The catalyst was a calendar entry: the organisers of Airshow China confirmed that the next edition runs from 7 to 13 December in Zhuhai, and said the air force and navy would both bring new equipment. The low-altitude complex followed &mdash; more than twenty names at their ceilings &mdash; helped by an event in Texas the previous evening, where Tesla showed a two-seat car it says can lift off and hold its own attitude in the air. By Friday's open that was enough to move a supply chain.</p>
+
+    <p>Two more dated themes ran alongside. Property developers rose after Shenzhen and Hangzhou published new-home sales rules on Thursday, bringing to seven the number of major cities that have done so. And the humanoid-robot complex rebounded on an exchange filing: a component supplier disclosed that the hardware design for the next generation of Tesla's Optimus had been frozen and was heading into volume production.</p>
+
+    <p>The rest of the winning list was unglamorous: cement, commercial vehicles, engineering consulting, auto parts, each led by a name at its ceiling.</p>
+
+    <p>Then there is the detail that makes Friday worth the ink. The semiconductor sector index ended 0.45 percent lower, and only 60 of its 182 listed members rose. It nevertheless took the largest main-force net inflow of any industry in the market, about &yen;3.9 billion, and its leading name closed 14.61 percent higher. The largest domestic memory maker retook a market value above &yen;3 trillion. The sector that registered a fall was the sector that absorbed the money.</p>
+
+    <p>What fell, fell for its own reasons. Drug-development services took the worst of it, with one newly listed name down 28.33 percent and the sector's best-known company off more than 9 percent. Games fell hard, with one developer at its floor. The printed-circuit-board complex, the strongest thread of the previous week, reversed: several constituents at their floors, others down between 10 and 15 percent. And the battery chain drifted lower, led by smaller names.</p>
+
+    <p>The board that tells the story best is the smallest one. The Beijing 50, tracking the least mature companies, fell 1.81 percent &mdash; the worst of the five &mdash; on a day when the market's smaller companies, taken together, rose.</p>
+  </div>
+
+  <div class="aside">One index of small companies fell 1.81 percent while small companies rose. That is not a contradiction. It is a reminder about what an index is.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>No new money arrived to fund Friday. Turnover fell to &yen;1.5554 trillion, &yen;77.6 billion less than Thursday, and a breadth flip of this size on contracting volume is a rearrangement rather than an inflow. The money that had hidden in the heavyweights on Thursday came back out and went shopping. Thursday's defence was Friday's funding source.</p>
+
+    <p>The other half of the rearrangement is what the buyers ignored. Of the 38 names that had closed at their ceilings on Thursday, fewer than a third rose on Friday, and the group finished the session down about four percent. The money did not return to what had just worked.</p>
+
+    <p>Nor was it borrowed money. Margin financing fell for a fifth straight session, to &yen;2.4661 trillion, down 1.25 percent, and margin turnover accounted for 8.0 percent of the market's total &mdash; below its twenty-day average. Whatever bought Friday's 3,301 advancers, leverage had been leaving this market for the better part of a fortnight and was still leaving.</p>
+
+    <p>Every theme that led traces to something that actually happened: an airshow in December, two cities publishing property rules, a car shown in Texas, a gear supplier's filing. What the tape shows is a market with no macro event to trade and no fresh money to deploy, taking each small verifiable thing in turn and buying it &mdash; and selling the heaviest names in the index to pay for them.</p>
+
+    <p>Overnight, the American tape provided a coordinate rather than an instruction. The Dow added 1.08 percent and the S&amp;P 500 0.33; the Nasdaq added 0.08. Beneath those numbers, the Philadelphia Semiconductor Index fell 0.88 percent to 11,581.22, a seventh consecutive decline and its longest run since May 2025. The ten-year Treasury yield, which had reached 5.35 percent earlier in the month, eased back to 5.058 percent. September producer prices came in hot; two Federal Reserve officials then said a near-term increase probably was not needed. The Nasdaq Golden Dragon China index rose 1.96 percent.</p>
+
+    <p>The two chip complexes moved in opposite directions: in New York the index fell for a seventh session, in Shanghai it fell and took the market's largest net inflow of the day.</p>
+
+    <p>The day's only official speaking came from the exchange itself: a deputy general manager of the Shanghai Stock Exchange told a forum that it listed 1,124 funds worth &yen;3.5 trillion and was preparing actively managed ETFs. It was a statement about plumbing, not about prices &mdash; and it was the closest thing on the calendar to a policy event.</p>
+  </div>
+
+  <div class="aside">Friday's gain and Thursday's loss were the same size in the only place that matters: the number of stocks that rose. 430 became 3,301.</div>
+
+  <div class="aside">The market's largest net inflow went to a sector that fell. Money and price are two different questions.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p class="pull">Between Thursday and Friday, roughly 2,900 names changed sides. The index moved 8.80 points.</p>
+
+    <p>Two entries in this market's record sit close enough to Friday to set beside it. Both are sessions on which the advance-decline count flipped entire, and the index barely acknowledged it.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 23 to 27 October 2023</div>
+      <p>The Composite lost 3,000 for the first time that year on 20 October 2023, and on Monday the 23rd it closed at 2,939.29. That evening Central Huijin, the state fund that had spent the preceding fortnight buying shares in the four largest banks, announced it had also been buying exchange-traded funds and would continue. The next morning had Friday's shape: the Composite rose 0.78 percent to 2,962.24 &mdash; a modest move for the index &mdash; while 4,671 stocks rose against 562 that fell, and the count of names at their ceilings roughly doubled from the day before. Northbound flows through Stock Connect were still net sellers of more than &yen;2.4 billion. Three sessions later the index took 3,000 back, closing at 3,017.78 with 4,044 advancers to 1,129 decliners, turnover up by more than &yen;120 billion from the previous session, and northbound flows net buyers of &yen;4.668 billion. On the record that was a turn. The Composite finished 2023 at 2,974.93, down 3.70 percent for the year, having lost the 3,000 line twice more.</p>
+      <div class="diff-note">Difference to note: 2023's flip came the morning after a named buyer announced itself and said it would keep going. Friday had no such announcement; the day's only official words were about fund listings. And 2023's breadth was far wider &mdash; 4,671 against 562 &mdash; while its turnover expanded by more than &yen;120 billion within three sessions. Friday's contracted by &yen;77.6 billion.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 26 June 2024</div>
+      <p>On 26 June 2024 the Composite touched 2,933.33 intraday &mdash; a new low for that decline &mdash; and closed 0.76 percent higher at 2,972.53. The ChiNext added 1.80 percent and the Shenzhen Component 1.55. In the same session 4,801 stocks rose and 480 fell, the widest advance-decline count since 17 April that year, while turnover stayed below &yen;650 billion, the third-lowest full-day figure of 2024 to that point. Every industry in the classification rose except household appliances. Whatever that session was, it was not the low. The Composite reached 2,689.70 intraday on 18 September, about 283 points below where it had closed on 26 June, and the policy package that finally moved it arrived four trading sessions after that.</p>
+      <div class="diff-note">Difference to note: the 2024 flip arrived on a session that also printed that leg's lowest index level, with nothing on the calendar to explain it. Friday arrived with the index 8.80 points higher than the prior close and with three dated events visible on the tape. Which of the two Friday resembles more, the record does not say.</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <p>The record stands for comparison, not for instruction. It says that when the advance-decline count flips wholesale and volume does not follow, the tape has recorded a change in who is willing to hold what &mdash; and nothing at all about whether a level holds. It does not say what comes next here.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>Hong Kong kept the same hours. The Hang Seng closed 0.52 percent higher at 24,186.83, and the Hang Seng Tech index rose 1.16 percent to 4,108.24. Hong Kong is not another country's market; it is another exchange inside this one, holding many of the same companies. It moved the way Shanghai moved for a second session running.</p>
+
+    <p>On the record, the index will read as a flat line: up 8.80 points, a number that fits in a headline and describes almost nothing. Meanwhile a cement maker closed at its ceiling because of a road somewhere, a game developer closed at its floor, and a chip designer gained 14.61 percent inside a sector that fell.</p>    <p>The index is a summary. The tape is the whole of it. On Friday, everything that happened happened outside the headline.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share closes for 2026-10-16 (Shanghai Composite, Shenzhen Component, ChiNext, STAR 50 and Beijing 50; open, high, low and close levels; combined turnover and its change; market-wide advance/decline, unchanged and suspended counts; limit-up and limit-down counts; and sector moves and sector money flow) via East Money and the Shanghai and Shenzhen exchange feeds, retrieved 2026-10-16 at 19:55 Beijing time. The listed Chinese cash market had closed for the day. Margin-financing figures are for the 2026-10-15 settlement, the most recent published, via the exchange margin-financing feed. Hong Kong closes are for the 2026-10-16 session (Hang Seng and Hang Seng Tech) via the Hong Kong exchange feed, retrieved 2026-10-16 &mdash; Hong Kong is another market inside the same country, not another country's market. US index and Treasury closes are for the 2026-10-15 session (EDT), the last session to finish before the 2026-10-16 Shanghai open, and therefore the overnight backdrop for this chapter; only that one US timepoint is used here. The 2026-10-16 US session had not opened at the time of writing and is deliberately not covered; nothing in this piece is drawn from it. The September producer-price reading, the Federal Reserve officials' remarks, the Philadelphia Semiconductor Index's seventh consecutive decline, and the Nasdaq Golden Dragon China index move are taken from contemporaneous public reports on the 2026-10-15 US session. The exchange's fund-listing figures and the December airshow dates are from public statements of 2026-10-16; the Shenzhen and Hangzhou property-sales rules and the Optimus filing are from public reports of 2026-10-15 and 2026-10-12 respectively. Historical figures &mdash; the 2023-10-23, 2023-10-24, 2023-10-27 and 2023 year-end Composite levels and advance/decline counts; and the 2024-06-26 Composite, ChiNext and Shenzhen Component closes, advance/decline count, turnover range and the 2024-09-18 intraday low &mdash; are taken from contemporaneous public reports and exchange data, not from audited statements.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
