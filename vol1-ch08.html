@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Eight &middot; Two Innings</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Eight &middot; Two Innings</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-19</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>At ten o'clock on Monday morning this market got the best set of numbers it has had all year, and spent the day selling into them.</p>
+
+    <p>The numbers were the first-three-quarters economic accounts, released by the statistics bureau on the hour. Gross domestic product came to 1,071,071 hundred million yuan &mdash; a unit this country uses the way other countries use trillions, so read it as about 107 trillion yuan, or roughly 15 trillion US dollars. Growth was 4.6 percent. Growth in the third quarter alone was 4.5 percent, up from 4.3 in the second. Industrial output rose 5.3 percent. Industrial robot output was up 29.1 percent, lithium batteries 39.5, 3D printers 62.5. For a country whose dominant worry for two years has been that nothing is growing fast enough, this was a good morning.</p>
+
+    <p>Market breadth: 2,275 stocks rose and 3,129 fell. Fifty closed at their ceiling, twenty-seven at their floor. Turnover was 118 billion yuan less than Friday. The index was up; the market was down.</p>
+
+    <p>The index itself opened at 3,694.12, below Friday's close, and closed at 3,730.92, up 0.39 percent, after touching 3,743.80 in the afternoon.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,730.92, <span class="chg">+14.64 (+0.39%)</span> &middot; Shenzhen Component 11,817.42, <span class="chg">+0.13%</span> &middot; ChiNext 2,746.29, <span class="chg">&minus;0.94%</span></li>
+        <li>STAR 50 1,329.19, <span class="chg">&minus;2.17%</span> &middot; Beijing 50 946.15, <span class="chg">&minus;0.41%</span> &middot; CSI 300 4,174.53, <span class="chg">+0.09%</span></li>
+        <li>Advancing 2,275 &middot; declining 3,129 &middot; unchanged 171 &middot; suspended 11</li>
+        <li>Fifty stocks at their ceiling, twenty-seven at their floor</li>
+        <li>Combined turnover &yen;1.4375 trillion, against &yen;1.5554 trillion on Friday</li>
+      </ul>
+    </div>
+
+    <p>What rose was not the growth story. What rose was the old economy's safest corner. Two of the four largest banks closed at record highs, back above three trillion yuan of market value each. Ground-forces equipment led all industries with a 5.22 percent gain. Kitchen appliances rose 3.20 percent and small household appliances 2.37, both on the same trade: cheaper electricity than a year ago, and a subsidy calendar still running.</p>
+
+    <p>What fell was everything that had promised the future. The STAR 50, the board for the hardest technology, lost 2.17 percent, worst of the five main boards. Semiconductors fell 2.07, batteries 2.38, dairy 2.45, planting 2.64, property development 1.54. The sector that has led this market for a year gave the most back on the day the economy reported its best quarter.</p>
+
+    <p>Then there is the memory maker. The largest domestic manufacturer of memory chips, and until recently the most valuable company listed anywhere in this market, pre-announced its third-quarter profit on Saturday: between 53.4 and 54.9 billion yuan. On its own that is a number to be proud of. Against the second quarter it is growth of between one and four percent, after 113 percent the quarter before. Its shares closed 7.77 percent lower at 41.52, and it fell from first to third by market value. The company did nothing wrong. It arrived where growth stops accelerating, and this market has never paid for that.</p>
+  </div>
+
+  <div class="aside">The index rose 0.39 percent. Forty percent of the market's stocks rose. Both numbers are true and neither is the story.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>Start with what the GDP number does not contain. Fixed-asset investment fell 7.2 percent over the first three quarters, and its property component fell 20.6. Retail sales rose 1.1 percent. The growth in the accounts comes from factories and shipping containers, not from construction and not from shoppers &mdash; and the part of the market that trades construction and shoppers knows it.</p>
+
+    <p>The other half of Monday is leverage. Margin financing &mdash; money borrowed against stock to buy more stock, the closest thing this market has to a visible count of who is feeling brave &mdash; fell 0.58 percent on Friday's settlement to 2.4518 trillion yuan, the sixth consecutive decline. Over those six sessions the balance fell by 85.3 billion yuan, and electronics alone gave up 32.3 billion of financing. The borrowed money that carried a theme up is the money that leaves first when the theme stops paying.</p>
+
+    <p>Yet money did move on Monday, to a strange place. The largest main-force net inflow of any industry went to communications equipment: 2.59 billion yuan. Main-force net inflow is a rough measure compiled by data vendors of the difference between large buy orders and large sell orders; it counts size, not motive. The sector finished up 0.03 percent &mdash; flat. One optical-cable maker closed at its ceiling, its close auction still holding close to 400 million yuan of orders with nowhere to go. The day's biggest inflow bought a sector that went nowhere.</p>
+
+    <p>Now put the two halves together. A morning of good macro numbers; an afternoon of selling the growth complex; a rotation into banks, appliances and defence; a largest-inflow sector that finished flat; a market that lost 118 billion yuan of turnover while its index rose. There is no story here about the economy, only one about positioning: the portfolios that had spent a year owning the future read a good morning as a chance to own less of it, and the money went where it always goes when people want to be paid to wait.</p>
+
+    <p>Two official things are worth the space. The central bank's governor, opening the financial regulators' annual forum in Beijing, announced a liquidity backstop for non-bank institutions facing large redemptions and wider access to its standing lending facility. The first six national standards for humanoid robots were issued too, effective April 2027. One is about plumbing, one about a product with no market price yet.</p>
+
+    <p>Overnight: capital had no reason to move toward growth. The American session that closed before Shanghai opened on Monday &mdash; Friday 16 October in New York &mdash; had the Nasdaq down 2.15 percent, the S&amp;P 500 down 1.09, and the Philadelphia Semiconductor Index down 3.83, its eighth consecutive decline and, by the trade press's reckoning, the longest since 2008, with roughly two trillion dollars of chip market value gone across the eight. Gold rose 0.40 percent to $4,186.70 an ounce, and crude climbed more than 2.6 percent to $99.04. Gold and oil both up on a night when chips fall tells you which kind of worry it is.</p>
+  </div>
+
+  <div class="aside">The largest net inflow of the day went to a sector that closed flat. Size of order and direction of price are different questions, and Monday asked both.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p class="pull">Good numbers arrived. The index rose 14.64 points. Three thousand one hundred and twenty-nine stocks fell. The accounts and the tape were describing two different countries.</p>
+
+    <p>Two entries in this market's record have Monday's shape: the growth complex sold, the index defended by weight, the breadth saying what the headline did not.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 19 August 2026</div>
+      <p>Two months ago, on a Wednesday, the Shanghai Composite lost 2.40 percent and the ChiNext lost 6.26. Breadth was 449 advancing stocks against 5,069 declining, with 119 names at their floor, and turnover expanded to 2.53 trillion yuan. That same morning the country's best-known robot maker listed: it opened 629 percent above its issue price and closed 460 percent up at 845 yuan. Around it, the robot supply chain collapsed, several members at their floors. The banks rose. On that day the market's biggest event and its worst session arrived at the same breakfast. Monday's memory maker and Monday's record-high banks are that trade two months on: the thing that ran gives it back, the thing that pays a dividend holds. The Composite stands 164 points, about 4.2 percent, below that Wednesday's close.</p>
+      <div class="diff-note">Difference to note: 19 August was violent &mdash; turnover expanding by 110 billion yuan, 5,069 stocks falling, the Philadelphia semiconductor index down more than six percent the night before. Monday was quiet: turnover contracted, 3,129 fell, and the worst board lost 2.17 percent, not 6.89. That morning sold everything. This one sold only the future.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 7 to 18 March 2022</div>
+    <p>In March 2022 the Composite lost 3,400 on the 7th, 3,300 on the 8th and 3,200 on the 9th. On the 15th it fell 4.95 percent to 3,063.97, its lowest since July 2020, with 242 stocks up against 4,476 down, 137 at their floors, and northbound flows &mdash; money arriving from Hong Kong through the connect schemes &mdash; selling a net 16.03 billion yuan. The next day a committee of the State Council met; the Composite rose 3.48 percent to 3,170.71 with 4,254 advancers, and the Hang Seng rose 9.08 percent. By 29 March the index was at 3,203.94, 1,128 advancing against 3,457 declining, turnover down to 863.98 billion yuan &mdash; lower than the night before the rescue. The rally existed, lasted about a fortnight, and then the volume went away.</p>
+      <div class="diff-note">Difference to note: March 2022 was falling on a war and a credit scare, and needed an official committee to stop it. Monday was not falling: the index rose, the breadth fell, and no one had to say anything. What the two share is only the mechanism &mdash; weight holding the line while the rest of the market is sold.</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <p>The records say that a market can hold its headline while its interior is sold, and that it has done so many times. They say nothing about whether Monday's interior selling was the start of something or the end of it. That question has no entry in the record.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>The southern exchange was closed on Monday. Hong Kong &mdash; another exchange inside this one, on the same clock &mdash; was shut for the day after the Chung Yeung festival, so Shanghai had no Hong Kong print to set beside it. It reopens on Tuesday. Friday's close was the Hang Seng 0.52 percent higher at 24,186.83.</p>
+
+    <p>Beijing had its first real autumn rain on Friday and Saturday. The city averaged 71.5 millimetres; the urban core took 77.4. The observatory's gauge recorded 70.9 millimetres on Saturday, breaking an October record that had stood since 1968, when the same gauge read 49.4, and the first October day of rainstorm intensity ever measured there. By Monday the sky had cleared.</p>
+
+    <p>The market spent Monday the way the city spent the weekend: absorbing a great deal of water and moving slowly. A hundred and seven trillion yuan of output, growth up from the prior quarter, exports up 16.4 percent &mdash; and only forty percent of the stocks closed higher. The accounts were the rain. The tape was the ground, still deciding how much of it can take the water.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share closes for 2026-10-19 (Shanghai Composite, Shenzhen Component, ChiNext, STAR 50, Beijing 50 and CSI 300; open, high, low and close levels; combined turnover and its change from 2026-10-16; market-wide advance/decline, unchanged and suspended counts; limit-up and limit-down counts; sector moves and sector money flow) via East Money and the Shanghai and Shenzhen exchange feeds, retrieved 2026-10-19 after the 15:00 close. The listed Chinese cash market had closed for the day. Margin-financing figures are for the 2026-10-16 settlement, the most recent published, via the exchange margin-financing feed. The third-quarter and first-three-quarters national accounts (gross domestic product; industrial value added; retail sales; fixed-asset investment; consumer and producer prices; trade; urban unemployment) are the National Bureau of Statistics release of 2026-10-19, 10:00 Beijing time. The financial forum statements are the central bank governor's remarks of 2026-10-19; the six humanoid-robot national standards were issued 2026-10-19. The memory maker's pre-announcement figures are its exchange filing of 2026-10-17. Hong Kong was closed for the day; the Hong Kong closes cited are the 2026-10-16 session &mdash; Hong Kong is another market inside the same country, not another country's market. US index, Treasury, commodity and precious-metal closes are for the 2026-10-16 session (EDT), the last session to finish before the 2026-10-19 Shanghai open, and therefore the overnight backdrop for this chapter; only that one US timepoint is used here. The 2026-10-19 US session had not opened at the time of writing and is deliberately not covered; nothing in this piece is drawn from it. The Philadelphia Semiconductor Index's eighth consecutive decline and the reported loss of chip market value are taken from contemporaneous public reports on that 2026-10-16 session. Historical figures &mdash; the 2026-08-19 index closes, breadth, limit counts and the listing-day performance of the robot maker; and the March 2022 Composite levels, breadth, limit counts, northbound flows and turnover &mdash; are taken from contemporaneous public reports and exchange data, not from audited statements. Beijing rainfall figures are the municipal observatory's readings for 2026-10-16 and 2026-10-17.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
