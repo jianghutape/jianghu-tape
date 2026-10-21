@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Ten &middot; The Bill</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Ten &middot; The Bill</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-21</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>One company accounted for the largest trade in the country on Wednesday, and it was a sale. Contemporary Amperex Technology &mdash; CATL, the battery maker that supplies roughly a third of the world's electric vehicles &mdash; fell 12.03 percent in Shenzhen, and 32.44 billion yuan changed hands in its shares, more than in any other stock on any exchange in China. For scale: that is about one yuan in every forty-four traded in the entire market, in a single name.</p>
+
+    <p>Behind it stood an earnings report and a tax. The company published third-quarter results on Monday evening: revenue of 165.22 billion yuan, up 58.58 percent, the largest quarter in its history. Profit of 21.25 billion, up 14.55 percent on the year &mdash; but down 5.8 percent from the second quarter, and roughly twelve percent below what the larger houses had modelled. Gross margin fell from 23.15 to 20.69 percent, the lowest since the fourth quarter of 2022. The company attributed the squeeze to product mix, to a two percent consumption tax on lithium batteries that took effect on 1 September, and to a lower export rebate. In response, JPMorgan cut its target for the Hong Kong shares from 725 to 500 Hong Kong dollars and moved to neutral; Citi trimmed the mainland listing. The stock has now fallen by half from its high of 7 May.</p>
+
+    <p>The index took the blow and stayed standing. The Shanghai Composite closed at 3,713.03, down 0.60 percent, having spent the morning above 3,740 and the early afternoon sinking to 3,703.12. The Shenzhen Component lost 0.82 percent. The ChiNext, which holds CATL as its largest single weight, lost the 2,700 level and closed at 2,694.71, down 1.62. The STAR 50 finished marginally higher. Turnover came in at 1.4293 trillion yuan, 26.8 billion lighter than Tuesday &mdash; the second-shrinking day this week.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,713.03, <span class="chg">&minus;22.34 (&minus;0.60%)</span> &middot; Shenzhen Component 11,704.35, <span class="chg">&minus;0.82%</span> &middot; ChiNext 2,694.71, <span class="chg">&minus;1.62%</span> &middot; STAR 50 1,343.28, <span class="chg">+0.06%</span></li>
+        <li>Advancing 1,981 &middot; declining 3,364 &middot; unchanged 231 &middot; suspended 8</li>
+        <li>Fifty stocks at their ceiling, five at their floor</li>
+        <li>Combined turnover &yen;1.4293 trillion, against &yen;1.4561 trillion on Tuesday</li>
+        <li>CATL &minus;12.03% on &yen;32.44 billion &mdash; the heaviest single-stock turnover in the market</li>
+      </ul>
+    </div>
+
+    <p>Away from the battery, the day was quieter than the headline suggests. Breadth was negative but not violent: 1,981 stocks rose, 3,364 fell, and only five hit their floor. The distribution of the losses was narrow &mdash; 2,567 of the decliners gave up less than two percent, the sort of drift that happens every day in a market of five thousand names. What fell was concentrated: batteries, energy metals, environmental monitoring, passenger cars, white goods, and brokers. What rose was everything a household recognises. Farming led all sectors at 2.97 percent, with Dongri Shares at its ceiling; publishing rose 1.81 with two houses at their limits; fisheries, television broadcasting and IT services followed; and the components index &mdash; the printed-circuit corner of the technology world &mdash; added 1.50 percent, its buyers led by Sunlord Electronics at 7.40.</p>
+  </div>
+
+  <div class="aside">The day's heaviest trade was one stock being sold. The index absorbed it and lost less than one percent. That is what a large index is for.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>Wednesday's loss was priced in daylight, which is worth pausing on. The worst days in a leveraged market are the ones where borrowed money is forced out &mdash; selling nobody chose. This was not that. The margin balance &mdash; money borrowed against stock to buy more stock &mdash; stood at 2.4434 trillion yuan at the latest published settlement, down 0.09 percent, and lower for an eighth consecutive session. Eight days of shrinkage at a tenth of a percent a day is not a stampede; it is a queue leaving through the door politely. The combined margin balance sits below its twenty-day average, and the day's total turnover shrank again alongside it. The credit that carried the autumn trade higher has been draining for two weeks, and Wednesday nobody pretended otherwise.</p>
+
+    <p>What replaced it, in part, was the old inventory. The money that left batteries landed in the least fashionable corners of the tape: farms, fisheries, publishers, broadcasters. Two data-element stocks &mdash; Nanwei Software and Xingguang Shares &mdash; each notched a third limit-up in four sessions, and optical communications and memory chips held their ground inside an otherwise cooling technology complex. None of this required a forecast. It required only the observation that the machine trade had been sold for two weeks and the grain trade had not.</p>
+
+    <p>There is also a policy thread worth keeping, because it explains why the day's selling stopped where it did. The securities regulator used the Financial Street forum this week to say it is evaluating the implementation of the Securities Law and studying amendments; and the industry ministry reported that national intelligent-computing capacity reached 2,592 EFLOPS at the end of September, up 146 percent from a year earlier. Neither line moved an index. Both are the sort of standing reassurance that lets a market absorb a 12-percent day in its largest growth weight without following it down the stairs.</p>
+
+    <p>Overnight, the backdrop was neutral to helpful. The American session that closed before Shanghai opened on Wednesday &mdash; Tuesday 20 October in New York &mdash; had the Dow up 1.02 percent at 52,495.88, the S&amp;P 500 up 0.28 percent, the Nasdaq flat, and the Philadelphia Semiconductor Index down 0.29 percent. The dollar index stood at 101.78 late on Wednesday in Asia, and the offshore renminbi was steady near 6.676. Nothing in that tape demanded Wednesday's selling, and nothing in it prevented the buying of farms. The two halves of the day had different authors.</p>
+
+    <p>Hong Kong, another exchange inside this same country, read the same earnings report more severely: the Hang Seng fell 0.90 percent to 23,651.87 and the Hang Seng Tech Index 1.26, and CATL's Hong Kong line traded as low as 370.20 dollars &mdash; its weakest since July last year &mdash; before closing down 9.91 percent. Two markets, one report, and the offshore listing marked it harder than the onshore one did.</p>
+  </div>
+
+  <div class="aside">Eight days of deleveraging at a tenth of a percent a day. A stampede is loud. This is the sound of a queue.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p class="pull">A shrinking margin balance and a standing index are two facts that do not normally share a week. The record has seen them together before, and it kept notes on what followed.</p>
+
+    <p>Two entries in the record carry Wednesday's signature: borrowed money leaving session after session while the index holds its ground. Both are a decade old.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 30 December 2015 to 12 January 2016</div>
+      <p>The margin balance then stood near 1.19 trillion yuan at the end of December 2015, and it fell for eight consecutive sessions, reaching 1.045 trillion by 12 January 2016 &mdash; the same eight-day count as this week, drawn down far faster. The Composite, which had opened 2016 at 3,536.59, lost the 3,000 level on 13 January in a session of panic selling, and the bottom did not arrive until 27 January at 2,638.30. What makes the entry worth keeping is the tail: the margin balance went on falling until 16 March, weeks after the index had stopped falling, and only when the two turned up together &mdash; from around 2,870 toward 3,100 &mdash; did the repair begin in earnest.</p>
+      <div class="diff-note">Difference to note: the 2016 drawdown came through circuit-breaker halts, a currency shock and forced liquidation &mdash; selling nobody chose, at up to 34.5 billion yuan of net margin repayment in a single day. Wednesday's decline ran a tenth of a percent a day with five stocks at their floor. Same arithmetic, entirely different temperament.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 26 August to 30 September 2015</div>
+      <p>The fuller version of the same pattern: the Composite bottomed at an intraday 2,850.71 on 26 August 2015, and then held a flat range for five weeks while the margin balance kept shrinking &mdash; from 1.11 trillion at the low to 904.1 billion by 30 September. The index did not fall with the leverage, and the leverage did not stop falling because the index held. From the first trading day of October the two series turned up in step, and the Composite carried from the 3,000 area toward 3,600 over the following weeks. Commentators later counted six such divergences between 2015 and 2017, each resolved when the two lines turned together.</p>
+      <div class="diff-note">Difference to note: that divergence began directly after a crash in which the index had lost nearly half its value in three months. Wednesday's Composite sits within two percent of where it closed last Friday, in a market that has been shrinking its leverage deliberately for a fortnight. A divergence after a collapse and a divergence after a cooldown are not the same animal.</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <p>Both entries record the same mechanism from the inside: borrowed money can leave for weeks while prices stand still, and the historical resolutions came when the two series turned in the same direction at once. Neither entry says whether this week is the early, middle, or late page of such a chapter. The record stands for comparison; it does not date this one.</p>
+  </div>
+
+  <div class="aside">Both entries end the same way: the leverage stopped falling when it was finished, not when anyone called it.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>Among Wednesday's fifty stocks at their ceiling were a Fujian pig-farm operator, a Shenzhen cable-television company, and two publishing houses. None of the four has anything to do with a battery. All four were bought by people who wanted to own something that eats, or something that prints, while the most sophisticated product in the market was repricing itself by twelve percent.</p>
+
+    <p>There is an older name for this than rotation. In the fishing villages along the coast it is called laying in stores before the winter &mdash; salting what keeps, while the fresh catch goes to whoever will still pay yesterday's price. The tape has its own version: when the newest trade in the market sends out a bill, the money goes and finds the oldest trades on the shelf. On Wednesday the oldest trades were pigs, fish, and books, and all three sold well.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share closes for 2026-10-21 (Shanghai Composite, Shenzhen Component, ChiNext and STAR 50; open, high, low and close levels; combined turnover and its change from 2026-10-20; market-wide advance/decline, unchanged and suspended counts; limit-up and limit-down counts; sector moves and leading stocks) via exchange feeds and the financial press (China Securities Journal, Securities Times, Jiemian, CNFOL), retrieved 2026-10-21 after the 15:00 close; the listed cash market had closed for the day. CATL figures are from the company's third-quarter 2026 results announcement of 2026-10-20 (revenue, profit, quarter-on-quarter comparison) and the broker actions reported by Cailianshe and China Fund News on 2026-10-21 (JPMorgan target cut from HK$725 to HK$500 with a downgrade to neutral; Citi mainland target cut from 500 to 479 yuan); the 50-percent drawdown from the 2026-05-07 high and the HK$370.20 intraday low (weakest since 2025-07-18) are as reported by Jiemian on 2026-10-21. The battery consumption tax (2% from 2026-09-01 under Ministry of Finance and General Administration of Customs Announcement No. 20 of 2026) and the export-rebate reduction are as stated in the company's earnings call coverage. Margin-financing figures (2.4434 trillion yuan, down 0.09%, an eighth consecutive daily decline) are for the most recent published settlement via the exchange margin feed. Sector gainers (farming, publishing, fisheries, broadcasting, IT services, components) and their leading stocks are exchange sector data for 2026-10-21. Regulatory and computing-capacity items are from the 2026 Financial Street Forum and the Ministry of Industry and Information Technology as reported on 2026-10-21. Hong Kong closes (Hang Seng 23,651.87, &minus;0.90%; Hang Seng Tech 3,994.77, &minus;1.26%) are the 2026-10-21 session; Hong Kong is another market inside the same country, not another country's market. US index levels (Dow 52,495.88 +1.02%, S&amp;P 500 +0.28%, Nasdaq &minus;0.02%, Philadelphia Semiconductor &minus;0.29%) are for the 2026-10-20 session (EDT), the last session to finish before the 2026-10-21 Shanghai open, and therefore the overnight backdrop for this chapter; only that one US timepoint is used here. The 2026-10-21 US session had not opened at the time of writing and is deliberately not covered; nothing in this piece is drawn from it. The dollar index (101.78) and offshore renminbi (near 6.676) are Asian-hours readings of 2026-10-21. The 2016 and 2015 historical entries are from Securities Times (2016-01-14), Sina Finance (2016-01-14) and China News Service (2017-01) coverage of the margin-balance series, and from a 2018 East Money survey of index-versus-margin divergences of 2015&ndash;2017.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
