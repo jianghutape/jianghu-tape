@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Eleven &middot; The Widest Spread</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Eleven &middot; The Widest Spread</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-22</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>The ChiNext board spent Thursday doing one thing: falling to the bottom of itself. It opened at 2,687.94, never traded above that print, and closed at 2,576.90 &mdash; the last price of the day was also the lowest &mdash; down 4.37 percent, its weakest level in fifty-two weeks. From the high it set in June, the index has given up more than forty percent, a drawdown deeper than the whole of 2022's bear market and closing in on the leverage winter of 2015.</p>
+
+    <p>On the same tape, in the same hours, the Industrial and Commercial Bank of China &mdash; the largest bank in the country &mdash; rose 1.66 percent to the highest price in its history, with China Construction Bank beside it at a record of its own. One corner of the market was marking out the worst twelve months the growth trade has had in a decade; another was framing its all-time high. Both rooms were correct about what they own. That is what made the day remarkable.</p>
+
+    <p>The rest of the tape took the middle ground and slid with it. The Shanghai Composite opened at 3,714.48, which turned out to be the high of the day, and closed at 3,658.03, down 1.48 percent &mdash; within arm's length of its own fifty-two-week low. The Shenzhen Component lost 2.96 percent and also finished on its weakest print of the year. The STAR 50 lost 2.78. Turnover came in at 1.51 trillion yuan, and here was the day's quiet contradiction: 15.8 billion yuan more changed hands than on Wednesday. Money did not leave on a day like this. It moved rooms.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,658.03, <span class="chg">&minus;55.00 (&minus;1.48%)</span> &middot; Shenzhen Component 11,357.32, <span class="chg">&minus;2.96%</span> &middot; ChiNext 2,576.90, <span class="chg">&minus;4.37%</span> &middot; STAR 50 1,305.87, <span class="chg">&minus;2.78%</span></li>
+        <li>Decliners near five thousand, per the evening press count &middot; 33 stocks at their ceiling, near 50 at their floor</li>
+        <li>Combined turnover &yen;1.51 trillion, against &yen;1.49 trillion on Wednesday</li>
+        <li>Telecom equipment &minus;7.09% &middot; components &minus;6.21% &middot; film &minus;5.91% &middot; precious metals &minus;3.86% (all eleven names lower)</li>
+        <li>ICBC +1.66% and CCB &mdash; both at record highs; motors +3.58% led all sectors</li>
+      </ul>
+    </div>
+
+    <p>What rose was a short list, and every name on it could pay for itself out of last year's cash. Motors led at 3.58 percent, with Huayang Intelligent at its ceiling; white goods, lighting, and ground-force defence followed, and three of the six big state banks closed higher. What fell was everything that has to be believed rather than counted: telecom equipment down 7.09 percent, printed-circuit components down 6.21, film and publishing &mdash; Tuesday's refuges &mdash; down 5.91 and 5.16, semiconductors, batteries, and precious metals behind them.</p>
+  </div>
+
+  <div class="aside">One index closed at the lowest price of its year. One bank closed at the highest price of its life. The tape printed both without a pause between them.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>The charge sheet against the growth trade has three counts, and all three were filed this week. First, memory pricing: Changxin Memory is building a NAND flash research line at its new Beijing plant, and the market read that as the beginning of the end for the scarcity premium Samsung and SK Hynix have charged through the AI buildout. Second, capital discipline: Tesla cut its full-year spending plan from 25 billion dollars to 20 billion and reported quarterly free cash flow down 62 percent, and the chief executive of Broadcom said aloud what fund managers had been saying quietly &mdash; that some of the AI investment carries a speculative colour. Third, the battery: CATL, whose twelve-percent Tuesday we wrote about yesterday, fell another two percent, taking its six-month loss to roughly half. The AI supply chain, from optical modules to circuit boards to storage, was repriced in one session; Xinyisheng lost more than twelve percent and Chongda Technology ended at its floor.</p>
+
+    <p>Behind the stories sat a rate. Brent crude held near 111.60 dollars in Asian trading on Thursday, a five-month high, and the ten-year Treasury yield sat near 5.11 percent. Futures put the odds of a Federal Reserve hike at the December meeting near nine in ten. None of that tells you why a bank makes a record high. It tells you why a company whose earnings arrive in 2030 has to be marked down today: the discount rate does the arithmetic, and it is not negotiating.</p>
+
+    <p>The sector money flows, read through the Westock feed, told the same story in ledger form. Telecom equipment bled 9.14 billion yuan of main-force selling, components 6.27 billion, semiconductors 5.14 billion. The largest inflow anywhere in the market was 1.08 billion yuan, into motors. One line on the outflow list outweighed eight lines on the inflow list. The exception was robotics: Daye Shares landed a fifth consecutive ceiling on news that Nvidia had upgraded its Isaac development platform for humanoid machines &mdash; the one corner of the AI trade that still had a bid.</p>
+
+    <p>The American session that closed before Shanghai opened &mdash; Tuesday's overnight tape in New York &mdash; was, by any ordinary standard, friendly: the Nasdaq rose 1.05 percent to 26,702.86, the Dow added 0.69 percent, and Nvidia gained 2.54 percent. An up night in New York did nothing for Shanghai on Thursday, the cleanest evidence in weeks that the selling was not imported. It was domestic repricing, done at domestic hours.</p>
+
+    <p>Hong Kong, another exchange inside this same country, read the day without the middle ground: the Hang Seng fell 3.03 percent to 22,934.68 and the Hang Seng Tech Index 5.03 percent to 3,793.93, its lowest since September 2024 and down more than 31 percent this year. Lenovo lost more than 11 percent, Alibaba 6.12, and Tencent touched a fifty-two-week low of 378.40 before closing at 382.40. The southern exchange had no banks making history to lean on.</p>
+  </div>
+
+  <div class="aside">An up night in New York and a down day in Shanghai. When that happens, the reason is always at home.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p class="pull">A growth index down forty percent from its high and a bank at an all-time high are two facts that have shared a tape before. The record kept both dates.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 5 June to 2 September 2015</div>
+      <p>The ChiNext index peaked at an intraday 4,037.96 on 5 June 2015, at the top of the leverage boom, and fell for thirteen straight weeks to an intraday low of 1,779.18 on 2 September &mdash; a loss of 52.96 percent, more than half the index, in one summer. What followed is the part of the entry worth underlining: from that low the board rallied 63.89 percent to 2,915.95 by 26 November 2015. A forty-percent drawdown in a growth index is not, in itself, the end of its story; in 2015 the cruelest fall was followed by one of the sharpest recoveries on record.</p>
+      <div class="diff-note">Difference to note: the 2015 fall was a leverage unwind in which nearly everything fell together and half the market sought halts. This week's fall ran alongside record-high banks and a turnover figure that rose on a down day &mdash; dispersion, not collapse.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; January to 9 February 2018</div>
+      <p>The two-tier market of early 2018 is the closer cousin. The SSE 50 &mdash; the fifty largest, banks at their core &mdash; opened the year with fourteen straight up sessions and gained 8.96 percent in January while the growth boards slid. The spread resolved on 9 February 2018, and it resolved from the strong side: the SSE 50 fell 4.61 percent that day, more than seven percent at the worst, the Composite lost 4.05 percent to 3,129.85 &mdash; its worst day in two years &mdash; while the ChiNext fell only 2.98 percent, and nine of its own stocks ended at their ceiling. The crowded room had been the safe one, until it wasn't.</p>
+      <div class="diff-note">Difference to note: in 2018 the crowded trade was the blue chips themselves, and the break came when they broke. Today the banks are making record highs, not fourteen-session streaks, and the growth side has already given up what the SSE 50 had yet to give up in January 2018.</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <p>Both entries agree on one mechanic: a spread this wide &mdash; between what the market pays for cash today and what it pays for earnings in 2030 &mdash; is historically a chapter, not a page. In 2015 the chapter ended with a violent recovery in the beaten index; in 2018 it ended with the strong room breaking. Neither entry dates the ending of this one. The record stands for comparison.</p>
+  </div>
+
+  <div class="aside">2015 ended with the beaten index recovering 63.89 percent. 2018 ended with the safe index breaking first. The spread closes; the record does not say from which side.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>The gainers' list on Thursday &mdash; motors, white goods, two record-setting banks, lighting &mdash; is the sort of list a careful family reads before buying a washing machine. Nothing on it needs a story; everything on it sold something last year and kept the money.</p>
+
+    <p>A day this wide does not tell you where the market is going. It tells you who was still paying yesterday's prices. On Thursday the answer was almost no one &mdash; except, at the far end of the room, one bank at the highest price in its history, making a record in the same afternoon five thousand of its listed companions did not.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share closes for 2026-10-22 (Shanghai Composite 3,658.03 &minus;1.48%, open 3,714.48 / high 3,714.48 / low 3,649.86; Shenzhen Component 11,357.32 &minus;2.96%; ChiNext 2,576.90 &minus;4.37%, closed at the day's low; STAR 50 1,305.87 &minus;2.78%) and combined turnover of &yen;1.51 trillion (up &yen;15.8 billion from 2026-10-21) via Westock market data retrieved after the 15:00 close, cross-checked against the CNR Finance closing review of 2026-10-22; the decline count ("close to five thousand decliners") and the limit-up/limit-down counts (33 ceiling, near 50 floor) are the press counts in the same CNR review and the Cailianshe end-of-day note, as no exchange-level advance/decline series was available at writing time. ChiNext drawdown versus its June 2026 high (more than 40%, deeper than the 2022 bear market, approaching 2015) as reported by CNR Finance and Gelonghui on 2026-10-22. Sector moves, leading stocks, and sector money-flow figures (telecom equipment &minus;9.14 billion yuan, components &minus;6.27 billion, semiconductors &minus;5.14 billion, motors +1.08 billion) are Westock sector data for 2026-10-22. Policy item (Opinions on promoting the deep integration of scientific-technological and industrial innovation, published 2026-10-22) and company items (Changxin Memory NAND research line; Tesla capex guidance cut from 25 to 20 billion dollars with quarterly free cash flow &minus;62%; Broadcom chief executive remarks; CATL further &minus;2% with roughly a 50% six-month decline and the JPMorgan and Citi actions of 2026-10-21) are as reported by Jiemian, Gelonghui and Cailianshe on 2026-10-21/22. Robotics catalyst (Nvidia Isaac platform upgrade; Daye Shares fifth consecutive ceiling) per Cailianshe, 2026-10-22. Overnight US session of 2026-10-21 in New York (Nasdaq 26,702.86 +1.05%; Dow 52,856.09 +0.69%; Nvidia 221.97 +2.54%) via Westock; Brent crude near 111.60 dollars in Asian trading on 2026-10-22 (a five-month high, an intraday regional print and not a settlement figure) and the 10-year Treasury yield near 5.11% (Asian hours, 2026-10-22) via financial-press reports; the Federal Reserve December meeting odds (near 90% priced for a hike, with the October meeting widely expected to hold) per Gelonghui's survey of futures pricing and economists, 2026-10-22. Only one US timepoint is used in this issue: the overnight session of 2026-10-21 that closed before the Shanghai open. The US session of 2026-10-22 had not yet opened at writing time and nothing in this piece is drawn from it. Hong Kong closes (Hang Seng 22,934.68 &minus;3.03%; Hang Seng Tech 3,793.93 &minus;5.03%, intraday low 3,781.15, lowest since 2024-09-24, &minus;31.22% year to date; Tencent, Alibaba, Lenovo, SMIC moves) are the 2026-10-22 session via Westock, retrieved after the 16:10 close, cross-checked against Jiemian; Hong Kong is another market inside the same country, not another country's market. Historical entries: ChiNext intraday high 4,037.96 (2015-06-05) and intraday low 1,779.18 (2015-09-02), a 52.96% fall, with the subsequent 63.89% recovery to 2,915.95 (2015-11-26), per China Securities Journal / 21st Century Business Herald archives; SSE 50 fourteen consecutive up sessions to open 2018 with a January 2018 gain of 8.96%, and the 2018-02-09 session (SSE 50 &minus;4.61%, intraday &minus;7.45%; Shanghai Composite &minus;4.05% at 3,129.85, worst in two years; ChiNext &minus;2.98% with nine limit-ups), per China Business News, Eastmoney and Xinhua-affiliated press archives. Historical figures are stated at their reported intraday or closing basis as cited.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
