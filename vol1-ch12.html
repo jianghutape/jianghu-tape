@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Twelve &middot; The Seesaw</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Twelve &middot; The Seesaw</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-23</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>The worst night New York had given this market in weeks ended with Shanghai disagreeing at the open and agreeing at ten past ten, and then changing its mind entirely. The Composite opened down and kept going down &mdash; through 3,650, the lowest close of the year, set only the day before &mdash; until mid-morning it traded at 3,574.27, a price below every close it had printed in twelve months. By half past two it stood at 3,691.40, the high of the day. The close missed that mark by less than a point.</p>
+
+    <p>The board that has carried this chapter's story all week did the same arithmetic with bigger numbers. The ChiNext index opened at 2,534.16, sank to 2,494.22 &mdash; a fresh fifty-two-week low, beneath even Thursday's floor &mdash; and closed at 2,684.10, up 4.16 percent, its best day in a month. Between the low and the close lies a move of almost eight percent of the index, inside six hours of trading. Thursday's close had been the ninth straight down day; the ninth turned out to be the last.</p>
+
+    <p>Volume tells you what the reversal was made of. Some 1.96 trillion yuan changed hands across the two exchanges, about 427 billion yuan more than on Thursday &mdash; the heaviest session in three weeks, arriving not on a breakout but on a rescue from below. The day's breadth flipped with it: 4,526 stocks rose and 909 fell, against Thursday's 535 up and nearly five thousand down. Eighty-four stocks ended at their ceiling and nine at their floor. A market that had spent a week falling together stood up together.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,690.48, <span class="chg">+0.89%</span> (low 3,574.27, below every close of the past year) &middot; Shenzhen Component 11,673.83, <span class="chg">+2.79%</span> &middot; ChiNext 2,684.10, <span class="chg">+4.16%</span> (low 2,494.22, a fresh 52-week low) &middot; STAR 50 1,345.51, <span class="chg">+3.04%</span></li>
+        <li>Breadth: 4,526 up / 909 down / 142 flat &middot; 84 at the ceiling, 9 at the floor (press count)</li>
+        <li>Combined turnover &yen;1.96 trillion, up about &yen;427 billion from Thursday</li>
+        <li>Batteries +5.98% &middot; software +5.79% &middot; automation equipment +5.66% &middot; consumer electronics +4.49% &middot; semiconductors +3.30% (168 of 183 names higher)</li>
+        <li>The six big state banks: all six lower, the sector &minus;2.89% &mdash; Thursday's refuge sold to pay for Friday's rescue</li>
+      </ul>
+    </div>
+
+    <p>And the list of what rose was, almost name for name, yesterday's casualty list. Batteries led all sectors with CATL up 7.80 percent at 237.60 yuan, a day after the company disclosed it had spent roughly 1.3 billion yuan of its own money buying back stock over two sessions. Software, factory automation, motors, digital media and consumer electronics followed. What fell was Thursday's shelter: the six great state banks all closed lower, the first time in this drawdown that the room everyone had crowded into was the one emptied out.</p>
+  </div>
+
+  <div class="aside">The same tape, one trading day apart: nearly five thousand decliners, then four and a half thousand gainers. The seesaw moved in one night.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>Begin with what the day was not: it was not a response to friendly news from New York. The American session that closed before Shanghai opened &mdash; Wednesday's overnight tape in New York &mdash; was the ugliest in weeks: the Nasdaq lost 2.60 percent, the S&amp;P 500 fell 1.21, and the Philadelphia semiconductor index dropped 6.72 percent, with Nvidia down 4.40, AMD and Intel down more than eight, and the memory names near the bottom of the list. Shanghai opened lower, as it was entitled to. The reversal that followed was therefore not imported either. It was assembled at home, in one afternoon.</p>
+
+    <p>The mechanics of the assembly are legible in the money flows. Semiconductors, up 3.30 percent, drew the largest main-force inflow in the market at roughly 6.9 billion yuan of net buying; consumer electronics and software followed with about 2 billion each. Components &mdash; the passive parts and circuit boards &mdash; rose a bare 0.61 percent and yet recorded the deepest outflow anywhere on the board, near 2.7 billion. One chain, two verdicts: the money that came back came back for the design and wafer side, and pointedly refused the boards and passive parts it had fled through all week.</p>
+
+    <p>Two pieces of homemade news helped tip the morning. The first eighteen actively managed exchange-traded funds began their raises on Friday, capped at 2 billion yuan apiece &mdash; at most 36 billion yuan of new money &mdash; with the fund houses themselves subscribing alongside. The ChiNext-linked ETF alone turned over more than 19 billion yuan, its heaviest day since October 2024, the same broad-index trade that has marked the last two capitulation lows. And at midday, five optical-module companies &mdash; the very stocks the week had punished hardest &mdash; issued coordinated statements on orders, buybacks and capacity, with Innolight, the market's busiest stock at 27.9 billion yuan of turnover, closing 3.82 percent higher. Nobody was told what to believe. The companies simply stood in the window where the market could see them.</p>
+
+    <p>The opposite side of the ledger was the shelter trade being unwound, not a new fear. The big banks' outflow was measured in single-digit billions; the selling looked like position-closing, not alarm. A market that has spent eleven straight weeks taking the Shanghai 300 lower does not cure itself on one afternoon, and the intraday prints below every prior close of the year will not be erased by a strong finish. But the shape of the day is a fact about sellers, not a hope about buyers: at the bottom of the morning, on the worst overnight tape in weeks, somebody chose to buy four hundred billion yuan more of this market than they had on Thursday.</p>
+
+    <p>Hong Kong, another exchange inside this same country, traded the same hours and reached the same turn without the violence: the Hang Seng closed at 23,093.37, up 0.69 percent, and the Hang Seng Tech Index added 2.05 percent &mdash; though its morning low of 3,781.23 grazed the fifty-two-week floor, and Tencent touched 378.00, its own year's low, before closing higher. The southern exchange confirmed the turn. It did not lead it.</p>
+  </div>
+
+  <div class="aside">Sixty-seven basis points came off the ten-year Treasury on Wednesday night &mdash; even the flight-to-safety in New York did not stop Shanghai from turning by lunchtime.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p class="pull">A market that breaks its yearly low before lunch and closes at its daily high after it has done this before. The tape keeps the dates.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 25 June 2013</div>
+      <p>June 2013 was the fortnight the interbank market ran out of cash, and the stock market paid the bill. On the 25th the Composite opened beneath 1,949 &mdash; the so-called "foundation low" of December 2012 &mdash; and by early afternoon had fallen past 1,900 to an intraday 1,849.65, more than five percent down, the lowest print in four years. Then it turned. A hundred points came back before the bell, and the index closed at 1,959.51, down just 0.19 percent, while the ChiNext &mdash; the small, ignored corner &mdash; rose 1.37 percent on the day the giants were drowning. The turn was credited to regulators speaking at a Shanghai forum that afternoon and to the central bank's evening pledge of liquidity support. What matters for the record is longer than the day: 1,849.65 was the lowest price this market would print for the next eighteen months. The panic low, once made, held.</p>
+      <div class="diff-note">Difference to note: 2013 was a funding squeeze with a visible tap &mdash; the overnight interbank rate &mdash; and the turn followed a same-day policy response. This week's fall has been a repricing of distant earnings, slower to start and slower to end; no afternoon press conference sits behind Friday's turn.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 16 September 2015</div>
+      <p>The summer of 2015 ended in a series of air pockets, and the 16th of September is the cleanest example of what follows one. The Composite had fallen 3.52 percent the day before; that Wednesday it rose 4.89 percent to 3,152.26, the Shenzhen index 6.45 percent, the ChiNext 7.16 percent, and more than a thousand stocks ended at their ceiling while only twenty-nine in the whole market closed lower. The rebound ran: by mid-November the Composite had climbed back above 3,600. The summer's sellers did not get their prices back &mdash; the June peak of 5,178 was never revisited &mdash; but the buyer at the September bottom was paid, and paid well.</p>
+      <div class="diff-note">Difference to note: 2015's reversal came after a thousand-stock limit-down cascade and ended with a thousand-stock limit-up stampede &mdash; terror answered by euphoria, both mechanical. Friday's turn produced 84 ceilings, not a thousand, and the selling was orderly to the end; this was a repricing that paused, not a panic that broke.</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <p>Both entries say the same modest thing: a market that closes on its floor one day and near its ceiling the next has, in this tape's history, sometimes marked something durable &mdash; a low that held for eighteen months, a rebound that ran two months &mdash; and in both cases the mark was confirmed only later, by subsequent sessions, never by the reversal day itself. The record stands for comparison.</p>
+  </div>
+
+  <div class="aside">1,849.65 in 2013 was never traded again. 2,494.22 is Friday's number. Whether it matters will be decided by days that have not opened yet.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>A robot company had the strangest Friday of all. Unitree, the humanoid-machine maker that listed in August, ended at its ceiling for the first time in its listed life, up more than half over six sessions, on the same week its founder told a Hangzhou conference that physical AI had shown the first cracks of breaking through &mdash; and on the same afternoon Nvidia's chief executive, in Berlin, called it the next wave. A market four thousand stocks wide took its cue from a company that builds legs.</p>
+
+    <p>Reversal days feel like verdicts and are usually just pauses with volume. The pause, this time, was bought with four hundred billion yuan. That is all the day promised.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share closes for 2026-10-23 (Shanghai Composite 3,690.48 +0.89%, open 3,623.57 / low 3,574.27 / high 3,691.40; Shenzhen Component 11,673.83 +2.79%; ChiNext 2,684.10 +4.16%, low 2,494.22, a fresh 52-week low; STAR 50 1,345.51 +3.04%) and combined turnover of &yen;1.96 trillion (Shanghai 898.7 billion + Shenzhen 1,057.6 billion yuan; up roughly &yen;427 billion from 2026-10-22) via Westock market data retrieved after the 15:00 close, cross-checked against the Zhitong Finance closing review of 2026-10-23. Breadth figures (4,526 up / 909 down / 142 flat; 84 limit-up / 9 limit-down) are the Zhitong Finance and 21st Century Business Herald closing counts of 2026-10-23, as no exchange-level advance/decline series was available at writing time; the prior day's breadth (535 up / 4,999 down) is the press count for 2026-10-22. Sector moves and sector money-flow figures (semiconductors +6.9 billion yuan net inflow; consumer electronics +2.18 billion; software +2.0 billion; components &minus;2.71 billion, the deepest outflow; big state banks &minus;1.46 billion) are Westock sector data for 2026-10-23. Company items: CATL two-day buyback of about 5.76 million shares for roughly 1.3 billion yuan (HKEX filings of 2026-10-21/22, via Zhitong Finance 2026-10-23); first batch of 18 actively managed ETFs opening raises on 2026-10-23 (capped at 2 billion yuan each; fund-house own-money subscriptions), ChiNext-linked ETF turnover above 19 billion yuan, its highest since 2024-10-09 (Zhitong Finance); joint midday statements by five optical-module companies with Innolight turnover of 27.9 billion yuan (+3.82%) (Zhitong Finance, 21st Century Business Herald); Unitree 20-percent ceiling at 624 yuan, market cap about 252 billion yuan, first ceiling since its August 2026 listing, and the Unitree founder's Hangzhou conference remarks (2026-10-22) alongside Nvidia GTC remarks in Berlin (CNR Finance, Zhitong Finance, Gelonghui). Overnight US session of 2026-10-22 in New York (Nasdaq 26,008.86 &minus;2.60%; S&amp;P 500 7,663.43 &minus;1.21%; Dow 52,867.98 +0.02%; Philadelphia semiconductor index &minus;6.72% per Zhitong Finance; Nvidia 212.21 &minus;4.40%; AMD &minus;8.10%; Intel &minus;8.04%; Micron &minus;6.26%; Western Digital &minus;6.43%; ten-year Treasury 4.953%, &minus;16.6bp) via Westock quotes and the Jiemian/Cailianshe closing coverage of 2026-10-23; crude and gold figures (WTI 99.47 dollars and Brent 113.17 for the 2026-10-22 futures close; spot gold 3,994.11 dollars in Asian trade on 2026-10-23) are noted for context only. Hong Kong closes for 2026-10-23 (Hang Seng 23,093.37 +0.69%; Hang Seng Tech 3,871.66 +2.05%; Tencent low 378.00, a 52-week low, close 386.00 +0.94%) via Westock, confirmed after the 16:10 close-of-day auction. Historical entries: 25 June 2013 (intraday 1,849.65, close 1,959.51 &minus;0.19%, ChiNext +1.37%) per China News Service and Economic Information Daily of 26 June 2013; 16 September 2015 (Composite 3,152.26 +4.89%; Shenzhen +6.45%; ChiNext 1,926.25 +7.16%; more than 1,000 stocks at the ceiling) per Economic Daily and China Securities Journal of 16-17 September 2015, with the Composite above 3,600 by mid-November 2015 per the same record. Only one US timepoint is used in this issue: the overnight session of 2026-10-22 that closed before the Shanghai open. The 2026-10-23 US session had not yet opened at writing time and nothing in this piece is drawn from it.
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
