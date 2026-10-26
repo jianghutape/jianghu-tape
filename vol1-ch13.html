@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Thirteen &middot; The Refund</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Thirteen &middot; The Refund</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-26</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>The rescue took one session to build and half a session to be returned. On Friday, 4,526 stocks rose on an extra 427 billion yuan of turnover; on Monday morning the ChiNext &mdash; Friday's hero &mdash; slid until it traded at 2,601.09, more than three percent beneath a close it had fought all Friday afternoon to win. The fifty-two-week floor it touched that day, 2,494.22, was never seriously revisited; the morning low stopped 107 points above it. Nobody needed to test the floor to make the point. The chain that had been rescued was the chain being sold.</p>
+
+    <p>The Composite told a calmer story, of the kind only an index can tell. It spent the morning under water, bottoming at 3,664.82, and the afternoon climbing out: the close came at 3,697.52, up 0.19 percent, seven points clear of Friday and less than two beneath the day's high. The market underneath confirmed none of it. Of 5,409 traded stocks, 2,252 rose and 3,157 fell; fifty-nine reached their ceilings, twenty-seven their floors. One session after nearly the whole market rose together, the majority fell together &mdash; and the index stayed green, because what rose was heavy.</p>
+
+    <p>Monday's casualty list was Friday's leader board. Components &mdash; the circuit boards and passive parts &mdash; fell 6.79 percent, the worst sector on the board, with four of their sixty-one names higher; the sector's leader rose 2.47 percent while nearly everything beneath it went down. Glass fiber lost 5.40 percent. Electronic chemicals lost 4.33 with not one of thirty-six names up, and precious metals 4.27 with all eleven down. Communications equipment fell 3.67; semiconductors 3.55, with fourteen of one hundred eighty-three names higher.</p>
+
+    <p>What rose was what a market buys when it is returning risk instead of taking it: oil-field services up 3.38 percent, with China Oilfield Services up 7.23 and twelve of thirteen names higher; snack foods up 2.93 with twenty-one of twenty-two; pharmacy retail up 2.73 with thirty of thirty-two; the six great state banks up 2.23, all six of them, ICBC up 3.13; games up 2.11. Snacks, savings, medicine and diesel &mdash; the shopping list of a market stepping back from the future it bought on Friday.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,697.52, <span class="chg">+0.19%</span> (low 3,664.82; the close sat within two points of the day's high) &middot; Shenzhen Component 11,534.38, <span class="chg">&minus;1.19%</span> &middot; ChiNext 2,638.23, <span class="chg">&minus;1.71%</span> (morning low 2,601.09) &middot; STAR 50 1,315.50, <span class="chg">&minus;2.23%</span>, the weakest of the four</li>
+        <li>Breadth: 2,252 up / 3,157 down &middot; 59 at the ceiling, 27 at the floor (press count) &mdash; against Friday's 4,526 up / 909 down</li>
+        <li>Combined turnover &yen;1.61 trillion, about &yen;347 billion less than Friday</li>
+        <li>Components &minus;6.79% (4 of 61 up) &middot; glass fiber &minus;5.40% &middot; electronic chemicals &minus;4.33% (0 of 36) &middot; precious metals &minus;4.27% (0 of 11)</li>
+        <li>Oil services +3.38% &middot; property services +2.98% &middot; snack foods +2.93% &middot; big state banks +2.23% (6 of 6)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="aside">Friday's rescue was built with an extra &yen;427 billion of turnover. Monday's refund gave back &yen;347 billion of it. The difference &mdash; eighty billion &mdash; is what one afternoon of courage cost.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>Follow the money and the morning reads like a return counter. On Friday the semiconductor sector drew the largest main-force inflow on the board, about 6.9 billion yuan. On Monday the electronics chain bled roughly 18.4 billion net &mdash; components the deepest single wound at 6.5 billion, semiconductors 5.1, communications equipment 4.4. What replaced it arrived in coins: auto parts drew 0.98 billion yuan, medical services 0.77, games 0.71, the big banks 0.37. Friday's buying was one large decision. Monday's selling was one large decision. The money that moved into the vacated space did not arrive with conviction; it arrived to be somewhere else.</p>
+
+    <p>Nothing in the overnight tape forced this. The American session that ended before Shanghai opened &mdash; Friday's, across the weekend gap &mdash; had improved: the Dow lost 1.23 percent and the Nasdaq just 0.21, with the memory names bouncing, Micron up 2.46. Thursday's AI-led rout in New York had spent its force by Friday night, and over the weekend Nomura told clients the worry about AI spending was overdone. Shenzhen answered on Monday with a 6.79 percent decline in components &mdash; on a day a memory-module maker reported third-quarter net profit nearly thirty times the year-earlier figure, and its sector fell anyway. When a market sells its best earnings and shrugs at the calmest overnight tape in four sessions, the selling is not imported. It is positioning, going home.</p>
+
+    <p>The company window stopped working, too. On Friday, five optical-module companies stood in it with coordinated statements about orders and buybacks, and their chain closed higher. On Monday &mdash; two trading days later &mdash; one of the five announced a buyback of up to 150 million yuan, and the chain fell anyway, communications equipment among the day's worst six sectors. Statements buy a session. On Monday even a balance sheet could not buy a second one.</p>
+
+    <p>The refuge came back the same day the rescue money left. The six banks that were sold on Friday to fund the rescue were bought on Monday, six for six &mdash; the same six, at the same prices, in the opposite direction. With WTI holding near 101 dollars a barrel, a five-month zone by Westock's delayed print, the bid for drilling services was arithmetic rather than sentiment. And the shape of the whole day is quieter than its numbers: twenty-seven floors against Friday's nine marks a retreat, not a rout, and turnover shrank by a third of a trillion yuan while fifty-nine names still finished at their ceilings. The crowd did not flee the theatre. It asked for its money back from the front rows and moved to the back.</p>
+
+    <p>Hong Kong, the other exchange on the same clock, printed the same division in the same afternoon &mdash; as of 15:43 in Hong Kong, with the closing auction still to run, the Hang Seng stood at 23,221.98, up 0.56 percent, carried by Meituan, up 3.56 after a seven-percent intraday swing, and by coal and banks. The Hang Seng Tech index was down 0.27, with SMIC off 2.34 near its fifty-two-week low, while Tencent, which touched 378.00 earlier in the session, worked its way back to a small gain. Same country, same clock, same split: the weights up, the technology heavy.</p>
+  </div>
+
+  <div class="aside">Friday, 4,526 stocks rose. Monday, 3,157 fell. Across both days the Composite closed within seven points of itself.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p class="pull">A green index over a falling majority is an old print in this tape. The dates on file point in both directions.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 8&ndash;9 May 2023</div>
+      <p>May 2023 was the spring of the state-enterprise revaluation theme, and the eighth was its loudest day. Banks carried the Composite up 1.81 percent to 3,395.00, a ten-month high; Bank of China closed at its ceiling, its first since July 2015. Underneath, the theme's wake ran cold &mdash; the ST segment staged a cascade of more than fifty limit-downs, and the ChiNext managed a quarter of a percent. The next session the index rose to 3,418.95 in the morning and gave all of it back and more, closing at 3,357.67, down 1.10 percent, the bank column splitting with more names lower than higher. That morning print was the leg's top. By 25 May the Composite had closed at 3,201.26 &mdash; five and a half percent beneath the bank-carried high, thirteen sessions on.</p>
+      <div class="diff-note">Difference to note: May 2023 was a theme at full cry beside a ten-month high, one day into a mania for state-owned names. Monday's bank bid was the opposite posture &mdash; a refuge inside an eleven-week drawdown, six for six higher by 2.23 percent with no ceiling anywhere in the column. Same silhouette; different altitude.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 16 December 2014</div>
+      <p>The last time the tape divided this cleanly, the index was rising and the majority was not. Eighteen listed brokers hit their ceilings at once that day, and the Composite jumped 2.31 percent to 3,021.52 &mdash; while 1,509 stocks fell and 793 rose, nearly two decliners for every gainer. The papers of the day gave retail investors a name for it: fully invested, and missing the move. The divergence then kept running. By mid-January the index stood above 3,300 &mdash; a fact the record proves by what it broke on the way down &mdash; until 19 January 2015, when regulators punished margin-rule violations at the largest brokerages and the Composite fell 7.70 percent in a single session, to 3,116.35. The ChiNext fell 0.58 percent that day. The crowd that had missed the move was spared the reckoning, and within a season the leadership of the whole market had flipped to the small boards.</p>
+      <div class="diff-note">Difference to note: December 2014 was the opening chapter of a leveraged bull &mdash; new borrowed money chasing financials upward, volume rising into the divergence. Monday was a de-risking day: turnover shrank by 347 billion yuan, and the money moved toward shelter, not toward a theme. Same silhouette; opposite weather.</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <p>Both entries are honest about the two directions the file runs. In May 2023 the bank-carried green was the top of a leg, its verdict delivered inside three weeks; in December 2014 the broker-carried green ran another month and ended in a single seven-percent session, with the next leadership already waiting in the boards nobody wanted. An index reading green over a falling majority has meant, in this tape's history, a market rearranging itself &mdash; never a verdict on which arrangement wins. The record stands for comparison.</p>
+  </div>
+
+  <div class="aside">May 2023 topped the next morning. December 2014 ran a month and ended in one session. The file holds both verdicts, and settles neither.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>The snack shelf had the best day of anyone. Twenty-one of twenty-two companies that make twists, crackers and preserved fruit closed higher &mdash; on the afternoon the market handed back its future, it bought snacks. The Ministry of Finance supplied the footnote: stamp duty on securities trades ran 65 percent ahead of last year through September. Churn is the one product this market never stops selling, and the state collects on every trade. On a day like Monday, somebody somewhere is always eating.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share data for 2026-10-26 via Westock market data retrieved after the 15:00 close (Shanghai Composite 3,697.52 +0.19%, open 3,671.00 / low 3,664.82 / high 3,699.01; Shenzhen Component 11,534.38 &minus;1.19%; ChiNext 2,638.23 &minus;1.71%, morning low 2,601.09; STAR 50 1,315.50 &minus;2.23%), with combined turnover of &yen;1.61 trillion (Shanghai 746.5 billion + Shenzhen 862.3 billion yuan, roughly &yen;347 billion below Friday) cross-checked against the Jiemian closing review of 2026-10-26; breadth (2,252 up / 3,157 down; 59 limit-up / 27 limit-down) is the Jiemian closing count, the prior day's breadth (4,526 up / 909 down; 84 / 9) the count for 2026-10-23. Sector moves and sector main-force net flows are Westock sector data for 2026-10-26 (components &minus;6.52 billion yuan, the deepest; semiconductors &minus;5.11 billion; communications equipment &minus;4.42 billion; the electronics chain about &minus;18.4 billion in sum; auto parts +0.98 billion; medical services +0.77 billion; games +0.71 billion; big state banks +0.37 billion). The whole-market main-force net figure was unavailable at writing time and is not cited. Overnight US: the 2026-10-23 New York session only &mdash; Dow 52,215.16 &minus;1.23%, Nasdaq 25,955.34 &minus;0.21%, Nvidia 210.96 &minus;0.59%, Micron +2.46% (Westock); the 2026-10-26 US session had not opened at writing time and nothing in this piece is drawn from it. WTI near $101 is Westock delayed data, its percentage change withheld over contract-roll ambiguity. Hong Kong figures are an intraday snapshot as of 15:43 Hong Kong time, with the closing auction still to run &mdash; Hang Seng 23,221.98 +0.56%, HSCEI +0.65%, Hang Seng Tech 3,861.04 &minus;0.27%, Meituan +3.56%, SMIC &minus;2.34%, Tencent +0.41% after touching 378.00 &mdash; and are not closing prices; prior closes (2026-10-23) were HSI 23,093.37 and HSTECH 3,871.66. News items &mdash; the State Council opinion on AI and employment, the 15th Five-Year informatization plan, securities stamp duty +65.1% for the first three quarters (Ministry of Finance), Q3 earnings and the optical-company buyback &mdash; via Jinrongjie, Cailianshe and Zhitong Finance of 2026-10-26. Historical entries: 8&ndash;9 May 2023 (Xinhua, The Paper, Jiemian closing reviews; Composite closes 3,395.00 / 3,357.67; 25 May 2023 close 3,201.26) and 16 December 2014 &mdash; 19 January 2015 (China News Service, Yicai, Xinhua, China Economic Net; 793 up / 1,509 down on the day; 19 January close 3,116.35, &minus;7.70%, ChiNext &minus;0.58%).</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
