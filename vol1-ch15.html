@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Fifteen &middot; One Hundred and Seventy-Seven</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Fifteen &middot; One Hundred and Seventy-Seven</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-28</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>On Tuesday, ten of the one hundred and eighty-three semiconductor names listed in Shanghai and Shenzhen closed higher. On Wednesday, one hundred and seventy-seven did. Nothing about the industry changed in the eighteen hours between the two counts. The column changed, and it changed before the opening bell: all four indices gapped up and not one of them ever traded a single point below Tuesday's close.</p>
+
+    <p>The Composite spent the session inside a range of thirty-two points, from 3,652.37 to 3,684.49 &mdash; a floor four points above where Tuesday finished, a ceiling three points above where Wednesday finished. It closed at 3,681.47, up 0.91 percent. The number puts the day in the small column: a thirty-three point gain is not a session anyone will describe at dinner. What it describes is a market that refused, for five and a half hours, to give back a single point of its opening bid.</p>
+
+    <p>The growth boards carried the rest. The ChiNext opened at its own low of 2,562.90, never looked at Tuesday's close again, and finished at 2,634.76, up 3.40 percent and thirteen points short of its high. The STAR 50 added 2.45, the Shenzhen Component 2.02. The gap between the ChiNext and the Composite is the same gap this tape wrote about a fortnight ago, run backwards: then the banks held the index up while the growth boards slid; on Wednesday the growth boards ran and the banks stood still.</p>
+
+    <p>Breadth flipped whole. More than 4,100 of the market's roughly 5,500 names closed higher, against 606 that managed it on Tuesday &mdash; close to seven times as many, in one session, with no weekend in between. Turnover came back with them: 1.63 trillion yuan, 167.5 billion more than the day before. Tuesday had taken 147.8 billion out of the count while the market fell; Wednesday put 167.5 billion back while it rose. The two numbers are within twenty billion of each other, which is the tidy part. The untidy part is that they describe opposite things.</p>
+
+    <p>The losers were almost exactly Tuesday's survivors. Liquor fell 2.20 percent and did it with a kind of completeness &mdash; nineteen names, nineteen declines, the best of them down 0.22. The joint-stock banks gave back 0.89 with two of nine still higher, the brokers 0.87 with ten of forty-eight up. Gold miners slipped 0.82 as the metal itself eased in the overnight session. Marine equipment and aquaculture went with them.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,681.47, <span class="chg">+0.91%</span> (range 3,652.37&ndash;3,684.49; never below Tuesday's close) &middot; Shenzhen Component 11,473.18, <span class="chg">+2.02%</span> &middot; ChiNext 2,634.76, <span class="chg">+3.40%</span> (low 2,562.90, never in the red) &middot; STAR 50 1,282.93, <span class="chg">+2.45%</span></li>
+        <li>Breadth: more than 4,100 of roughly 5,500 names up (press count; exact advance/decline and limit-up/limit-down figures unavailable at writing time and not cited)</li>
+        <li>Combined turnover &yen;1.63 trillion, about &yen;167.5 billion more than Tuesday</li>
+        <li>Best: non-metallic materials +6.17% &middot; communications equipment +6.01% (74 of 85 up) &middot; automation equipment +5.38% (78 of 82) &middot; plastics +5.30% &middot; components +4.97% (59 of 61) &middot; semiconductors +4.20% (177 of 183)</li>
+        <li>Worst: liquor &minus;2.20% (0 of 19) &middot; marine equipment &minus;1.94% &middot; aquaculture &minus;1.64% &middot; joint-stock banks &minus;0.89% (2 of 9)</li>
+        <li>Main-force net into the electronics chain: communications equipment +&yen;7.58 billion &middot; semiconductors +&yen;6.82 billion &middot; components +&yen;5.00 billion &middot; batteries &minus;&yen;1.43 billion on a sector that closed 0.24% higher</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="aside">Ten advancers on Tuesday. One hundred and seventy-seven on Wednesday. The industry did not change. The column did.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>The number worth keeping is not the index. It is 19.4 billion yuan &mdash; the combined main-force inflow into communications equipment, semiconductors and components in a single session. Tuesday took 7.42 billion out of semiconductors alone. Whatever else happened overnight, the money came back, and came back larger.</p>
+
+    <p>It came back out of the battery complex, which is the day's quiet joke. Batteries closed 0.24 percent higher and lost 1.43 billion yuan net &mdash; the largest outflow on the board. A sector can rise and still be the till. Behind it the list reads like a funding schedule rather than a verdict: brokers 1.38 billion out, software 1.08. Software even finished a shade higher while being sold. On a day when four thousand names rose, being sold was not a judgement on a business. It was an entry on the payments side.</p>
+
+    <p>Two consecutive New York sessions had bid the memory and accelerator complex. On the night of the 26th the Nasdaq added 0.82 percent and Micron 2.98; on the night of the 27th the Nasdaq added 1.18 and Micron another 2.77, with Nvidia up 0.90 and Tesla 4.04. Shanghai's semiconductors fell 4.54 percent through the first of those nights and rose 4.20 through the second. Two near-identical inputs, two opposite answers, twenty-four hours apart. A market reading the news would have done the same thing twice.</p>
+
+    <p>The only hard domestic number of the day was the statistics bureau's nine-month industrial profit release: 6.03 trillion yuan, up 15.5 percent, with joint-stock companies up 20.8 against 13.1 for the state-controlled group and 8.7 for private firms. It was published, it was absorbed, and the tape did not organise itself around it. The day's shape had been decided earlier, in the column counts, by whoever was holding cash and waiting for the second New York night to confirm the first.</p>
+
+    <p>That leaves the arithmetic of weights, which is the part readers of the Composite keep mislaying. Four thousand names rose and the headline index gained 0.91 percent, because its heaviest members &mdash; the banks, the liquor makers, the insurers &mdash; either sat the session out or fell in it. The ChiNext, unencumbered by any of them, gained 3.40. Same morning, same buyers, thirty-three points on one index and eighty-seven on the other. The Composite is not a measure of what happened in Shanghai on Wednesday. It is a measure of what happened in Shanghai after the largest companies were allowed to vote.</p>
+
+    <p>Hong Kong kept the same hours and reached the same conclusion, harder in technology than in the broad index. As of 15:41 in Hong Kong, with the closing auction still to run, the Hang Seng stood at 23,109.61, up 0.30 percent on Tuesday's close of 23,041.32, and the Hang Seng Tech index at 3,851.62, up 1.35 &mdash; a larger gain than Shanghai's growth boards' and taken from a lower base, after its own 1.48 percent fall the previous session. Both exchanges inside this one country, one morning, one direction, and for once that direction was also New York's.</p>
+  </div>
+
+  <div class="aside">Batteries closed higher and lost 1.43 billion yuan. A column can rise and still be the till.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <p class="pull">A rebound is the easiest print in this tape to misread. The file has many days shaped like Wednesday, and their next pages are not the same page.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 3 February 2020</div>
+      <p>The first session after the Spring Festival opened into a gap and stayed in it. The Composite fell 7.72 percent to 2,746.61, the Shenzhen Component 8.45, the ChiNext 6.85. Of some 3,700 listed names, 155 rose, and 3,177 finished flat on their floors &mdash; more than four in five of the entire market. Turnover shrank to 519.5 billion yuan, because a market that gaps down needs nobody's agreement to fall. The reply came the next morning and it was broad: 2,783.29 on the Composite, up 1.34, the Shenzhen Component up 3.17, the ChiNext up 4.84 to 1,882.69 on more than 900 billion yuan of trade. Three further rising sessions followed, to 2,875.96 by the Friday of that week.</p>
+      <div class="diff-note">Difference to note: February 2020 was a seven percent gap with a single named cause, 3,177 floors beneath it, and policy money already moving that morning &mdash; 1.2 trillion yuan of reverse repos and a ten-basis-point cut in the operation's rate. Tuesday's break was 1.33 percent on 606 advancers, with no announcement attached and no floors worth counting.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 7 April 2025</div>
+      <p>That Monday the tariff shock arrived whole. The Composite closed at 3,096.58, down 7.34; the Shenzhen Component 9.66; the ChiNext 12.50 to 1,807.21, its worst single session on record; the STAR 50 9.22 and the Beijing exchange 17.95. Across the market, 106 names rose and 5,284 fell, and more than half of every stock listed in the country finished on its floor. Turnover swelled to 1.62 trillion yuan, 459.7 billion more than the session before, because this fall was made out of volume rather than absence. Central Huijin said in the closing minutes that it had added to its exchange-traded fund holdings. The next session the Composite rose 1.58 percent to 3,145.55 and the ChiNext 1.83 to 1,840.31 &mdash; a seventh of the ground the ChiNext had surrendered the day before.</p>
+      <div class="diff-note">Difference to note: April 2025's reply was arithmetic and small, a 12.50 percent fall answered by 1.83, and it arrived with a state buyer named before the bell. Wednesday's was the other proportion: 3.40 percent answered a 1.33 percent decline, and no announcement was made by anybody.</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <p>What the file establishes is proportion, not direction. Its two deepest modern washouts drew next-day replies of 4.84 and 1.83 percent &mdash; one that had repaired the ground inside a week, one that had not until a buyer with a balance sheet said so out loud. Wednesday's reply was larger than either, off a smaller break, in a market where nobody had to be rescued. Whether that makes it the first page of the 2020 pattern or the first page of something else is not a question the record answers on the first page. It never has. The record stands for comparison.</p>
+  </div>
+
+  <div class="aside">The file keeps both replies and both breaks: 4.84 against 6.85, 1.83 against 12.50.</div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <rect x="1.5" y="1.5" width="41" height="41" fill="none" stroke="#a8312a" stroke-width="2"/>
+    <rect x="6.5" y="6.5" width="31" height="31" fill="none" stroke="#a8312a" stroke-width="1"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" fill="none" stroke="#a8312a" stroke-width="1.6"/>
+  </svg>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>Somewhere on a side street there is a shop with nineteen bottles of liquor on one shelf, and on Wednesday every one of them was marked down. There is no drama in that. It is what a shelf looks like on the day the money goes to look at something else &mdash; the same glass, the same year on the label, nobody asking. The shopkeeper does not read the tape. He knows only that the shelf has been full since spring, and that a full shelf is not the same thing as a quiet one.</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="footer">
+    <div class="src">Sources &amp; timing: A-share data for 2026-10-28, read from the Westock snapshot taken at 15:42 (Shanghai Composite 3,681.47 +0.91%, range 3,652.37&ndash;3,684.49, above Tuesday's close of 3,648.30 throughout; Shenzhen Component 11,473.18 +2.02%, low 11,292.70; ChiNext 2,634.76 +3.40%, low 2,562.90 against Tuesday's 2,548.15; STAR 50 1,282.93 +2.45%, low 1,257.96 against Tuesday's 1,252.28), with combined turnover of &yen;1.63 trillion (Shanghai 751.0 billion + Shenzhen 877.5 billion yuan, about &yen;167.5 billion above Tuesday's 1.46 trillion) cross-checked against the Cailian Press closing review of 2026-10-28. Breadth &mdash; more than 4,100 of roughly 5,500 names higher &mdash; is the Cailian count; exact advance/decline and limit-up/limit-down figures were unobtainable this round and are not cited, and Tuesday's 606 advancers against 4,922 decliners is the same source's count for the prior session, used only as a comparison. Sector moves and sector main-force net flows are Westock data for 2026-10-28 (communications equipment +&yen;7.58 billion, semiconductors +&yen;6.82 billion, components +&yen;5.00 billion, auto parts +&yen;2.14 billion, consumer electronics +&yen;1.73 billion, general equipment +&yen;1.52 billion, automation equipment +&yen;1.32 billion; batteries &minus;&yen;1.43 billion, brokers &minus;&yen;1.38 billion, software &minus;&yen;1.08 billion, general retail &minus;&yen;0.72 billion, aviation equipment &minus;&yen;0.50 billion, precious metals &minus;&yen;0.49 billion, liquor &minus;&yen;0.36 billion). The whole-market main-force net figure was unavailable at writing time and is not cited. Overnight US: the 2026-10-27 New York session only &mdash; Nasdaq 26,477.81 +1.18%, Dow 52,377.57 +0.03%, Nvidia 217.94 +0.90%, Tesla 407.46 +4.04%, Micron 928.76 +2.77%, Apple 347.10 +0.93% (Westock); the S&amp;P 500, the Philadelphia semiconductor index, the dollar index, offshore yuan, copper and the ten-year Treasury yield were unobtainable this round and are not cited; the 2026-10-28 US session had not opened at writing time and nothing in this piece is drawn from it. Gold and crude are Westock delayed prints (COMEX gold $4,048.40, &minus;0.64%, stamped 03:26 Beijing; WTI $101.92, +2.02%; Brent $111.45, +1.87%). Hong Kong figures are an intraday snapshot as of 15:41 Hong Kong time, with the closing auction still to run &mdash; Hang Seng 23,109.61 +0.30% (session high 23,157.40, low 23,023.04), HSCEI 7,793.81 +0.35%, Hang Seng Tech 3,851.62 +1.35% (high 3,876.54, low 3,819.71) &mdash; and are not closing prices; the prior close of 2026-10-27 was HSI 23,041.32 (&minus;0.73%) and HSTECH 3,800.43 (&minus;1.48%), and southbound flow figures were unavailable this round and are not cited. Historical entries: 2020-02-03 (close 2,746.61 &minus;7.72%, Shenzhen Component 9,779.67 &minus;8.45%, ChiNext 1,795.77 &minus;6.85%, 155 advancers / 3,527 decliners / 3,177 floors, turnover 519.5 billion yuan, per China News Service and Caijing) with 2020-02-04 (2,783.29 +1.34%, 10,089.67 +3.17%, 1,882.69 +4.84%, turnover above 900 billion) and the following sessions to 2,875.96 on 2020-02-07; and 2025-04-07 (close 3,096.58 &minus;7.34%, Shenzhen Component &minus;9.66%, ChiNext 1,807.21 &minus;12.50%, STAR 50 &minus;9.22%, Beijing exchange &minus;17.95%, 106 advancers / 5,284 decliners / 2,902 floors, turnover 1.62 trillion yuan, Central Huijin announcement in the closing minutes, per China Securities Journal, Qilu Evening News and Wind) with 2025-04-08 (3,145.55 +1.58%, 1,840.31 +1.83%). News items &mdash; the nine-month industrial profit release (6.03 trillion yuan, +15.5%; state-controlled +13.1%, joint-stock +20.8%, private +8.7%), the Shanghai smart-manufacturing plan, and the day's robot, short-drama and biotech limit-ups &mdash; per the National Bureau of Statistics release and Cailian Press, 2026-10-28.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
