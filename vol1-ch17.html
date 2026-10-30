@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Seventeen &middot; Eighty-Six</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Seventeen &middot; Eighty-Six</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-10-30</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>In the language of the American kitchen, to eighty-six something is to strike it from the menu: the scallops are gone, stop sending the order. On Friday the exchange eighty-sixed eighty-six stocks &mdash; closed them at their floors and left them there. Forty-nine others finished sealed at their ceilings. On a day when the headline index fell only 1.44 percent, nearly twice as many stocks were locked at the bottom as at the top.</p>
+
+    <p>The morning had a shape of its own. Shanghai opened 1.25 percent lower and within minutes slipped below the 3,600 line, printing a low of 3,595.26. Then it climbed &mdash; all morning, with the breadth of the market improving hour by hour, and by the midday break the Composite was down 0.30 percent. Nearly a full point of the gap had been repaired. The afternoon handed almost all of it back: the close was 3,599.02, down 1.44 percent, less than four points above where the first hour had bottomed.</p>
+
+    <p>What the sectors did all day is a larger fact than what the index did in the afternoon. The hardware chain came apart in the order these things come apart: communications equipment 7.36 percent lower, components 6.21, semiconductors 5.32, consumer electronics 4.26. In the middle of that, Eoptolink &mdash; the optical-module maker whose price has become the chain&rsquo;s thermometer &mdash; turned over &yen;21.6 billion, more than any other stock on either exchange, and fell more than ten percent. Victory Giant, one of the board makers underneath it, fell by about the same.</p>
+
+    <div class="aside">A morning low of 3,595.26 and a close of 3,599.02. Less than four points apart, with a whole session of recovery in between, and every one of those points given back.</div>
+    <div class="aside">The most heavily traded stock in the country fell more than ten percent. The crowd left through one door and paid the door.</div>
+
+    <p>The other side of the board was stocked with things nobody has called a growth story in a decade. Four liquor names finished at their ceilings &mdash; Luzhou Laojiao, Gujing Gongjiu, Yingjia Gongjiu, Huangtai &mdash; and the sector closed 2.13 percent higher. Banks were green, coal miners were green, and so were the shipping lines, the hotel kitchens and the hospital groups, several of them by more than the liquor sector managed. Thursday&rsquo;s best sector, aerospace and defence equipment, gave back 3.90 percent on Friday: a one-day trip, and the day had ended.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,599.02, <span class="chg">&darr;1.44%</span> (open 1.25% lower, low 3,595.26, midday &minus;0.30%)</li>
+        <li>Shenzhen Component 10,833.78, <span class="chg">&darr;2.73%</span> &middot; ChiNext 2,413.63, <span class="chg">&darr;4.13%</span> &middot; STAR 50 1,160.84, <span class="chg">&darr;5.48%</span></li>
+        <li>Breadth: 893 names up, 4,602 down; 49 limit-ups against 86 limit-downs</li>
+        <li>Combined turnover &yen;1.674 trillion (Shanghai &yen;764.2bn + Shenzhen &yen;910.2bn), about &yen;117.9bn more than Thursday</li>
+        <li>ChiNext and STAR 50 both finished October more than 23 percent lower</li>
+      </ul>
+    </div>
+
+    <p>Five to one is not a rotation. A rotation lifts one column while it lowers another, and the column it lowers is where the money came from. Five to one means the column being lifted is small enough to fit inside the one being lowered: 893 names up, 4,602 down, and most of the board simply repriced downward while two dozen quiet corners of it were bid.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>The New York session that ended on Friday morning in Shanghai was not an alarm. The Dow lost 0.25 percent and the S&amp;P 0.30. The Nasdaq&rsquo;s 1.38 percent fall was concentrated where it has been concentrated all month, in the chip complex, with the Philadelphia semiconductor index off 1.42 and Micron down a little under five percent. Apple rose. Gold gave up less than half a percent.</p>
+
+    <p>That is a memory-pricing signal, and it explains why the semiconductor chain opened weak. It does not explain eighty-six names sealed at their floors. A memory signal reaches foundries and module makers and the people who finance them; it does not reach cinema chains and mobile-game studios and the machine-vision companies selling to factory floors. Something else was being sold on Friday, and it was sold by people who had bought it for reasons that no longer applied.</p>
+
+    <p>Look at what finished at its floor. Five theatre and film names, including Wento and Hengdian. A game publisher, 37 Interactive. Around them, the names that did not quite reach their floors: short-form video and machine vision companies down between twelve and fourteen percent, an online brokerage-software name down more than ten. None of them has a memory contract, a wafer allocation or an order book in the AI build-out. What they share is a different thing: each was the crowded end of a trade that had been crowded for a month, held by people who owned it because other people owned it.</p>
+
+    <p>Then consider the shield, and what it was worth. Banks closed higher. Coal closed higher. Liquor closed higher by more than two percent, with four names at their ceilings. In an older market that combination produced a flat index. On Friday it produced minus 1.44, which tells you where the index&rsquo;s centre of gravity has moved: the technology complex is now heavy enough to overrule a green banking sector.</p>
+
+    <div class="aside">A green bank sector and a red index on the same afternoon. Whatever the index says it is made of, the tape says something else.</div>
+
+    <p>The flow numbers say the same thing in a duller voice. Semiconductors gave up &yen;5.63 billion of main-force money and communications equipment &yen;5.27 billion; consumer electronics and components lost smaller amounts. The precious-metals complex fell more than four percent, on a night when the metal itself gave up less than half of one. Into the other side went liquor, medical services and batteries. CATL drew &yen;1.09 billion of net buying, the largest single inflow on the board, in a session when its own sector was not the story.</p>
+
+    <p>Here is the detail worth keeping. The two blocks that rose most reliably, banks and coal, both recorded small net outflows of main-force money &mdash; a hundred million here, a hundred million there, small enough to be noise, and identical in direction. Green and being sold into. A defence that is bought by people who intend to stay looks different from a defence used as a waiting room, and this one looked like a waiting room.</p>
+
+    <p>The exchange in Hong Kong did not agree, and its disagreement is the most instructive thing on the tape. At 15:37 there, with the closing auction still to run, the Hang Seng stood at 23,306.44, up 1.51 percent. Hang Seng Tech was up 0.34 &mdash; a hundred and seventeen basis points behind its parent, and that gap is the whole story.</p>
+
+    <p>The Hang Seng&rsquo;s heavyweights are banks, oil, shipping and telecom: the same things Shanghai was buying. Its technology index is built from consumer platforms, and those rose too, just barely. So both exchanges reached the same verdict on Friday &mdash; sell the hardware, hold the coupon &mdash; and printed opposite signs, because one benchmark is constructed from the part of this economy that pays a dividend and the other from the part that promises a future. The index you happen to quote decides whether the day was red or green.</p>
+
+    <p>It was the last session of October. Turnover rose to &yen;1.674 trillion, about &yen;117.9 billion more than Thursday, on a day when four thousand six hundred names fell. Volume up, price down, and the door narrower at the end of the queue than at the start.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 29 January 2016</div>
+      <p>January 2016 was the month the circuit breaker arrived and left. The mechanism took effect on the first trading day of the year and was suspended on the eighth, after four triggers in two sessions. The Composite finished the month at 2,737.60, 22.65 percent lower &mdash; its worst month in nearly eight years. ChiNext closed at 1,994.07, down 26.53 percent, the largest monthly fall since that index began in 2010. Across the entire market, fifty-two stocks rose in January.</p>
+      <p>What followed: February was worse in the small print and no better in the total &mdash; the Composite fell another 1.8 percent, ChiNext 5.7. March then produced the year&rsquo;s best month, with the Composite up 11.75 percent and ChiNext up 19.05. The quarter still finished down 15.12 and 17.53. And the low of that whole cycle, 2,638.30, was printed on 27 January &mdash; inside the month that set the record, before the rebound, not after it.</p>
+      <div class="diff-note">Difference worth keeping: January 2016 had a rule that switched the market off twice in four days, and one session in which close to thirteen hundred names finished at their floors. October 2026 has no such rule and no such session. Eighty-six floors against 4,602 declines is a thin tail on a market that traded all day and never stopped. A panic and a repricing both leave marks; they are not the same mark.</div>
+    </div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 31 October 2022</div>
+      <p>The last session of October 2022 closed the Composite at 2,893.48, down 0.77 percent, a few points off its own floor. It was the year&rsquo;s first monthly close below 3,000, and the fourth consecutive month of decline. Turnover that day was &yen;396.65 billion &mdash; roughly a quarter of what Friday&rsquo;s session carried.</p>
+      <p>What followed: November rose 8.91 percent, the largest monthly gain of that year, and the month&rsquo;s low, 2,896.76, was printed on its first session. The turn arrived with the policy measures of that November &mdash; property support, the pandemic rules &mdash; which is to say it arrived from outside the tape, not from anything visible in a count of limit-downs.</p>
+      <div class="diff-note">Difference worth keeping: October 2022 was broad. The whole market was de-rated and the whole market was re-rated. October 2026 is narrow &mdash; one industrial chain coming apart while liquor and banks are bid. A broad low and a narrow one are not repaired by the same hands.</div>
+    </div>
+
+    <p class="pull">Eighty-six names were taken off the board. Four thousand six hundred were merely marked down. The first is a decision; the second is a price. The record keeps them in separate columns.</p>
+  </div>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>The board at the exchange door is wiped clean every night, and that is the one mercy of this business. Nothing carries over &mdash; not the price at which you were wrong, not the sector that ruined the month.</p>
+
+    <p>In a kitchen, eighty-six is said out loud so that the whole line hears it and stops sending orders for a thing that is no longer there. Saying it does not put the scallops back. It only stops the waste. October is closed. Along the river the ginkgoes have gone yellow all at once, the way they do in the last week of the month, and nobody on the floor has looked at them.</p>
+  </div>
+
+  <hr class="divider">
+
+  <svg class="seal-svg" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="70" height="70" rx="4" stroke="#a8312a" stroke-width="1.6"/>
+    <rect x="7" y="7" width="58" height="58" rx="2" stroke="#a8312a" stroke-width="0.9"/>
+    <path d="M18 20h36M18 52h36M20 20v32M52 20v32" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M28 28h16v16H28z" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M36 22v6M36 44v6M22 36h6M44 36h6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <div class="footer">
+    <div class="src">Sources &mdash; A-share index levels, sector moves, sector main-force net flows and the Hong Kong intraday reading are MX-DS (Eastmoney) data for the session of 2026-10-30, fetched at 15:45 Beijing time (Shanghai Composite 3,599.02, &minus;1.44 percent, low 3,595.26, midday &minus;0.30 percent; Shenzhen Component 10,833.78, &minus;2.73 percent; ChiNext 2,413.63, &minus;4.13 percent; STAR 50 1,160.84, &minus;5.48 percent; CSI 300 3,985.50, &minus;1.39 percent; CSI 500 6,266.19, &minus;2.91 percent; North Exchange 50 885.74, &minus;2.67 percent; the STAR composite 1,421.31, &minus;4.66 percent), with combined turnover of &yen;1.674 trillion computed from Shanghai &yen;764.23 billion and Shenzhen &yen;910.24 billion, about &yen;117.9 billion above Thursday. Market breadth &mdash; 893 advancers against 4,602 decliners, 49 limit-ups and 86 limit-downs &mdash; the sector moves (liquor 2.13 percent higher with Luzhou Laojiao, Gujing Gongjiu, Yingjia Gongjiu and Huangtai at their ceilings; communications equipment 7.36 percent lower; components 6.21; semiconductors 5.32; consumer electronics 4.26; precious metals 4.07; aerospace and defence equipment 3.90 lower after 6.84 higher on Thursday), the limit-down list (Wento, Ciwen, Alpha, Hengdian, Zhongguang Tianze, 37 Interactive, Compass), Eoptolink&rsquo;s &yen;21.61 billion turnover at the top of the market, and main-force flows (semiconductors &minus;&yen;5.63 billion; communications equipment &minus;&yen;5.27 billion; consumer electronics &minus;&yen;2.31 billion; components &minus;&yen;1.22 billion; banks &minus;&yen;104 million; coal &minus;&yen;106 million; CATL &plus;&yen;1.09 billion, the largest single inflow) are from the closing reviews of Jiemian News (15:02), Financial World (15:06), Yicai (15:32) and 21st Century Business Herald (15:29) of 2026-10-30. The October monthly declines of more than 23 percent at ChiNext and STAR 50 are from the Financial World closing note of 2026-10-30. Hong Kong: at 15:37 there, with the closing auction still to run and the market not yet closed, the Hang Seng was 23,306.44, up 1.51 percent; Hang Seng Tech 3,756.80, up 0.34 percent; the state-owned enterprise index 7,866.86, up 1.43 percent; COSCO Shipping Holdings up more than 8 percent, PetroChina up more than 4 percent, Meituan and Xiaomi up more than 4 percent, Alibaba, JD.com and Tencent up more than 2 percent; these are intraday readings and are not closing prices. Southbound flows for 2026-10-30 were not available at the time of writing and are not cited; the 2026-10-29 figure (net selling of HK$3.36 billion, a twelfth consecutive session of net selling) is from Cailian Press. Overnight US: the New York session of 29 October 2026 (US Eastern), which ended in the small hours of 30 October Beijing time &mdash; Dow 52,342.56, &minus;0.25 percent; S&amp;P 500 7,720.39, &minus;0.30 percent; Nasdaq 26,184.73, &minus;1.38 percent; Philadelphia semiconductor index 11,518.20, &minus;1.42 percent; Micron 934.27, &minus;4.98 percent; Nvidia 213.66, &minus;0.80 percent; Apple 348.91, &plus;1.48 percent; Microsoft 530.14, &minus;0.16 percent; Tesla 403.30, &minus;0.23 percent; COMEX gold 4,033.30, &minus;0.45 percent; NYMEX crude 102.86, &plus;0.08 percent; ten-year Treasury 4.945 percent. The US session of 30 October had not opened at writing time, and nothing in this piece is drawn from it. Intel&rsquo;s fall of more than 20 percent in after-hours trading on 29 October is a post-close event and is not used as a closing figure. The dollar index, offshore yuan and copper were not available and are not cited. Historical entries: 29 January 2016 (Composite 2,737.60, &minus;22.65 percent for the month against 3,539.18 at the end of 2015, the worst month in nearly eight years; ChiNext 1,994.07, &minus;26.53 percent, its largest monthly fall since launching in 2010; fifty-two stocks up in the whole market; February &minus;1.8 percent on the Composite and &minus;5.7 on ChiNext; March &plus;11.75 and &plus;19.05; the first quarter &minus;15.12 and &minus;17.53; the cycle low of 2,638.30 on 27 January 2016; the circuit breaker in force from 1 January to 8 January 2016, four triggers on 4 and 7 January) per People&rsquo;s Political Consultative Conference News and China National Radio, April 2016 and February 2016; and 31 October 2022 (Composite 2,893.48, &minus;0.77 percent, low 2,885.09, high 2,926.02, turnover &yen;396.65 billion; November 2022 &plus;8.91 percent to 3,151.34, the month&rsquo;s low of 2,896.76 on 1 November) per Shanghai Stock Exchange price history and Tencent Finance, December 2022.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
