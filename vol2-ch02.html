@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Twenty-Two &middot; Distance</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Twenty-Two &middot; Distance</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-11-06</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>The Philadelphia semiconductor index fell 12.25 percent on the night of 5 November &mdash; its heaviest single session since 16 March 2020. All thirty of its components closed lower. Micron lost 17.46 percent; Nvidia lost 9.26. The volatility index rose 69.48 percent to 28.15. And in the same city, on the same night, the index of Chinese companies listed in New York closed <em>up</em> 0.43 percent, NetEase four percent higher, JD.com three.</p>
+
+    <p>Two verdicts, hours apart, on one event. Shanghai&rsquo;s task on Friday morning was to decide which it believed.</p>
+
+    <p>The opening auction answered first. The Composite priced at 3,612.15, a gap of 2.11 percent. It was very nearly the low: 3,610.20 printed within the first minutes. Then it climbed, through the morning and past the lunch break, to 3,660.49 in the afternoon. It closed at 3,649.18 &mdash; down 1.10 percent, and thirty-seven points above where it had begun.</p>
+
+    <p>ChiNext took the same road and gave back more of it. The growth board opened at 2,438.72 &mdash; its low, set on the first tick. It ran to 2,506.97, then returned forty-two points of that recovery. It closed at 2,465.23, down 3.96 percent. Shanghai kept three-quarters of its rebound. Shenzhen kept two-fifths.</p>
+
+    <div class="aside">One instruction, two exchanges. Shanghai read it as a rotation. Shenzhen read it as a repricing.</div>
+
+    <p>Breadth is what made the day legible. Seven hundred and fifty-eight stocks closed higher and four thousand seven hundred and forty-one closed lower. Thirty-three finished sealed at their ceilings, fifteen at their floors &mdash; against eighty-six ceilings and none at all on Thursday.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,649.18, <span class="chg">&darr;1.10%</span> (opened 3,612.15; high 3,660.49; low 3,610.20)</li>
+        <li>Shenzhen Component 11,175.78, <span class="chg">&darr;2.57%</span> &middot; ChiNext 2,465.23, <span class="chg">&darr;3.96%</span> &middot; STAR 50 1,253.20, <span class="chg">&darr;2.60%</span> &middot; Beijing 50 888.48, <span class="chg">&darr;2.37%</span></li>
+        <li>Breadth: 758 names up, 4,741 down, 80 unchanged; 33 limit-ups against 15 limit-downs</li>
+        <li>Combined turnover &yen;1.6578 trillion &mdash; Shanghai &yen;772.6 billion plus Shenzhen &yen;885.2 billion &mdash; &yen;460.2 billion less than Thursday</li>
+        <li>Main-force money: components &minus;&yen;5.43 billion, semiconductors &minus;&yen;4.84 billion, communications equipment &minus;&yen;4.66 billion; power +&yen;942 million, banks +&yen;853 million</li>
+      </ul>
+    </div>
+
+    <p>The selling was concentrated. Components fell 7.13 percent, with Aohong Electronics and Dongshan Precision sealed at their floors and the two largest circuit-board names, WUS Printed Circuit and Shengyi Technology, sharply lower. Communications equipment lost 5.75. Semiconductors lost 3.35. Medical services lost 4.18, and electronics chemicals, robotics and gaming all finished among the worst of the board.</p>
+
+    <p>The buying was somewhere else entirely, and it was old. Power generation rose 1.30 percent with three small utilities sealed at their ceilings. Banks rose 1.05, Shanghai Rural Commercial up more than four. Planting and forestry rose on a day the index was down more than two percent at its worst &mdash; Qiule Seed up 13.49, Wanxiang Denong at its second ceiling in three sessions. Railway and highway names, utilities, corn, modified seed: a list that reads like a portfolio assembled in 2011 and never reopened.</p>
+
+    <p>Turnover printed 1.6578 trillion yuan, 460 billion below Thursday&rsquo;s 2.118. Two sessions above two trillion, then this. The money did not run; it withdrew &mdash; and the board recorded it in the one column that cannot be argued with.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>The two verdicts were not a contradiction. They were a sorting, and the sorting had one rule: distance.</p>
+
+    <p>The event was specific. American networks projected a Congress inclined to slow the permitting of data centres, and UBS put a figure on the consequence &mdash; roughly thirty percent of the capacity the United States had been expected to add by 2028 could be exposed to a pause in construction. Every asset whose revenue is booked against that calendar was repriced on the spot: optical modules, copper-clad laminate, circuit boards, memory. Every asset whose revenue is booked against something else was not.</p>
+
+    <p>Which is why the Golden Dragon index rose while the semiconductor index lost an eighth of its value in a night. A platform company&rsquo;s revenue arrives as advertising, commissions and game sales. A Chinese optical module maker&rsquo;s revenue arrives as a purchase order from a hyperscaler in Virginia that has not yet been permitted. Same country of listing; different landlord.</p>
+
+    <p>The rule held inside the semiconductor sector too, which is why &ldquo;semiconductors fell 3.35 percent&rdquo; is a sentence that conceals more than it says. The largest single net purchase in the entire market on Friday was Northern Huachuang, a domestic fab-equipment maker, at 610 million yuan. Hua Hong, the foundry, rose as much as sixteen percent intraday after a third-quarter report that lifted net profit 138 percent. Both sit inside the sector that fell. Neither sells into an American building permit: one sells machines to fabs whose construction schedule is set in Beijing, the other sells wafers to anyone holding a Chinese chip design.</p>
+
+    <p>The exits were large and few. Components gave up 5.43 billion yuan of main-force money. Semiconductors and communications equipment each lost more than four and a half billion. Medical services lost 1.83. The entrances were small: power took in 942 million, banks 853. In total, the defensive side of the board received about a fifth of what the hardware side handed over. That asymmetry is the honest description of Friday. It was not a rotation of equal weight. It was a withdrawal with a partial reinvestment, and it shows in the index arithmetic: Shanghai down one percent while Shenzhen fell nearly four.</p>
+
+    <p>The shape of the selling mattered more than its size. Fifteen stocks finished at their floors out of 4,741 that fell. In April 2025, an overnight shock of comparable violence produced 2,902 floors in a single session. A repricing and a panic are distinguished by exactly this count: in a repricing the bid is thin, but it is quoted all day.</p>
+
+    <p>The policy plumbing was visible. A report on financial work delivered to the legislature said Central Huijin would be supported in playing the role of a quasi-stabilisation fund, and that channels for medium- and long-term money to enter the market would be widened. At midday, seven of the companies at the centre of the fall &mdash; three optical names, a components maker, a storage maker, a connector maker and one other &mdash; published announcements inside the same hour, all citing the buyback-and-re-lending facility. By three o&rsquo;clock they had been read and set aside; the optical leaders closed sharply lower regardless. After the bell the swap facility was drawn again, with China International Capital reporting purchases under its third allocation and Galaxy Securities completing a first buyback financing and its first purchases.</p>
+
+    <p>None of that is a price. It is the plumbing beneath the price, and on Friday it ran while the hardware complex was marked down.</p>
+
+    <p>Hong Kong, on the same clock, printed the same trade at two-thirds the amplitude. At 15:38 there, with the closing auction still to run, the Hang Seng was 1.49 percent lower at 24,427.62. Hang Seng Tech was 2.36 percent lower at 4,056.30. It had opened 1.58 percent down, narrowed to about one percent by the lunch break, and widened again through the afternoon. The names at the bottom were the names at the bottom here: the optical names down fourteen and twelve, the circuit-board pair down eleven and ten. Southbound money, which had net-sold HK$21.3 billion on Thursday, was a net buyer of HK$2.17 billion by noon.</p>
+
+    <p class="pull">A shock is not a verdict. It is a measurement of how far each asset sits from the thing that changed.</p>
+
+    <p>Distance accounts for the whole board, from the Golden Dragon&rsquo;s green to the three utilities sealed at their ceilings. What it does not account for is what comes next. For that, this file keeps older receipts.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 17 March 2020</div>
+      <p>The night before, 16 March 2020, the Philadelphia semiconductor index closed 15.9 percent lower &mdash; still its heaviest single session on record. All thirty of its components fell; six lost more than a fifth. The Nasdaq fell 12.32 percent, and the Dow and the S&amp;P 500 fell further. It was the third circuit breaker of that month.</p>
+      <p>Shanghai opened that morning at 2,796.28, fell to 2,715.22 inside the first hour, turned at ten o&rsquo;clock, and had all three indices green before the lunch break. The afternoon surrendered part of it. The Composite closed at 2,779.64, down 0.34 percent. ChiNext closed higher, up 0.36. Turnover was 818 billion yuan, and northbound investors sold a net six billion for a fourth consecutive session.</p>
+      <p>What followed: on 18 March the Composite gave up 1.83 percent to 2,728.76. On 19 March it printed 2,646.80 &mdash; the low of that spring, and 133 points beneath the close of the V-shaped day. It finished the month at 2,750.30, still under the level that resilience had defended.</p>
+      <div class="diff-note">Difference worth keeping: in 2020 the shock landed at the end of a three-week liquidation, and Shanghai had already fallen 3.40 percent in the session <em>before</em> the largest American drop, so the V-day was a bounce inside a decline that was nearly spent. Friday&rsquo;s gap arrived into a market that had just spent two sessions recovering &mdash; a different position from which to be surprised. The record also notes that in 2020 the low came two sessions after the display of courage, not on the day of it.</div>
+    </div>
+
+    <div class="aside">In 2020 the buy-the-dip morning closed 0.34 percent lower and the real low was 133 points below it, two sessions later.</div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 14 September 2022</div>
+      <p>The night of 13 September 2022, American inflation printed 8.3 percent against 8.1 expected. The Nasdaq fell 5.16 percent, its worst session in more than two years. Shanghai opened at 3,224.68 and dipped to 3,221.96 inside the hour; it recovered to 3,250.80, then closed at 3,237.54, down 0.80. ChiNext lost 1.84 to 2,503.82, most of it from a single battery maker down almost five percent.</p>
+      <p>Turnover that day was 722.8 billion yuan, the second-lowest of the year, above only 9 May. Breadth read 1,147 up against 3,621 down &mdash; and, in the count that matters here, forty-one ceilings against ten floors. Northbound sold a net 1.41 billion yuan.</p>
+      <p>What followed: the index did not stop. It closed on 31 October at 2,893.48 &mdash; 344 points, or 10.6 percent, beneath the close of the resilient session &mdash; the first month-end of that year below 3,000. The turn, in November, came from a change in policy rather than from the count of floors.</p>
+      <div class="diff-note">Difference worth keeping: 2022&rsquo;s shock was a single macro number, which reprices every asset at once. Friday&rsquo;s was narrower and, for one industry, deeper &mdash; a revenue assumption revised by an election. That narrowness is why thirty-three stocks still finished at their ceilings while the index that owns the industry fell nearly four percent. What the two accounts share is only this: a session that absorbs a shock well is not the same event as a low.</div>
+    </div>
+
+    <p class="pull">In both accounts the session that absorbed the shock was not the low.</p>
+  </div>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>At a quarter to three on Friday afternoon, Luyang Energy-Saving was sealed at its floor. Fifteen minutes later it was sealed at its ceiling &mdash; the second straight session in which it had crossed the entire board, its fifth limit-up in six days, some 43 percent added in five.</p>
+
+    <p>In a market where four thousand seven hundred names fell, one name used both edges of the board inside a quarter of an hour. That is not a signal, nor a forecast. It is the only thing this file can state flatly about a day like Friday: whatever else was for sale, there was still a price at which somebody wanted to own something.</p>
+  </div>
+
+  <hr class="divider">
+
+  <svg class="seal-svg" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="70" height="70" rx="4" stroke="#a8312a" stroke-width="1.6"/>
+    <rect x="7" y="7" width="58" height="58" rx="2" stroke="#a8312a" stroke-width="0.9"/>
+    <path d="M18 20h36M18 52h36M20 20v32M52 20v32" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M28 28h16v16H28z" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M36 22v6M36 44v6M22 36h6M44 36h6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <div class="footer">
+    <div class="src">Sources &mdash; A-share index levels, sector moves, sector main-force flows, turnover and breadth are mx-ds (Eastmoney) data for the session of 2026-11-06, fetched at 15:47 Beijing time, and follow the closing notes of Xinhua Finance and 21st Century Business Herald. Shanghai Composite 3,649.18, down 1.10 percent, having opened at 3,612.15, reached 3,660.49 and touched 3,610.20; Shenzhen Component 11,175.78, down 2.57; ChiNext 2,465.23, down 3.96, its 2,438.72 open identical to its low and 2,506.97 its high; STAR 50 1,253.20, down 2.60; STAR Composite 1,496.36, down 3.24; Beijing 50 888.48, down 2.37. Combined turnover of &yen;1.6578 trillion is Shanghai &yen;772.6 billion plus Shenzhen &yen;885.2 billion, &yen;460.16 billion below Thursday&rsquo;s &yen;2.11795 trillion. Breadth &mdash; 758 advancers, 4,741 decliners, 80 unchanged, 33 limit-ups, 15 limit-downs &mdash; follows the Eastmoney and Xinhua Finance closing counts; a Wind convention printed 757 and 4,739, a counting difference rather than a direction. Sector moves: components &minus;7.13 percent; communications equipment &minus;5.75 (the CSI 931160 industry index; the Shenwan convention printed &minus;6.23); semiconductors &minus;3.35; medical services &minus;4.18; power +1.30; banks +1.05 (Shenwan). Main-force sector flows per Cailianshe and Eastmoney industry tables: components &minus;&yen;5.432 billion; semiconductors &minus;&yen;4.840 billion; communications equipment &minus;&yen;4.660 billion; medical services &minus;&yen;1.829 billion; power +&yen;942 million; banks +&yen;853 million; the electronics group as a whole &minus;&yen;12.737 billion. Northern Huachuang was the market&rsquo;s largest single net purchase at +&yen;610 million; Dongshan Precision the largest single net sale at &minus;&yen;1.669 billion. Hong Kong: Hang Seng 24,427.62, down 1.49 percent, and Hang Seng Tech 4,056.30, down 2.36 &mdash; continuous-session readings at 15:38 Beijing time with the closing auction still to run, and not closing prices; the index opened at 24,404.62, narrowed to 24,533.33 at the midday break, and southbound flows of +HK$2.17 billion are the cumulative figure to noon. Overnight &mdash; only one US timepoint is used in this issue, the 2026-11-05 session: Dow 51,523.06 &minus;3.44 percent; Nasdaq 24,314.99 &minus;5.52; S&amp;P 500 7,353.73 &minus;4.36; Philadelphia semiconductor index 9,011.14 &minus;12.25, its heaviest session since 16 March 2020; Nvidia 181.60 &minus;9.26; Micron 656.39 &minus;17.46; Tesla 343.69 &minus;10.77; Apple 344.17 &minus;1.53; Microsoft 535.93 &minus;3.58; VIX 28.15, +69.48 percent; the Nasdaq Golden Dragon China index 5,747.08, +0.43 percent. The offshore yuan at 6.6682 and the onshore at 6.6710 are early-morning references of 6 November, not overnight closes; COMEX gold settled at 4,097.90 dollars on 5 November and traded at 4,056.00 by 15:26 Beijing on 6 November; WTI front-month at 91.20 dollars, +3.50 percent, is the 5 November settlement. The US ten-year yield was not retrieved and is not quoted. The 2026-11-06 US session had not opened at the time of writing and nothing in this piece is drawn from it. The news file: the State Council&rsquo;s report on financial work and the reference to Central Huijin&rsquo;s quasi-stabilisation role (Xinhua); the UBS estimate on data-centre capacity (Cailianshe); the midday announcements by Tianfu Communication, Eoptolink, Zhongji Innolight, Sanhuan Group, DapuStor, Luxshare and Lingyi iTech on the buyback-and-re-lending facility; China International Capital&rsquo;s purchases under the third swap-facility allocation and Galaxy Securities&rsquo; first buyback financing (Cailianshe); Hua Hong&rsquo;s third-quarter results, revenue 18.611 billion yuan for the nine months, up 14.06 percent, net profit 1.603 billion, up 138.23 percent; Luyang Energy-Saving&rsquo;s floor-to-ceiling session per 21st Century Business Herald. Historical parallels &mdash; 16&ndash;19 March 2020: the 15.9 percent semiconductor close and the American index falls per MarketWatch and MoneyDJ; Shanghai&rsquo;s 17 March open, high, low and close, the 818 billion yuan turnover and the 0.34 percent decline per Eastday and Changjiang Business Daily; the 18 March close of 2,728.76 and the 19 March low of 2,646.80 per Eastmoney historical quotations. 13&ndash;14 September 2022: the 5.16 percent Nasdaq fall on 8.3 percent CPI per Xinhua; Shanghai&rsquo;s 3,224.68 open, 3,221.96 low, 3,250.80 high and 3,237.54 close, the 722.8 billion turnover, the 1,147 and 3,621 breadth and the 41 and 10 limit counts per People&rsquo;s Daily app and China News Service; the 31 October 2022 close of 2,893.48 follows this file&rsquo;s verified archive.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
