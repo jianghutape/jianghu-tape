@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Twenty-Three &middot; The Old Fire</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:44px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Twenty-Three &middot; The Old Fire</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-11-09</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>The rebound everyone had waited for arrived in New York on Friday night. The Philadelphia semiconductor index, which had surrendered 12.25 percent of itself in a single session on Thursday, took 4.21 percent back and finished at 9,390.25. Taiwan Semiconductor rose 6.33 percent, Micron 5.12, Nvidia 2.78. The Dow gave up 0.46 while all of this happened: the money that came back had one address, and it was in the compute complex.</p>
+
+    <p>Shanghai accepted the gift and then declined to keep it. All three major indices opened higher on Monday morning, and the Shenzhen boards were each up more than one percent before noon. Neither kept it. Both closed down 0.27 percent, the day&rsquo;s gains surrendered as completely as Thursday&rsquo;s had been. The Shanghai Composite alone stayed green: 3,660.79, up 0.32.</p>
+
+    <p>The fade was orderly. Selling was heaviest in the new-energy complex and light almost everywhere else; two limit-downs across an entire exchange is the count of a market declining to participate, not of one being forced out the door.</p>
+
+    <p>Its green was not earned where the overnight story said it would be. Semiconductors finished 0.17 percent higher. Communications equipment, the sector that owns the optical modules, gained 1.67. What carried the Composite was a different list. Coal mining rose 3.53 percent, with Zhengzhou Coal &amp; Electric &mdash; of which more in a moment &mdash; and Antai Group sealed at their ceilings. Gas rose 2.77. Aerospace equipment matched coal&rsquo;s gain on a commercial-space theme, China Spacesat at its ceiling. Banks added 0.92 and gold 1.71.</p>
+
+    <div class="aside">A green index over a red market. The Composite&rsquo;s arithmetic was done by the oldest names on the board.</div>
+
+    <p>Beneath the green, three thousand one hundred and forty-eight stocks fell and two thousand two hundred and forty-two rose. Fifty-seven finished at their ceilings against two at their floors &mdash; no panic anywhere in that count, and not much conviction either. Turnover printed 1.48 trillion yuan, 175 billion less than Friday. The relief, when it arrived, was not bought with size.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,660.79, <span class="chg">&uarr;0.32%</span> &middot; Shenzhen Component 11,145.49, <span class="chg">&darr;0.27%</span> &middot; ChiNext 2,458.56, <span class="chg">&darr;0.27%</span> &middot; STAR 50 1,256.96, <span class="chg">&uarr;0.30%</span> &middot; Beijing 50 895.76, <span class="chg">&uarr;0.82%</span></li>
+        <li>Breadth: 2,242 names up, 3,148 down, 189 unchanged; 57 limit-ups against 2 limit-downs</li>
+        <li>Combined turnover &yen;1.4826 trillion &mdash; Shanghai &yen;682.5 billion plus Shenzhen &yen;800.1 billion &mdash; &yen;175.2 billion less than Friday</li>
+        <li>Main-force money: communications equipment +&yen;3.7 billion, semiconductors +&yen;2.2 billion, general machinery +&yen;2.0 billion, banks +&yen;980 million; solar equipment &minus;&yen;1.09 billion</li>
+      </ul>
+    </div>
+
+    <p>And then there is the name. Five winters ago Zhengzhou Coal &amp; Electric was the most famous speculation in the entire market &mdash; ceiling after ceiling while reporting one loss after another, the stock the Shenzhen exchange could not slow down. On Monday it sealed its ceiling again. One board, quietly, among fifty-seven. The stove was lit, and it was the same stove.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>The frame matters. October took 23.02 percent from ChiNext and a similar amount from the STAR 50; from the Composite it took 6.33. November&rsquo;s first week returned 1.78 percent of it. After two weeks of that arithmetic, the board&rsquo;s instinct on a green morning was not to rebuild what had been taken. It was to own what had not been in the way.</p>
+
+    <p>So the day ran two energy trades in opposite directions, split by vintage. The old fire: coal and gas at the top of the Shanghai board, their counterparts higher still on the southern exchange &mdash; Shougang Resources up 9.8 percent in Hong Kong trading, Yanzhou Coal up 4.76. The new fire: solar equipment fell 2.27 percent, opening higher and fading through the afternoon, Sungrow and LONGi lower. Energy metals fell 2.14, led by the lithium miners. One energy trade, two calendars: winter, and the capex cycle.</p>
+
+    <p>The hardware complex, for its part, rebuilt itself in a whisper. Communications equipment took in 3.7 billion yuan of main-force money &mdash; the largest single inflow of the session &mdash; for a gain of 1.67 percent. Semiconductors took in 2.2 billion, the second-largest, for a gain of 0.17. Components rose 2.57 with two printed-circuit-board names at their ceilings. Suiyuan Technology, a domestic accelerator maker, added 17.26 percent; Cambricon and MetaX about five each. After a Thursday like that one and a Friday like the one before it, the first money back did not chase. It stationed.</p>
+
+    <p>There was news beneath the whisper. Trade press reported that wafer foundries were preparing price increases, and the domestic accelerator names &mdash; the ones whose orders are booked in Shenzhen rather than San Jose &mdash; did the day&rsquo;s heaviest lifting. The importers of the overnight mood were quiet; the home-grown compute names were not.</p>
+
+    <div class="aside">The largest inflow of the session bought 1.67 percent. The second-largest bought 0.17. The money arrived before the price did.</div>
+
+    <p>Beneath it all, the plumbing ran one way. Equity exchange-traded funds took in more than 200 billion yuan across last week &mdash; the heaviest week since October. The largest SSE 50 fund absorbed 11.5 billion of it over five sessions. Passive money buys the index rather than the stocks underneath it &mdash; one honest reason an index can close green while three thousand of its members close red.</p>
+
+    <p>Hong Kong, on the same clock, spent the day walking one path. The Hang Seng opened 0.59 percent higher and was still up at the lunch break; by 15:37 there, with the closing auction still to run, it stood 0.07 percent lower at 24,465.83. Hang Seng Tech was 0.87 percent lower at 4,042.77. Meituan, down 5.5 percent, did most of the dragging. Southbound money was a net buyer of about HK$2 billion by the midday break, after net-selling 3.2 billion across the whole of last week.</p>
+
+    <p>Put the two boards side by side and the day is legible. New York spent its rebound relighting the new fire. Shanghai banked the relief and moved the money to the stove &mdash; coal, gas, banks, gold, the dividend floor. Both markets read the same overnight news. Each kept the part it already trusted.</p>
+
+    <p class="pull">New York rebuilt the new fire. Shanghai relit the old one.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 13 September 2021</div>
+      <p>Shanghai closed that Monday 0.33 percent higher at 3,715.37, carried by coal, oil and chemicals: Yanzhou Coal, Jizhong Energy and Haohua Energy all sealed at their ceilings, and one hundred and eight stocks finished at theirs. ChiNext fell 1.17 percent to 3,194.27, with semiconductors and solar among the worst on the board. Turnover was 1.46 trillion yuan, and northbound investors sold a net 3.8 billion. Monday&rsquo;s shape, almost line for line.</p>
+      <p>What followed: on the evening of 19 October the state planner announced it would study lawful intervention in coal prices, which it said had departed entirely from supply and demand. The next morning the coal sector index fell 7.23 percent &mdash; its worst session of that year &mdash; and nine coal names sealed at their floors, Yanzhou and Haohua among them again. By that morning the Composite stood near 3,594, some 121 points beneath the September close.</p>
+      <div class="diff-note">Difference worth keeping: that September ran on an actual shortage &mdash; coal at record prices, power rationed in the industrial provinces. Monday&rsquo;s coal move carried no rationing headlines at all; it arrived with oil near ninety dollars and gold above four thousand, a macro bid rather than a missing cargo. And in 2021 the fire was extinguished by a single notice. That is a fact about 2021, not a claim about this market.</div>
+    </div>
+
+    <div class="aside">In 2021 a notice put the fire out. In the winter of 2020 the market put one out by itself.</div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 25 December 2020</div>
+      <p>An earlier winter still. Power was being rationed in Hunan and Zhejiang; the cold had come early and the grid was short. More than twenty coal and power names sealed their ceilings that day, and the wildest of them were both from Henan. One added 151.3 percent in a fortnight of near-daily ceilings. The other was Zhengzhou Coal &amp; Electric, then on its sixth straight board; from under two yuan in early November it had reached 9.94 at the peak, roughly a fourfold rise inside two months.</p>
+      <p>The company had lost money five quarters in a row, and the Shenzhen exchange had put the pair under key surveillance. Neither fact slowed anything at the time. What followed: the peak held through year-end, and then January 2021 arrived. Zhengzhou Coal &amp; Electric was the worst-performing stock of that month, and within about six weeks of the top it had halved.</p>
+      <div class="diff-note">Difference worth keeping: in 2020 the board was the last of a mania, printed by a loss-making name under surveillance while the coldest weather in years rationed the very power it sold. Monday&rsquo;s board was one of fifty-seven, inside a broad sector move with banks and gold and no rationing anywhere. Same stove; a much smaller fire.</div>
+    </div>
+  </div>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>The calendar says the second week of November. Nothing has been rationed; the cold has not properly come. The tape lit the stove anyway &mdash; coal, gas, the dividend floor &mdash; and among the fifty-seven boards was one name this file has receipts on.</p>
+
+    <p>Five winters is a long time in a market. Not so long that a stock forgets how to find its ceiling, and not so long that this file forgets what the last fire cost. The stove is warm. The receipts are filed.</p>
+  </div>
+
+  <hr class="divider">
+
+  <svg class="seal-svg" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="70" height="70" rx="4" stroke="#a8312a" stroke-width="1.6"/>
+    <rect x="7" y="7" width="58" height="58" rx="2" stroke="#a8312a" stroke-width="0.9"/>
+    <path d="M18 20h36M18 52h36M20 20v32M52 20v32" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M28 28h16v16H28z" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M36 22v6M36 44v6M22 36h6M44 36h6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <div class="footer">
+    <div class="src">Sources &mdash; A-share index levels, sector moves, sector main-force flows, turnover and breadth are mx-ds (Eastmoney) data for the session of 2026-11-09, fetched at 15:44 Beijing time, with closing counts following Jiemian (2,242 up, 3,148 down, 189 unchanged; 57 limit-ups, 2 limit-downs &mdash; a Pengpai/Wind convention printed 2,241 and 3,146, a counting difference rather than a direction). Shanghai Composite 3,660.79, up 0.32; Shenzhen Component 11,145.49, down 0.27; ChiNext 2,458.56, down 0.27; STAR 50 1,256.96, up 0.30; Beijing 50 895.76, up 0.82; CSI 300 4,056.11, up 0.05. Combined turnover of &yen;1.4826 trillion is Shanghai &yen;682.5 billion plus Shenzhen &yen;800.1 billion, &yen;175.2 billion below Friday. Sector moves per Shenwan: coal mining and processing +3.53 percent, with Zhengzhou Coal &amp; Electric and Antai Group at their ceilings; gas +2.77; aerospace equipment +3.53, China Spacesat at its ceiling; components +2.57, with two printed-circuit-board names at their ceilings; precious metals +1.71; banks +0.92; communications equipment +1.67, Sunway Communication +12.77; semiconductors +0.17, Suiyuan Technology-U +17.26 and Cambricon and MetaX about +5 each; solar equipment &minus;2.27, Sungrow and LONGi lower; energy metals &minus;2.14, Ganfeng Lithium &minus;2.48. Main-force sector flows: communications equipment +&yen;3.7 billion; semiconductors +&yen;2.196 billion; general machinery +&yen;1.988 billion; banks +&yen;978.8 million; aerospace equipment +&yen;663.7 million; solar equipment &minus;&yen;1.09 billion; the whole-market net figure and the complete flow ranking were not available and are not quoted. Equity ETF inflows above &yen;200 billion for last week and SSE 50 ETF &yen;11.5 billion over five sessions follow press summaries of exchange data. Hong Kong: Hang Seng 24,465.83, down 0.07, and Hang Seng Tech 4,042.77, down 0.87, are continuous-session readings at 15:37 Beijing time with the closing auction still to run; they are not closing prints, and the Hong Kong close of 2026-11-06 (Hang Seng 24,481.86) is used only as the prior-session reference. Meituan &minus;5.5 percent; Shougang Resources +9.8 and Yanzhou Coal +4.76 in the same session; southbound net buying of about HK$2 billion as of the midday break, against last week&rsquo;s net sale of HK$3.24 billion. Only one US timepoint is used in this issue: the 2026-11-06 session &mdash; S&amp;P 500 7,376.86, up 0.31; Nasdaq 24,579.42, up 1.09; Dow 51,285.73, down 0.46; Philadelphia semiconductor index 9,390.25, up 4.21; Taiwan Semiconductor +6.33; Micron +5.12; Nvidia +2.78; Tesla +4.23; 10-year Treasury 4.864 percent; COMEX gold $4,079.5; WTI $90.34. The 2026-11-09 US session had not yet opened at the time of writing, and nothing in this piece is drawn from it. Old accounts: 13 September 2021 and the 19&ndash;20 October 2021 coal intervention follow Securities Times, China Securities Journal and Sina Finance; 25 December 2020 and the January 2021 aftermath follow Sina Finance, Daily Economic News and Dahe. Individual stocks are stated as fact only.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
