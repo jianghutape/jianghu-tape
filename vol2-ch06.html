@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Twenty-Six &middot; The Mirror Reversed</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:40px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Twenty-Six &middot; The Mirror Reversed</h1>
+  <div class="byline">by Dan Rivers &middot; 2026-11-12</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>Overnight, the technology trade was repaired. Philadelphia&rsquo;s semiconductor index rose 5.66 percent to 10,564.11, taking back in a single session the 10,000 line it had surrendered the day before. Nvidia recovered 2.87 percent to 173.73 after two sessions that removed roughly 430 billion dollars of market value. Micron, the memory maker, rose 11.89 percent, the strongest big name on the American tape. Every overnight measure pointed up.</p>
+
+    <div class="aside">The chip index rose 5.66 percent overnight. The market it was supposed to help fell on the year&rsquo;s biggest volume.</div>
+
+    <p>Shanghai&rsquo;s answer, at three o&rsquo;clock, was 875 names up against 4,635 down &mdash; about one stock in seven &mdash; with 37 sealed at their ceilings (the ten-percent daily cap on most A-shares) against 6 at their floors. The Shanghai Composite gave up 0.67 percent to 3,655.83, a fall modest enough to hide the day; the Shenzhen Component lost 1.68 percent and the Beijing 50 1.65. ChiNext told the day&rsquo;s true shape: up close to two percent in the morning, then one straight line down through the afternoon, finishing 2.44 percent lower at 2,509.43. Only the STAR 50, the science board&rsquo;s own index, closed higher &mdash; 0.73 percent, at 1,309.84. And the volume: 1.93 trillion yuan changed hands, 255.8 billion more than Wednesday on a day when five stocks fell for every one that rose. Volume rising on a falling tape is not fear; it is disagreement. For every seller who accepted Thursday&rsquo;s price there was a buyer who thought that price was wrong, and the tape wrote down both.</p>
+
+    <p>What was sold was Wednesday&rsquo;s shopping list. Precious metals fell 6.85 percent, the worst shelf in the market: Shanjin International lost nine percent, Chifeng Gold eight, the big gold houses six and more &mdash; the names that led the week&rsquo;s safe-haven trade &mdash; while gold in New York closed beneath four thousand dollars at 3,994.3. Digital media gave back 5.58 and the cinema trade 5.36, where Shanghai Film, sealed at its ceiling on Tuesday, sat at its floor on Thursday. And communications equipment, the shelf that finished one basis point beneath its own ceiling on Wednesday, opened as a morning leader and turned red after lunch, closing 3.31 percent lower. Innolight finished flat and still out-traded every other name in the country &mdash; 33.6 billion yuan, the heaviest ticket on either exchange for a second day.</p>
+
+    <div class="aside">One shelf, one day: minus &yen;6.83 billion of main-force money. On Wednesday the same shelf took in &yen;13.12 billion.</div>
+
+    <p>What was bought sat in odd corners and in one technology line that refused the script. The day&rsquo;s strongest shelf was fish: the aquatic-products trade rose 3.56 percent, Dongfang Ocean, Baiyang and Hao Dangjia sealed. Ground weapons took 3.48 percent, Aerospace Nanhu up more than ten; forestry rose 2.72. And semiconductors &mdash; the one technology shelf that stayed green &mdash; added 0.55 percent with the main-force accounts putting 2.15 billion yuan in: Cambricon traded back above 1,000 yuan during the session, by the afternoon reports the second-highest price on the boards; Suiyuan Technology, a recent STAR listing, closed 12.38 percent higher at 555.16, its best since listing, on a market value near 240 billion yuan.</p>
+
+    <p>And at 15:36 in Hong Kong, with the closing auction still to run, the Hang Seng stood at 23,989.2, down 1.34 percent, Hang Seng Tech down 2.42 at 3,929.56 &mdash; Alibaba off 4.97, Tencent 1.47 &mdash; while the southern exchange&rsquo;s own semiconductor shelf pointed the other way: SMIC higher, two freshly listed chip designers up 12 percent and past seven. Same country, two boards, one afternoon: the platforms down, the chips up &mdash; the mirror holding on both sides of the clock.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,655.83, <span class="chg">&darr;0.67%</span> &middot; Shenzhen Component 11,197.98, <span class="chg">&darr;1.68%</span> &middot; ChiNext 2,509.43, <span class="chg">&darr;2.44%</span> &middot; STAR 50 1,309.84, <span class="chg">&uarr;0.73%</span> &middot; Beijing 50 908.07, <span class="chg">&darr;1.65%</span></li>
+        <li>Breadth: 875 names up, 4,635 down, 70 unchanged; 37 limit-ups against 6 limit-downs</li>
+        <li>Combined turnover &yen;1.9321 trillion &mdash; Shanghai &yen;879.5 billion plus Shenzhen &yen;1.05 trillion &mdash; &yen;255.8 billion (15 percent) above Wednesday</li>
+        <li>Main-force money (named Shenwan sectors): communications equipment &minus;&yen;6.83 billion, precious metals &minus;&yen;1.49 billion, cinema &minus;&yen;1.38 billion; semiconductors +&yen;2.15 billion, advertising +&yen;1.93 billion; whole market &minus;&yen;52.41 billion (Wednesday +&yen;21.36 billion)</li>
+        <li>Overnight (New York, 11 November): S&amp;P 500 7,619.38, <span class="chg">&uarr;1.31%</span> &middot; Nasdaq 25,466.19, <span class="chg">&uarr;1.60%</span> &middot; Dow 52,486.49, <span class="chg">&uarr;0.49%</span> &middot; Philadelphia semiconductors 10,564.11, <span class="chg">&uarr;5.66%</span> &middot; Nvidia 173.73, <span class="chg">&uarr;2.87%</span> &middot; Micron 811.30, <span class="chg">&uarr;11.89%</span> &middot; Taiwan Semiconductor 413.35, <span class="chg">&uarr;4.26%</span></li>
+        <li>Hong Kong, intraday at 15:36 with the auction still to run: Hang Seng 23,989.20, <span class="chg">&darr;1.34%</span> &middot; Hang Seng Tech 3,929.56, <span class="chg">&darr;2.42%</span> &middot; HSCEI 8,049.07, <span class="chg">&darr;1.50%</span> (11 November close: 24,315.92 and 4,027.06)</li>
+        <li>US 10-year 5.004% (11 November close, after 4.996% the session before) &middot; gold $3,994.3, beneath $4,000 &middot; WTI $86.42 &middot; offshore renminbi 6.673</li>
+      </ul>
+    </div>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>Start with the arithmetic, because Thursday was mostly arithmetic run backwards. On Wednesday the main-force accounts &mdash; the institutional-flow gauge the domestic desks watch &mdash; netted a positive 21.4 billion yuan across the whole market. On Thursday the same accounts netted a negative 52.4 billion: a swing of nearly 74 billion yuan in one session, on a night whose only fresh policy news, the central bank&rsquo;s quarterly report, leaned the other way. What had changed overnight was the American tape &mdash; repaired &mdash; and with it the trade that had been priced all week as &ldquo;New York&rsquo;s problem, Shanghai&rsquo;s opportunity.&rdquo; By Thursday morning that was simply a trade that had already paid.</p>
+
+    <p>The money left the shelves it had filled. Communications equipment handed back 6.83 billion yuan, the largest outflow among the day&rsquo;s named sectors; gold, cinema and digital media each gave up between 1.1 and 1.5 billion. What arrived went smaller and stranger: semiconductors took 2.15 billion, advertising 1.93 &mdash; a shelf that rose less than one percent while taking nearly two billion, money arriving ahead of price &mdash; and weapons about half a billion. The rankings cover only the twelve sectors named this session, not the whole market. But the shape is unmistakable: the fastest-filled shelf of the week was the fastest emptied.</p>
+
+    <div class="aside">A shelf up 0.8 percent, taking in &yen;1.93 billion. Money first; price later, or never.</div>
+
+    <p>Wednesday&rsquo;s leadership, it should be said, ended on a rumor. An evening note from a mainland brokerage reported that Microsoft was pressing restrictions on optical modules &mdash; a report no one has confirmed, and this letter records it only as a report. The CPO concepts ran on it overnight anyway. Rumors tend to arrive when a shelf is full; Thursday&rsquo;s tape spent the session finding out how fast one can be emptied.</p>
+
+    <p>The floor did not move. The central bank&rsquo;s third-quarter policy report, published Wednesday after the close, repeated its &ldquo;moderately loose&rdquo; language and said it would step up the capital-market support tools &mdash; the same floor that has sat under this market all autumn. On a day when 4,635 names fell, that is worth writing down: the selling happened above a stated floor, not through one.</p>
+
+    <p>New York kept its own contradiction. The same night the chip index rose 5.66 percent, the ten-year Treasury closed at 5.004 percent &mdash; above five, after 4.996 the session before. A five-and-two-thirds-percent chip rally and a five-percent discount rate, printed on the same ticket. On the Chinese side of the ocean that tension surfaced as the market&rsquo;s two most expensive technology shelves cut two ways in one afternoon: optics out, semiconductors in &mdash; the same industry.</p>
+
+    <p>Then the day&rsquo;s one-company question. Transsion Holdings, the phone maker built on the Africa trade, joined the Stock Connect eligible list &mdash; the link through which mainland accounts buy Hong Kong shares &mdash; from Thursday, per the Shenzhen exchange. Its H shares rose as much as 17 percent during the session on the news; its STAR-listed A shares closed 1.76 percent higher. One company, one country, two exchanges, and on the same afternoon two different days. The southbound account was a buyer: past three billion Hong Kong dollars within the first half hour, six billion by early afternoon, intraday readings set against Wednesday&rsquo;s full-session net of 4.57 billion.</p>
+
+    <p class="pull">Wednesday the shadow rose while the body fell. Thursday the body rose, in another time zone &mdash; and Shanghai took the shadow to the counter.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 27 January to 7 February 2025</div>
+      <p>DeepSeek split the AI trade at the end of January 2025. On 27 January Nvidia fell more than 17 percent in New York on the fear that cheaper models would need fewer chips. The mainland exchanges were shut for the Spring Festival; when they reopened on 5 February, the optical line &mdash; the tape&rsquo;s leadership going into the holiday &mdash; did not wait for a second reading. Innolight closed 14.43 percent lower at 98.25 yuan, barely half the 185.83 it had printed at its October 2024 peak; Eoptolink lost 18.49 percent, and two more names in the same line fell harder still. The AI-application index rose 3.59 percent the same day. That is the shape Thursday printed again: one session's leadership at the top of the tape, the next at the bottom of the flow table, the money crossed to the other side of the same story &mdash; applications then, semiconductors now.</p>
+      <p>What followed: two sessions later, on 7 February, the three leaders took back between five and 6.7 percent. The fright was shorter than the fall; the demand question it posed was repriced, not answered.</p>
+      <div class="diff-note">Difference worth keeping: in 2025 the reversal answered a shock &mdash; a seventeen-percent fall in the customer&rsquo;s customer, and two weeks of closed doors to think about it. Thursday&rsquo;s came with the American tape repaired and no shock anywhere in the tape. A shelf flipped on its own weight.</div>
+    </div>
+
+    <div class="aside">In 2023 the invoice arrived in six weeks. The tape never says when it is posted.</div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 16 June to 31 July 2023</div>
+      <p>The first optical boom crested on 20 June 2023, when Innolight closed at 170 yuan &mdash; more than fivefold from the start of a year that opened near 27 &mdash; on a market value of 136.5 billion. What followed was the invoice. On the night of 11 July the company&rsquo;s half-year preview showed net profit growth of 12 to 36 percent &mdash; good, but not the explosion a fivefold stock had been priced on &mdash; and the next session it fell more than six percent. By 31 July the leader closed 25 percent beneath its June peak, on adjusted prices. Thursday&rsquo;s parallel is only the shape: the fastest-filled shelf on the tape took the market&rsquo;s largest named outflow the session after its near-ceiling print &mdash; in a week when part of its narrative leaned on a report no one has confirmed.</p>
+      <div class="diff-note">Difference worth keeping: the 2023 boom rested on one customer chain outside the country &mdash; overseas revenue already above 87 percent &mdash; and there was no domestic pillar to catch it. This cycle&rsquo;s bid carries a domestic order book, a chip arm filing to list, an official compute buildout. And the money is of another order: Thursday&rsquo;s leader turned over 33.6 billion yuan; on 20 June 2023 it turned over 6.6 billion. Same shape, five times the money.</div>
+    </div>
+  </div>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>Wednesday&rsquo;s page closed with a picture: the shadow rising while the body fell. Thursday the body rose, in another time zone, and Shanghai sold the shadow. Two sessions, one mirror, wiped clean each night.</p>
+
+    <p>The evening papers will print one number &mdash; 3,655.83, down two-thirds of a percent, a quiet day. Underneath that number the volume rose, five stocks fell for every one that rose, and the strongest shelf on the whole tape was fish. The boats do not read the overnight tape. They go out in the morning anyway.</p>
+  </div>
+
+  <hr class="divider">
+
+  <svg class="seal-svg" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="70" height="70" rx="4" stroke="#a8312a" stroke-width="1.6"/>
+    <rect x="7" y="7" width="58" height="58" rx="2" stroke="#a8312a" stroke-width="0.9"/>
+    <path d="M18 20h36M18 52h36M20 20v32M52 20v32" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M28 28h16v16H28z" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M36 22v6M36 44v6M22 36h6M44 36h6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <div class="footer">
+    <div class="src">Sources &mdash; A-share index levels, sector moves, sector main-force flows, turnover and breadth are mx-ds (Eastmoney) data for the session of 2026-11-12, fetched at 15:37 Beijing time, with closing counts following Zhitong (875 up, 4,635 down, 70 unchanged; 37 limit-ups, 6 limit-downs); a 21st Century count covering the two mainland exchanges only printed 838 up and 4,320 down and is not used here. Sector moves per the Shenwan classification: precious metals &minus;6.85, digital media &minus;5.58, cinema &minus;5.36, communications equipment &minus;3.31, semiconductors +0.55 (a constituent market-cap-weighted gauge printed +0.94 for the same bucket &mdash; a different taxonomy, not mixed here), ground weapons +3.48, fishing +3.56, forestry +2.72; the gas index moved &minus;0.07 while its concept names sealed, and the two are not mixed. Main-force flows: whole market &minus;&yen;52.41 billion against Wednesday&rsquo;s +&yen;21.36 billion, a one-day swing of &yen;73.77 billion; the in- and out-flow rankings are ranked within the twelve sectors named this session, not across the market. Innolight finished flat on &yen;33.622 billion of turnover, the heaviest ticket of the session for a second consecutive day; Cambricon traded back above &yen;1,000 during the session, per the afternoon reports the second-highest price on the boards; Suiyuan Technology &minus;U closed +12.38 percent at 555.16, its highest close since listing, on a market value near &yen;240 billion. Transsion Holdings joined Stock Connect eligibility from 2026-11-12 per the Shenzhen Stock Exchange announcement; its H shares (02636) at one point rose more than 17 percent intraday while its STAR-listed A shares (688036) closed 1.76 percent higher. The Microsoft optical-module report is an unconfirmed note from a mainland brokerage dated 11 November and is cited here only as such. The central bank&rsquo;s third-quarter policy report, published 11 November after the close, is cited per CMB International&rsquo;s 12 November morning note. US figures are the session of 11 November &mdash; the last American session to end before the Shanghai open, with no same-day US session quoted: S&amp;P 500 7,619.38, up 1.31; Nasdaq 25,466.19, up 1.60; Dow 52,486.49, up 0.49; Philadelphia Semiconductor 10,564.11, up 5.66; Nvidia 173.73, up 2.87, after two sessions (9 and 10 November) that removed roughly 430 billion dollars of market value; Micron 811.30, up 11.89; Taiwan Semiconductor 413.35, up 4.26; the ten-year Treasury at 5.004 percent after 4.996 the session before; gold $3,994.3, beneath $4,000; WTI $86.42; the offshore renminbi at 6.673. Hong Kong figures are intraday readings taken at 15:36 with the closing auction still to run &mdash; Hang Seng 23,989.20 down 1.34, Hang Seng Tech 3,929.56 down 2.42, HSCEI 8,049.07 down 1.50 &mdash; set against the 11 November close of 24,315.92 and 4,027.06 (Hang Seng &minus;0.98, Hang Seng Tech &minus;1.41, southbound net buy of HK$4.572 billion for the full session); Hong Kong sector moves are list-level only, no official percentage gauges being available, and the southbound readings &mdash; past HK$3 billion by 09:55, HK$6 billion by 13:06 &mdash; are intraday cumulative figures, not closing net. The dollar index and LME copper were unavailable this session and are not cited. Historical parallels are drawn from this letter&rsquo;s own verified archive: the 27 January and 5 February 2025 figures (Nvidia down more than 17 percent; Innolight 98.25 against the 185.83 peak of 8 October 2024; Eoptolink &minus;18.49; the 7 February rebound of five to 6.7 percent) and the 2023 sequence (20 June close of 170 yuan from near 27 at the year&rsquo;s open, market value 136.5 billion; the 11 July preview of 12 to 36 percent net-profit growth; 88.56 on 31 July, 25 percent beneath the 118.73 peak, on adjusted prices).</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
