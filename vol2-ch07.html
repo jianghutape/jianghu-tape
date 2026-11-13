@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Twenty-Seven &middot; The Old Seats</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:40px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Twenty-Seven &middot; The Old Seats</h1>
+  <div class="byline">by Dan Rivers · 2026-11-13</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>Five banks in China printed all-time highs on Friday. Jiangsu, Nanjing, Qingdao, Chengdu and Hangzhou &mdash; city lenders, none of them a name anyone flies to Shanghai to talk about &mdash; each put a price on the board its own history had never shown. On the same morning the printed-circuit-board makers that had spent the autumn as the most expensive shelf in the market went to their floors. Jingwang Electronics, Huazheng New Material, Wus Printed Circuit, Shennan Circuits and Shengyi Technology were all sealed limit-down, the ten-percent daily floor on most A-shares. Between those two facts sits the whole day.</p>
+    <div class="aside">Five all-time highs, thirty-four limit-downs, one index down 0.59 percent. The number at the bottom of the page is a poor witness.</div>
+    <p>Overnight, Nvidia&rsquo;s board had approved the departure of Jensen Huang as president, chief executive and director, effective immediately. Colette Kress, the chief financial officer, became interim chief executive, and the company named its first board chairman. The announcement did not say whether the departure was offered or requested, and this letter will not guess. The shares opened down 13.08 percent, touched 148.80, and closed at 166.19, down 4.34 percent &mdash; nearly 14 percent at the worst of the session, with the market value briefly under four trillion dollars. The Philadelphia semiconductor index was down 3.6 percent at one point and closed 0.54 percent lower; Broadcom rose 5.54 percent on the same night while Super Micro Computer fell 11.30 percent. The chain had come apart before Shanghai opened.</p>
+    <p>Shanghai&rsquo;s answer was a small number attached to a wide day. The Composite gave up 0.59 percent to 3,634.35 &mdash; twenty-one points &mdash; while 765 names rose and 4,748 fell, fewer than one stock in seven. Thirty-eight sealed at their ceilings (the ten-percent daily cap on most A-shares) and thirty-four at their floors, a count covering the whole market; a second count of the two mainland exchanges only put the floors at thirty-nine. The Shenzhen Component lost 2.05 percent; ChiNext, the growth board, fell 3.32 percent, more than five times the Composite&rsquo;s decline. Combined turnover was &yen;1.6567 trillion, &yen;276.4 billion less than Thursday. The money did not leave in a panic; much of it simply did not arrive.</p>
+    <p>The STAR 50 wrote the day&rsquo;s sharpest sentence. It opened at 1,330.28, traded as high as 1,342.13 &mdash; up 2.46 percent from Thursday&rsquo;s close &mdash; and finished at 1,279.66, down 2.30 percent. A swing of 5.46 percent from high to low in one session, with the closing print nearly five percentage points beneath the morning&rsquo;s best. I have watched this shape before: a tape that spends its first hour answering a question from New York and its last four hours answering one from home.</p>
+    <p>The selling was narrow and deep. Components &mdash; the printed-circuit-board and copper-clad laminate shelf &mdash; fell 8.547 percent, the weakest of the named Shenwan sectors, with main-force accounts giving up &yen;10.39 billion. Communications equipment lost another &yen;9.87 billion, semiconductors &yen;7.75 billion. That last shelf was never one thing: Tianpu sealed a fourth consecutive limit-up, Huadong Heavy Machinery sealed its own, and photolithography names led the morning, with Yongxin Optics at its ceiling and Wavelength Optoelectronics up more than 14 percent. Add electronic chemicals and the four hardware shelves account for roughly &yen;29.0 billion of main-force money walking out.</p>
+    <p>What was bought was old. Banks took in &yen;1.226 billion and the five city lenders printed their records; liquor, insurance and coal each gained between one and two percent as winter stocking and a cold front did their work, and PetroChina was up more than 3 percent during the session. Cinema and theatre, the strongest of the named shelves, rose 3.50 percent on &yen;1.345 billion of main-force money: Xingfu Lanhai sealed at its 20-percent ceiling and Hengdian Film, Hubei Radio and Television and Jin Yi Film at theirs. Four defensive shelves together took in about &yen;3.70 billion. Roughly &yen;29.0 billion left one side of the market, &yen;3.70 billion arrived on the other, and the index barely moved.</p>
+    <p>In Hong Kong, as of 15:37 with the closing auction still to run, the Hang Seng stood at 23,614.68, down 1.64 percent, and Hang Seng Tech down 3.08 percent &mdash; intraday readings, not closes. The same split was on that board. Innolight&rsquo;s H shares were quoted 10.32 percent lower while PetroChina&rsquo;s rose 2.69 percent and the coal names with them; Tencent and Alibaba were quoted lower. Thursday&rsquo;s close was 24,008.55, with southbound net purchases of HK$5.846 billion for the full session; Friday&rsquo;s 11:12 reading had more than HK$1.9 billion &mdash; intraday, not a full-day figure.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,634.35, <span class="chg">&darr;0.59%</span> &middot; Shenzhen Component 10,968.79, <span class="chg">&darr;2.05%</span> &middot; ChiNext 2,426.08, <span class="chg">&darr;3.32%</span> &middot; STAR 50 1,279.66, <span class="chg">&darr;2.30%</span> &middot; Beijing 50 876.33, <span class="chg">&darr;3.50%</span> &middot; CSI 300 4,016.29, <span class="chg">&darr;0.68%</span></li>
+        <li>Breadth: 765 up, 4,748 down, 66 unchanged; 38 limit-ups against 34 limit-downs (whole-market count; the two-exchange count gives 38 and 39)</li>
+        <li>Combined turnover &yen;1.6567 trillion &mdash; Shanghai &yen;770.6 billion plus Shenzhen &yen;885.1 billion &mdash; &yen;276.4 billion below Thursday&rsquo;s &yen;1.932 trillion</li>
+        <li>Main-force money (named Shenwan sectors): components &minus;&yen;10.39 billion, communications equipment &minus;&yen;9.87 billion, semiconductors &minus;&yen;7.75 billion; banks +&yen;1.226 billion, cinema +&yen;1.345 billion, liquor +&yen;0.87 billion; whole market &minus;&yen;60.02 billion (Thursday &minus;&yen;52.4 billion)</li>
+        <li>Overnight (New York, 12 November): S&amp;P 500 7,592.40, <span class="chg">&darr;0.35%</span> &middot; Nasdaq 25,366.09, <span class="chg">&darr;0.39%</span> &middot; Dow 52,297.09, <span class="chg">&darr;0.36%</span> &middot; Philadelphia semiconductors 10,506.67, <span class="chg">&darr;0.54%</span> &middot; Nvidia 166.19, <span class="chg">&darr;4.34%</span> &middot; Broadcom 364.36, <span class="chg">&uarr;5.54%</span> &middot; Super Micro 26.99, <span class="chg">&darr;11.30%</span></li>
+        <li>Hong Kong, intraday at 15:37 with the auction still to run: Hang Seng 23,614.68, <span class="chg">&darr;1.64%</span> &middot; Hang Seng Tech 3,810.97, <span class="chg">&darr;3.08%</span> &middot; HSCEI 7,934.10, <span class="chg">&darr;1.52%</span> (12 November close: 24,008.55 and 3,931.93)</li>
+        <li>US 10-year 5.13% (12 November, after 5.004% the session before) &middot; COMEX gold $3,881.7 &middot; WTI $88.7 &middot; offshore renminbi 6.673 (CMB International, 12 November New York close)</li>
+      </ul>
+    </div>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>Start with the flow, because Friday was mostly a week of arithmetic changing sign. The main-force gauge &mdash; the institutional-flow measure the domestic desks watch &mdash; printed minus &yen;60.02 billion for the whole market, against Thursday&rsquo;s minus &yen;52.4 billion. Two sessions earlier, on Wednesday, the same gauge had taken in &yen;19.84 billion. The week&rsquo;s sign flipped on Wednesday night and did not flip back; Friday&rsquo;s was the largest negative print of the run.</p>
+    <p>The volume is the part worth sitting with. Thursday&rsquo;s decline came on &yen;1.932 trillion, the heaviest of the run, and this letter wrote then that volume rising on a falling tape is not fear but disagreement &mdash; for every seller who accepted a lower price there was a buyer who thought that price was wrong. Friday took &yen;276.4 billion off that number. Fewer people came to argue. A shelf that falls eight and a half percent on shrinking money is not being fought over. It is being left.</p>
+    <div class="aside">Disagreement is loud. Absence is quiet, and it does not show up in the index until much later.</div>
+    <p>The overnight news supplied a question, not an answer. Nvidia is a supplier, a customer and a benchmark all at once, and the optical and laminate shelves in Shanghai and Shenzhen had been priced all autumn on a domestic version of the same compute story. On Thursday night the most valuable company in that story changed its chief executive, and its shares were down thirteen percent at the open before recovering most of it. I want to be careful with the seam: an American session that ends before Shanghai opens is a coordinate, not a cause. What the two tapes show is a similar split. Broadcom rose while Super Micro fell in New York; photolithography names sat at their ceilings while laminate names sat at their floors in Shanghai. One chain, two markets, two sets of prices, the same week.</p>
+    <p>Underneath all of it the floor was restated, not moved. At the Shanghai exchange&rsquo;s international investor conference on Thursday, a vice chairman of the securities regulator said the authorities would improve market-stabilisation mechanisms, that a third round of the swap facility had already put &yen;100 billion to work, and that pension, annuity and insurance accounts had bought a net &yen;600 billion of A-shares since the start of the year. On Friday the central bank offered &yen;364 billion of overnight reverse repos at 1.25 percent, fully met, alongside &yen;300 billion of seven-day money. None of that bought a single laminate name on Friday. It does say something about where the bid sat: the oldest, dullest shelves in the market are where patient money is allowed to wait.</p>
+    <p>Two companies carried the day across two exchanges. SMIC reported third-quarter net profit up 87.6 percent; in Hong Kong its shares opened at 50.00, touched 52.30 and stood 0.62 percent lower at 15:37, an intraday swing of 8.62 percent. MSCI&rsquo;s November review, meanwhile, listed Innolight&rsquo;s H shares for addition to its emerging-markets index after the close of 30 November; on Friday the same shares were quoted lower. An index inclusion and a double-digit intraday fall in one week is not a contradiction. Index membership is a calendar; price is a vote taken every minute.</p>
+    <p class="pull">Thursday the mirror reversed. Friday the room simply changed seats &mdash; the oldest names in the market took the highs, and the most expensive ones took the floors.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <p>For the week&rsquo;s triggering event &mdash; the chief executive of the world&rsquo;s most valuable company leaving inside a week &mdash; I have no close historical analogue with a verifiable aftermath, and I will not invent one. What this letter&rsquo;s own verified archive does hold are two days when the tape printed a similar shape. Both are set down here only as history.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 28 August 2023</div>
+      <p>On 28 August 2023 the stamp duty on share trading was halved. The Shanghai Composite opened 5.06 percent higher at 3,219.04; by the bell four-fifths of that gain was gone, and it closed at 3,098.64, barely 1.13 percent up. Turnover reached &yen;1.1266 trillion, &yen;360.3 billion above the session before, and more than 3,600 names finished higher against roughly 1,500 lower. What followed was slow arithmetic: the gap was filled, and by 23 October the index closed at 2,939.29 &mdash; 159 points, or 5.1 percent, below the announcement-day close. Friday&rsquo;s STAR 50 is a smaller and much faster version of the same shape: up 2.46 percent at its morning best, down 2.30 percent at the close, nearly five percentage points from one to the other in a single session.</p>
+      <div class="diff-note">Difference worth keeping: 2023 opened on a policy gap and &yen;360.3 billion of fresh volume. Friday had no gap at all and &yen;276.4 billion less money. A crowd that came for a decree is not a crowd that quietly stopped coming.</div>
+    </div>
+
+    <div class="aside">In 2023 the gap took eight weeks to fill. In 2025 the rebound took two sessions. The archive keeps both clocks.</div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 27 January to 7 February 2025</div>
+      <p>On 27 January 2025 Nvidia fell more than 17 percent in New York on the fear that cheaper models would need fewer chips. The mainland exchanges were shut for the Spring Festival; when they reopened on 5 February, the optical line did not wait for a second reading. Innolight closed 14.43 percent lower at 98.25 yuan, barely half the 185.83 it had printed at its October 2024 peak; Eoptolink lost 18.49 percent, and two more names in the same line fell harder still. The AI-application index rose 3.59 percent that day. What followed is the part the record keeps: two sessions later, on 7 February, the leaders took back between five and 6.7 percent. The fright was shorter than the fall.</p>
+      <div class="diff-note">Difference worth keeping: in 2025 the reversal answered an external shock and two weeks of closed doors, with the whole chain down at once. Friday&rsquo;s selling came in continuous trading, and the split ran inside the chain &mdash; laminate at its floor, photolithography at its ceiling &mdash; while the money crossed to bank and liquor shelves instead of an application index.</div>
+    </div>
+
+    <p>The record stands for comparison.</p>
+  </div>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>At four o&rsquo;clock the branches on Nanjing&rsquo;s streets are shut, and the five banks whose shares printed records have their lights off like every other Friday. Nothing about a printed record changes the walk home. The people who queue there on an ordinary morning will not ask what a copper-clad laminate costs, and the people who sold one on Friday would not recognise the name of a city bank. Two rooms, one tape, and a number at the bottom of the page &mdash; 3,634.35, down twenty-one points &mdash; that mentions neither.</p>
+    <p>The old seats were full. That was all the day promised.</p>
+  </div>
+
+  <hr class="divider">
+
+  <svg class="seal-svg" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="70" height="70" rx="4" stroke="#a8312a" stroke-width="1.6"/>
+    <rect x="7" y="7" width="58" height="58" rx="2" stroke="#a8312a" stroke-width="0.9"/>
+    <path d="M18 20h36M18 52h36M20 20v32M52 20v32" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M28 28h16v16H28z" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M36 22v6M36 44v6M22 36h6M44 36h6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <div class="footer">
+    <div class="src">Sources &mdash; A-share index levels, turnover, breadth, sector moves and main-force flows are westock-mcp and mx-ds (Eastmoney) data for the session of 2026-11-13, fetched at 15:45 Beijing time. Closing breadth follows the whole-market count published at 15:04 (765 up, 4,748 down, 66 unchanged; 38 limit-ups, 34 limit-downs); a count covering the two mainland exchanges only printed 744 up and 4,415 down with 39 limit-downs and is not used for the headline figures. Sector moves are per the Shenwan classification; a constituent market-cap-weighted gauge and an Eastmoney industry gauge print different numbers for some buckets and are not mixed here. The inflow and outflow rankings are ranked within the sectors named this session, not across the whole market; the four hardware shelves (components, communications equipment, semiconductors, electronic chemicals) sum to about &minus;&yen;28.98 billion of main-force money and the four defensive shelves (banks, liquor, cinema, insurance) to +&yen;3.70 billion. Nvidia&rsquo;s board announcement of 12 November and the board appointments are cited per the company&rsquo;s own release as reported by Xinhua, Shanghai Securities News and 21st Century Business Herald; the announcement did not characterise the departure as voluntary or otherwise, and nothing about the surrounding personal matter is recorded here. The 11 November evening press report and the 12 November share prices are cited as market fact only. US figures are the session of 12 November &mdash; the last American session to finish before the Shanghai open on 13 November &mdash; and no figures from the uncompleted 13 November US session appear anywhere in this piece: S&amp;P 500 7,592.40 down 0.35, Nasdaq 25,366.09 down 0.39, Dow 52,297.09 down 0.36, Philadelphia Semiconductor 10,506.67 down 0.54 after an intraday fall of 3.6, Nvidia 166.19 down 4.34 after opening at 151.01 and touching 148.80, Broadcom up 5.54, Super Micro down 11.30, the ten-year Treasury at 5.13 percent after 5.004 the session before, COMEX gold $3,881.7, WTI $88.7; the offshore renminbi at 6.673 is CMB International&rsquo;s 12 November New York close reading, not a direct tool quote. The dollar index was unavailable this session and is not cited. Hong Kong figures are intraday readings taken at 15:37 with the closing auction still to run &mdash; Hang Seng 23,614.68 down 1.64, Hang Seng Tech 3,810.97 down 3.08, HSCEI 7,934.10 down 1.52 &mdash; set against the 12 November close of 24,008.55 and 3,931.93 (Hang Seng down 1.26, Hang Seng Tech down 2.36, southbound net purchases of HK$5.846 billion for the full session); the Friday southbound reading of more than HK$1.9 billion is an 11:12 intraday cumulative figure, not a closing net, and no 15:35 figure was available. Hong Kong sector moves are list-level and individual-stock readings only; no official percentage gauges were available and none have been constructed. Policy remarks are from the Shanghai Stock Exchange international investor conference of 12 November; the reverse-repo figures and the adjustment to reserve requirements on bank deposits in other currencies, effective 15 November, are from the People&rsquo;s Bank of China; SMIC&rsquo;s third-quarter result and the MSCI November review are cited per the companies&rsquo; and index provider&rsquo;s announcements. Historical parallels are drawn from this letter&rsquo;s own verified archive: the 28 August 2023 stamp-duty session (open 3,219.04, close 3,098.64, &yen;1.1266 trillion turnover, &yen;360.3 billion above the prior session; 23 October close 2,939.29) and the 27 January to 7 February 2025 sequence (Nvidia down more than 17 percent; Innolight 98.25 against the 185.83 peak of 8 October 2024; Eoptolink down 18.49; the 7 February rebound of five to 6.7 percent). No historical analogue with a verifiable aftermath was found for the chief-executive departure itself, and none has been supplied.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
