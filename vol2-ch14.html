@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Jianghu Tape &middot; Chapter Thirty-Four &middot; The Morning Given Back</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root{
+    --paper:#f4ecdc;
+    --paper-deep:#e8dec6;
+    --ink:#1d1a14;
+    --ink-soft:#4a4233;
+    --teal:#3d6b5b;
+    --gold:#a07c3a;
+    --seal:#a8312a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:Georgia,"Times New Roman","Noto Serif SC",serif;
+    font-size:18px;
+    line-height:1.85;
+    padding:60px 20px 100px;
+    background-image:
+      radial-gradient(ellipse 800px 600px at 10% 20%,rgba(160,124,58,.06),transparent 60%),
+      radial-gradient(ellipse 600px 800px at 90% 80%,rgba(168,49,42,.05),transparent 60%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0 0.3 0 0 0 0.08 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  }
+  .frame{max-width:620px;margin:0 auto;position:relative}
+  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--seal),var(--gold));width:0;z-index:99;transition:width .15s ease}
+  .kicker{
+    text-align:center;
+    font-size:12px;
+    letter-spacing:.42em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(29,26,20,.18);
+  }
+  h1{
+    font-weight:700;
+    font-size:40px;
+    line-height:1.2;
+    text-align:center;
+    margin:14px 0 10px;
+    letter-spacing:.01em;
+  }
+  .byline{
+    text-align:center;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink-soft);
+    letter-spacing:.08em;
+    margin-bottom:6px;
+  }
+  .sub-kicker{
+    text-align:center;
+    font-size:15px;
+    color:var(--ink-soft);
+    letter-spacing:.18em;
+    margin-bottom:38px;
+  }
+  .section{margin:48px 0;position:relative}
+  .section-head{
+    display:flex;align-items:baseline;gap:14px;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:10px;
+    margin-bottom:22px;
+  }
+  .section-num{
+    font-weight:700;
+    font-size:20px;
+    color:var(--seal);
+    white-space:nowrap;
+    letter-spacing:.22em;
+  }
+  .section-title{
+    font-weight:600;
+    font-size:23px;
+    letter-spacing:.02em;
+    flex:1;
+  }
+  .section-sub{
+    font-size:12px;
+    color:var(--ink-soft);
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  p{margin:0 0 1.1em;text-align:justify;text-justify:inter-word}
+  .lead p:first-of-type::first-letter{
+    font-weight:700;
+    font-size:66px;
+    line-height:.85;
+    float:left;
+    padding:6px 10px 0 0;
+    color:var(--seal);
+  }
+  .pull{
+    font-size:21px;
+    line-height:1.7;
+    color:var(--ink);
+    border-left:3px solid var(--seal);
+    padding:6px 0 6px 18px;
+    margin:28px 0;
+    font-style:italic;
+  }
+  .data{
+    background:rgba(255,255,255,.45);
+    border:1px solid rgba(29,26,20,.18);
+    padding:14px 18px;
+    margin:22px 0;
+    font-size:15px;
+    line-height:1.75;
+    color:var(--ink-soft);
+  }
+  .data strong{color:var(--ink);font-weight:600}
+  .data ul{list-style:none;margin:8px 0 0}
+  .data li{margin-bottom:5px}
+  .chg{font-weight:600;color:var(--ink)}
+  .aside{
+    position:absolute;
+    right:-150px;
+    width:130px;
+    font-size:13px;
+    line-height:1.7;
+    color:var(--ink-soft);
+    border-left:1px solid rgba(29,26,20,.2);
+    padding-left:12px;
+    font-family:Georgia,serif;
+    font-style:italic;
+  }
+  @media (max-width:820px){.aside{display:none}}
+  .old-account{
+    background:rgba(160,124,58,.07);
+    border-left:3px solid var(--gold);
+    padding:16px 18px;
+    margin:24px 0;
+    font-size:16px;
+  }
+  .old-account-head{
+    font-weight:700;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .diff-note{
+    font-size:14px;
+    color:var(--ink-soft);
+    border-top:1px dashed rgba(160,124,58,.4);
+    margin-top:10px;
+    padding-top:8px;
+    font-style:italic;
+  }
+  .warn{
+    background:rgba(168,49,42,.06);
+    border:1px solid rgba(168,49,42,.25);
+    padding:10px 14px;
+    margin:18px 0;
+    font-size:15px;
+    font-style:italic;
+    color:var(--ink);
+    text-align:center;
+  }
+  svg.seal-svg{display:block;margin:44px auto;opacity:.85}
+  hr.divider{
+    border:0;
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(29,26,20,.35),transparent);
+    margin:52px 0;
+  }
+  .footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid rgba(29,26,20,.18);
+    font-size:13px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    text-align:justify;
+  }
+  .footer .src{margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="progress" id="prog"></div>
+  <div class="kicker">A daily read of the Chinese tape</div>
+  <h1>Chapter Thirty-Four &middot; The Morning Given Back</h1>
+  <div class="byline">by Dan Rivers · 2026-11-24</div>
+
+  <!-- ============ ONE · NARRATIVE ============ -->
+  <div class="section lead">
+    <div class="section-head">
+      <div class="section-num">ONE</div>
+      <div class="section-title">Narrative</div>
+      <div class="section-sub">The Day</div>
+    </div>
+
+    <p>At the opening on Tuesday morning the auction showed 4,962 names higher and 442 lower. ChiNext was indicated up 3.88 percent, the STAR composite up 3.94, Shenzhen 2.43, Shanghai 0.82. By the closing bell 3,498 names were lower and ChiNext had printed 2,278.99 &mdash; the exact price of its low for the day. Nothing in between had been hidden. The tape simply gave back, in six and a half hours, the whole of a gift it had been handed before the open.</p>
+    <div class="aside">The loudest number of the day came before the first trade. The honest one came at the last.</div>
+    <p>Of the six gauges in this fetch, three closed higher and three lower, but only one kept a large part of its opening gain. The Shanghai Composite finished at 3,548.37, up 0.27 percent, or 9.42 points, after opening at 3,567.84 and reaching 3,585.22. The Shenzhen Component closed at 10,423.60, down 0.29, having opened 2.43 percent higher. ChiNext ended at 2,278.99, down 0.05, after touching 2,376.34 &mdash; more than four percent above the prior close &mdash; and then sliding without a meaningful bid. The Beijing 50 closed at 793.60, down 0.22, also at its low of the day. The CSI 300 managed 3,963.82, up 0.14. The STAR 50 was the exception: 1,250.09, up 1.81 percent, the strongest broad gauge in the set.</p>
+    <p>Breadth tells the story more cleanly than any index. The opening count was 4,962 up against 442 down, with 175 unchanged. At midday it was 3,123 against 2,273. At the close it was 1,952 up and 3,498 down. Sixty-four names sealed at limit-up &mdash; the ten percent daily cap on most A-shares &mdash; against four at limit-down. A separate Shanghai-Shenzhen-only tally, which leaves out the Beijing exchange, put the same session at 1,838 up and 3,267 down; it is a different count and is not mixed here. The direction is not in doubt: the majority of prices finished lower, and the tape says so.</p>
+    <p>Turnover rose. The two markets traded &yen;1.6551 trillion, about &yen;102.2 billion more than the session before, with Shanghai contributing &yen;771.9 billion and Shenzhen &yen;883.2 billion. Volume rising on a day when most prices fell is not fear and not apathy; it is disagreement written large. For every buyer who took the opening gap there was a seller who used it, and the volume recorded both.</p>
+    <p>What was bought in the afternoon was not what had gapped in the morning. Consumer electronics gained 3.00 percent on the published industry classification, with an AI-phone and smart-speaker name up 20.01. Cultural and entertainment articles led the named industries at 3.55. Aerospace equipment added 2.99, naval equipment 2.64, insurance 2.21 and energy metals 2.00. Semiconductors, the closest thing to the overnight story, rose 1.53. Under the concept labels the bids went to humanoid robotics and physical AI, where two names reached a third consecutive limit-up and four more a second, and to an AI-comics theme that put two names at their second ceiling.</p>
+    <p>What was sold was Friday&rsquo;s shelf. Precious metals fell 4.00 percent and finished with none of eleven names higher; industrial metals lost 3.44, minor metals 2.14, refining and trade 2.08, passenger cars 2.07, securities 1.51 and coal mining 1.18. On Friday precious metals had been the strongest named line in the market, up 5.25 percent. Two sessions later it was the weakest. The computing complex that had gapped on the news did not escape: an optical-module leader was up more than eleven percent intraday before its gain narrowed sharply, and a printed-circuit-board concept that opened strong slid through the afternoon.</p>
+    <p>As of 15:47 in Hong Kong, with the closing auction still to run, the Hang Seng stood at 22,212.12, down 0.77 percent, Hang Seng Tech at 3,465.97, down 1.20, and the HSCEI at 7,451.56, down 1.02. These are intraday readings, not closes. That market had opened higher &mdash; the Hang Seng up 1.09, Hang Seng Tech 2.05 &mdash; before reversing, and its intraday lows came close to fifty-two-week floors. The previous session&rsquo;s close, on 23 November, was 22,383.74 and 3,508.00. Southbound flows via Stock Connect were reported only as intraday figures, roughly HK$4 billion near the open and HK$7.2 billion by midday; the full-session total was unavailable and none is quoted here.</p>
+
+    <div class="data">
+      <strong>The session, in figures</strong>
+      <ul>
+        <li>Shanghai Composite 3,548.37, <span class="chg">&uarr;0.27%</span> (open 3,567.84, +0.82%; high 3,585.22; low 3,539.01) &middot; Shenzhen Component 10,423.60, <span class="chg">&darr;0.29%</span> (open 10,708.62, +2.43%; high 10,729.13) &middot; ChiNext 2,278.99, <span class="chg">&darr;0.05%</span> (open 2,368.70, +3.88%; high 2,376.34; low = close 2,278.99) &middot; STAR 50 1,250.09, <span class="chg">&uarr;1.81%</span> (strongest broad gauge) &middot; Beijing 50 793.60, <span class="chg">&darr;0.22%</span> (open 822.30; low = close 793.60) &middot; CSI 300 3,963.82, <span class="chg">&uarr;0.14%</span></li>
+        <li>Three of six gauges higher: Shanghai, STAR 50 and CSI 300. Only the STAR 50 kept a large share of its opening gain. ChiNext and Beijing 50 closed on their lows of the day</li>
+        <li>Breadth (whole-market count): 1,952 up, 3,498 down; 64 limit-ups against 4 limit-downs. Opening auction 4,962 up / 442 down / 175 unchanged; midday 3,123 / 2,273. A Shanghai-Shenzhen-only count (1,838 / 3,267) is a different caliber and is not mixed in. Majority closed lower</li>
+        <li>Combined turnover &yen;1.6551 trillion &mdash; Shanghai &yen;771.9 billion plus Shenzhen &yen;883.2 billion &mdash; about &yen;102.2 billion above the previous session; whole-market including Beijing roughly &yen;1.66 trillion</li>
+        <li>Main-force money: whole market &minus;&yen;3.781 billion, ending the previous session&rsquo;s +&yen;26.97 billion; six-session series 24 Nov &minus;&yen;3.781 billion, 23 Nov +&yen;26.97 billion, 20 Nov &minus;&yen;52.08 billion, 19 Nov &minus;&yen;31.11 billion, 18 Nov &minus;&yen;8.512 billion, 17 Nov &minus;&yen;26.6 billion. Largest named inflows components +&yen;3.109 billion, consumer electronics +&yen;2.486 billion, communications equipment +&yen;1.403 billion, semiconductors +&yen;1.308 billion; largest named outflows securities &minus;&yen;1.541 billion, electric power &minus;&yen;1.139 billion, minor metals &minus;&yen;1.127 billion. Largest single-stock turnovers &yen;28.583 billion, &yen;24.975 billion, &yen;14.658 billion</li>
+        <li>Overnight (New York, Monday 23 November &mdash; the last American session to finish before the Shanghai open on 24 November): S&amp;P 500 7,237.17, <span class="chg">&uarr;4.729%</span> &middot; Nasdaq 24,089.559, <span class="chg">&uarr;6.507%</span> &middot; Dow 49,595.31, <span class="chg">&uarr;3.007%</span> &middot; Philadelphia semiconductors 9,588.05, <span class="chg">&uarr;14.03%</span> &middot; Nvidia 165.05, <span class="chg">&uarr;31.48%</span> &middot; TSMC 363.60, <span class="chg">&uarr;14.08%</span> &middot; Micron 707.70, <span class="chg">&uarr;19.04%</span> &middot; Broadcom 313.55, <span class="chg">&uarr;3.003%</span> &middot; COMEX gold 3,634.4, <span class="chg">&uarr;3.385%</span> &middot; WTI 80.25, <span class="chg">&darr;3.789%</span> &middot; LME copper 12,470.5, <span class="chg">&uarr;2.554%</span> &middot; US 10-year 4.948% &middot; Nasdaq Golden Dragon China index <span class="chg">&uarr;2.38%</span></li>
+        <li>Hong Kong, intraday at 15:47 with the closing auction still to run: Hang Seng 22,212.12, <span class="chg">&darr;0.77%</span> &middot; Hang Seng Tech 3,465.97, <span class="chg">&darr;1.20%</span> &middot; HSCEI 7,451.56, <span class="chg">&darr;1.02%</span>; opened higher (+1.09%, +2.05%, +0.80%); intraday lows near 52-week floors 21,998.05 and 3,395.38; T-day southbound total unavailable (23 November close: 22,383.74 / 3,508.00 / 7,527.98, full-session southbound net selling of HK$9.627 billion)</li>
+      </ul>
+    </div>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ TWO · ANALYSIS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">TWO</div>
+      <div class="section-title">Analysis</div>
+      <div class="section-sub">Why</div>
+    </div>
+
+    <p>The shape is the argument, and on Tuesday the shape was a gift refused. An index is a weighted sum; breadth is a headcount. At the opening auction the two agreed &mdash; nearly five thousand names higher and every major board gapped up. Then they parted. The headcount turned first, and the weighted sums followed through the afternoon on more volume than the day before. A gap filled in by the close is not a slow drift. It is a change of hands, recorded in size.</p>
+    <p>The cross-market fact belongs here as a coordinate, not a cause. The American session that finished before Shanghai opened was Monday 23 November, and it was extraordinary by any scale: the S&amp;P 500 up 4.729 percent, the Nasdaq 6.507, the Dow 3.007, the Philadelphia semiconductor index 14.03. Nvidia rose 31.48 percent to $165.05, its largest one-day percentage gain since May 2003, adding $952 billion to its market value in a single session. Micron gained 19.04, TSMC 14.08. I put these beside the Shanghai open for scale. A price set in one country before dawn does not determine one set seven hours later.</p>
+    <p>The reason for that move is a dated item in the news file, not a trading signal. The chipmaker&rsquo;s board voted to restore its founder to the offices of president, chief executive and director after a leave of some ten days. The A-share computing chain opened as if the vote had been a fresh order book, then spent the session proving it was not. Whole-market main-force money printed minus &yen;3.781 billion, ending the previous session&rsquo;s plus &yen;26.97 billion. That is a mild outflow by the standards of this run &mdash; the prior six sessions included minus &yen;52.08 billion and minus &yen;31.11 billion &mdash; but its direction matters: the money that carried Monday did not carry Tuesday.</p>
+    <p>Inside the tape, the rotation is measurable. Components took the largest named main-force inflow at &yen;3.109 billion, consumer electronics &yen;2.486, communications equipment &yen;1.403 and semiconductors &yen;1.308. Yet communications equipment closed up just 0.07 percent after being more than six higher intraday. The two largest turnovers in the whole market, &yen;28.583 billion and &yen;24.975 billion, were the optical names whose prices faded. Volume stayed in the same names while the bid moved elsewhere. Securities, electric power and minor metals took the largest named outflows.</p>
+    <p>Several other items are dated and belong to the file. The exchanges lowered the minimum margin-financing ratio from 100 percent to 80 percent, effective 30 November, with one published estimate of nearly &yen;400 billion of additional capacity; the central bank ran &yen;516 billion of overnight reverse repos for a net injection of &yen;16.5 billion; a wave of more than thirty share-buyback announcements followed Monday; and Washington tightened rules on remote access to advanced chips. None of these is used here to explain a price or to read a session that had not happened.</p>
+    <div class="aside">A gap is a price. What happens to it after the bell is a vote.</div>
+    <p class="pull">At the opening auction 4,962 names were higher. At the close 3,498 were lower, and ChiNext had finished at the exact price of its low.</p>
+  </div>
+
+  <svg class="seal-svg" width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="42" height="42" rx="3" stroke="#a8312a" stroke-width="1.4"/>
+    <rect x="5" y="5" width="34" height="34" rx="1.5" stroke="#a8312a" stroke-width="0.8"/>
+    <path d="M13 31V13h18v18H19v-12h6v6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <!-- ============ THREE · HISTORICAL PARALLELS ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">THREE</div>
+      <div class="section-title">Historical Parallels</div>
+      <div class="section-sub">The Record</div>
+    </div>
+
+    <div class="warn">The record shows where the road has been, not where it goes next.</div>
+
+    <p>Today&rsquo;s fetch carries no verifiable historical analogue, and I will not manufacture one for a session that opened on a corporate announcement and gave the gap back in a single afternoon. What this letter&rsquo;s own verified archive holds are two stretches with a measurable aftermath. Both are set down as history only.</p>
+
+    <div class="old-account">
+      <div class="old-account-head">One &middot; 28 August 2023</div>
+      <p>On 28 August 2023 the stamp duty on share trading was halved. The Shanghai Composite opened 5.06 percent higher at 3,219.04; by the bell four-fifths of that gain was gone, and it closed at 3,098.64, barely 1.13 percent up. Turnover reached &yen;1.1266 trillion, &yen;360.3 billion above the session before, and more than 3,600 names finished higher against roughly 1,500 lower. What followed was slow arithmetic: the gap was filled, and by 23 October the index closed at 2,939.29 &mdash; 159 points, or 5.1 percent, below the announcement-day close. Tuesday&rsquo;s opening shape is the same species &mdash; a large gap given back on rising volume. The difference is as large as the resemblance: 2023 opened on a domestic policy change and added &yen;360.3 billion of fresh money, while Tuesday opened on a company announcement from another country, added &yen;102.2 billion, and finished with more decliners than advancers. The archive records what happened in 2023 and says nothing about what follows Tuesday.</p>
+      <div class="diff-note">Difference worth keeping: 2023 had a policy gap, a positive closing headcount and &yen;360.3 billion of new money; Tuesday had a corporate announcement, a negative closing headcount and &yen;102.2 billion more turnover. No aftermath is claimed here.</div>
+    </div>
+
+    <div class="aside">In 2023 the gap was policy and the headcount stayed positive. In the optical boom the story outran the invoice. The archive keeps both outcomes and starts neither.</div>
+
+    <div class="old-account">
+      <div class="old-account-head">Two &middot; 16 June to 31 July 2023</div>
+      <p>In June 2023 an optical-module leader closed at 170 yuan &mdash; more than fivefold from a year that opened near 27 &mdash; on a market value of &yen;136.5 billion. Two days before the crest it had risen 14.99 percent in a single session. What followed was the invoice. On the night of 11 July a half-year preview showed net profit growth of 12 to 36 percent: good, but not the explosion a fivefold stock had been priced on, and the next session it fell more than six percent. By 31 July it closed 25 percent below its June peak on adjusted prices. Tuesday&rsquo;s computing chain opened on a story of restored leadership rather than earnings, and its largest turnover went to names that could not hold the opening price. Difference worth keeping: the 2023 boom rested on a single customer chain, with no domestic pillar to catch it, and its unwind took weeks; Tuesday&rsquo;s fade happened inside six hours, and the same names still drew the market&rsquo;s largest turnover. The archive keeps both timelines and starts neither.</p>
+      <div class="diff-note">Difference worth keeping: 2023 measured a peak against a later earnings preview over weeks; Tuesday measured an opening auction against a closing bell in one session. The 25 percent figure belongs to July 2023 alone.</div>
+    </div>
+
+    <p>The record stands for comparison.</p>
+  </div>
+
+  <!-- ============ FOUR · CODA ============ -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-num">FOUR</div>
+      <div class="section-title">Coda</div>
+      <div class="section-sub">Last Word</div>
+    </div>
+
+    <p>At the opening the screens along a Shanghai street were filled with rising numbers. A noodle shop two doors down had not opened yet; the owner was still lifting the shutter. By four the numbers had turned and the shop had served three bowls. Neither screen nor shop kept a score.</p>
+    <p>The market had been given a morning and had handed it back. The closing bell is quieter than the opening one. It is also the only one that counts.</p>
+  </div>
+
+  <hr class="divider">
+
+  <svg class="seal-svg" width="72" height="72" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+    <rect x="1" y="1" width="70" height="70" rx="4" stroke="#a8312a" stroke-width="1.6"/>
+    <rect x="7" y="7" width="58" height="58" rx="2" stroke="#a8312a" stroke-width="0.9"/>
+    <path d="M18 20h36M18 52h36M20 20v32M52 20v32" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M28 28h16v16H28z" stroke="#a07c3a" stroke-width="1.1"/>
+    <path d="M36 22v6M36 44v6M22 36h6M44 36h6" stroke="#a07c3a" stroke-width="1.1"/>
+  </svg>
+
+  <div class="footer">
+    <div class="src">Sources &mdash; A-share index levels, the opening-auction and midday breadth, closing breadth, turnover, sector moves and main-force flows are from the 15:35 fetch stage for the session of 2026-11-24, recorded as fetched at 15:49 Beijing time, using westock-mcp and mx-ds (Eastmoney) as two sources that agree on the figures; no second figure has been substituted for a single one. Breadth follows the published whole-market count (1,952 up, 3,498 down, 64 limit-ups, 4 limit-downs); the opening count was 4,962 up, 442 down and 175 unchanged and the midday count 3,123 up against 2,273 down, both dated readings and not closing figures. A Shanghai-Shenzhen-only tally (1,838 up, 3,267 down, same limits) excludes the Beijing exchange, is a different caliber and is not mixed in. Direction: decliners outnumber advancers, and the text says so. Turnover of &yen;1.6551 trillion is &yen;771.9 billion in Shanghai plus &yen;883.2 billion in Shenzhen, about &yen;102.2 billion above the previous session; volume therefore rose on a day when the majority of prices fell, and the text says so. Of the six gauges in this fetch, three closed higher &mdash; Shanghai +0.27, STAR 50 +1.81 and CSI 300 +0.14 &mdash; and three lower; only the STAR 50 kept a large part of its opening gain, and ChiNext and the Beijing 50 closed on their lows of the day. No claim is made that any gauge was the only one higher. Sector percentages follow one published industry classification throughout. Main-force figures are the whole-market series in the fetch and the named industry rankings, not a claim about every line in the market. US figures are the session of Monday 23 November &mdash; the last American session to finish before the Shanghai open on 24 November &mdash; and no figures from the 24 November US session, which had not begun when this was written, appear anywhere in this piece: S&amp;P 500 7,237.17 up 4.729, Nasdaq 24,089.559 up 6.507, Dow 49,595.31 up 3.007, Philadelphia Semiconductor 9,588.05 up 14.03, Nvidia 165.05 up 31.48, TSMC 363.60 up 14.08, Micron 707.70 up 19.04, Broadcom 313.55 up 3.003, COMEX gold 3,634.4 up 3.385, WTI 80.25 down 3.789, LME copper 12,470.5 up 2.554, the ten-year Treasury at 4.948 and the Nasdaq Golden Dragon China index up 2.38. There is one American timepoint in this piece because the 24 November session had not begun; no same-night block is included and none is implied. Nvidia&rsquo;s board decision to restore its founder as president, chief executive and director, the margin-ratio change effective 30 November, the central bank&rsquo;s overnight reverse repos, the buyback announcements, the tighter rules on remote access to advanced chips and the index review in the southern market are dated items in the news file; no forward reading is attached to any of them. The dollar index and the offshore renminbi have no overnight closing quote in this fetch &mdash; only real-time readings at 15:47 on 24 November &mdash; so neither is cited. No fund, ETF or other financial product is named, described or commended. Hong Kong figures are intraday readings taken at 15:47 with the closing auction still in progress and no final print available &mdash; Hang Seng 22,212.12 down 0.77, Hang Seng Tech 3,465.97 down 1.20, HSCEI 7,451.56 down 1.02 &mdash; set against the 23 November close of 22,383.74, 3,508.00 and 7,527.98 with full-session southbound net selling of HK$9.627 billion. Only intraday southbound figures were available for 24 November and none has been constructed into a full-session total. The fetch marks the Hong Kong readings as not a confirmed close, so none is called a close; official industry percentages, a full-session southbound total, a full-session turnover and a confirmed closing price are all absent and none has been constructed. Hong Kong is another exchange in the same country, trading on a different clock, and southbound flows are described as money moving between two exchanges in that same country. Historical parallels are drawn only from this letter&rsquo;s own verified archive: 28 August 2023 (open 3,219.04 up 5.06, close 3,098.64 up 1.13, turnover &yen;1.1266 trillion or &yen;360.3 billion above the prior session, 23 October close 2,939.29) and June to 31 July 2023 (an optical-module leader at 170 yuan on a market value of &yen;136.5 billion, a 14.99 percent single-session gain, an 11 July preview of 12 to 36 percent profit growth, a fall of more than six percent the next session and a close 25 percent below the June peak by 31 July on adjusted prices). No historical analogue with a verifiable aftermath was found for this session&rsquo;s exact setup, and none has been supplied.</div>
+    <div>This is market observation and historical review for general circulation. It is not investment advice. The author holds no securities investment advisory licence, recommends no securities, and directs no action. Markets carry risk.</div>
+    <div>Drafted with AI assistance under the author's direction and editorial standards; the author reviews and stands behind every piece.</div>
+  </div>
+
+</div>
+<script>
+  window.addEventListener('scroll',function(){
+    var h=document.documentElement;
+    var pct=(h.scrollTop||document.body.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+    document.getElementById('prog').style.width=pct+'%';
+  });
+</script>
+</body>
+</html>
